@@ -1,0 +1,117 @@
+:sheet_dim:
+[
+[19, 18]
+]
+
+:tile_dim:
+[
+[16, 16]
+]
+
+:colorkey:
+[
+[255, 255, 255]
+]
+
+
+:wall sets:
+[
+[dungeon: 0 : 0]
+[cave: 1: 0]
+[crypt: 2: 0]
+[ruin: 3: 0]
+]
+
+:wall set tiles:
+[
+[hor: 0]
+[hor_a: 1]
+[hor_b: 2]
+[hor_c: 3]
+[hor_d: 4]
+[hor_crack: 5]
+[ver: 6]
+[ver_a: 7]
+[ver_b: 8]
+[ver_c: 9]
+[ver_d: 11]
+[ver_crack: 10]
+[down_Stairs: 12]
+[up_stairs: 13]
+]
+
+:floor sets:
+[
+[dungeon_a: 4: 0]
+[dungeon_b: 4: 8]
+[cavern: 5: 0]
+[grass: 5: 8]
+]
+
+:floor set tiles:
+[
+[base: 0]
+[var_a: 1]
+[var_b: 2]
+[var_c: 3]
+[var_d: 4]
+[var_e: 5]
+[hole: 6]
+[pit_edge: 7]
+]
+
+:deco floor sets:
+[
+[tile_a: 6: 1]
+[tile_b: 6: 6]
+[carpet: 6: 11]
+[tile_c: 7: 1]
+[cobble: 7: 6]
+[tile_d: 7: 11]
+]
+
+:deco floor tiles:
+[
+[base: 0]
+[var_a: 1]
+[var_b: 2]
+[var_c: 3]
+[var_d: 4]
+]
+
+:water sets:
+[
+[blue: 8: 0, 6]
+[sewer: 8: 6, 12]
+[gloomy: 8: 12, 18]
+[green: 9: 0, 6]
+[lava: 9: 6, 12]
+[mud: 9: 12, 18]
+]
+
+:water tiles:
+[edge: 0]
+[center: 1]
+[edge_ani_a: 2]
+[edge_ani_b: 3]
+[center_ani_a: 4]
+[center_ani_b: 5]
+]
+
+:door sets:
+[
+[wooden: 10: 0]
+[dungeon: 10: 6]
+[stone: 11: 0]
+[red: 11: 6]
+]
+
+:door tiles:
+[
+[hor_closed: 0]
+[hor_open: 1]
+[ver_closed_bot: 2]
+[ver_closed_top: 3]
+[ver_open_top: 4]
+[ver_open_bot: 5]
+]

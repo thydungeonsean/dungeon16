@@ -1,0 +1,29 @@
+# project files
+.idea/
+
+# python byte files
+*.pyc
+
+# ignore sprites to protect Oryx licence
+assets/sprites/infantry.png
+assets/sprites/archer.png
+assets/sprites/chariot.png
+assets/world.png
+assets/monster.png
+
+# ignore screenshot
+
+# ignore pyinstaller artifacts
+*.spec
+dist/
+build/
+setup.py
+
+# ignore distribution packages
+packages/
+
+# ignore font
+*.ttf
+
+# ignore workspace play around test folder
+workspace
