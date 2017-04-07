@@ -1,7 +1,7 @@
 import os
 
 
-asset_path = os.path.dirname(__file__) + '..\\assets\\'
+asset_path = os.path.dirname(__file__) + '\\..\\assets\\'
 
 
 def get_block(key_id, block_id):
@@ -27,14 +27,6 @@ def get_block(key_id, block_id):
     f.close()
     if not block_lines:
         raise Exception('no data for %s in %s' % (block_id, key_id))
-    
-
-def get_sheet_dimentions(key_id):
-    return get_block(key_id, 'sheet_dim')
-    
-    
-def get_tile_dimensions(key_id):
-    return get_block(key_id, 'tile_dim')
     
     
 # region block parsing funcions
@@ -86,3 +78,19 @@ def parse_tile_line(line):
         x = 0
     return key, row, x
 # end region
+
+
+def get_key_line(parsed_block, key_id):
+    for line in parsed_block:
+        if line[0] == key_id:
+            return line
+    raise Exception('Tried to find invalid key in tile_set block')
+        
+
+# combo functions
+def get_sheet_dimentions(key_id):
+    return parse_block(get_block(key_id, 'sheet_dim'), 'tuple')
+    
+    
+def get_tile_dimensions(key_id):
+    return parse_block(get_block(key_id, 'tile_dim'), 'tuple')

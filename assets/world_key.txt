@@ -70,7 +70,7 @@
 [tile_d: 7: 11]
 ]
 
-:deco floor tiles:
+:deco floor set tiles:
 [
 [base: 0]
 [var_a: 1]
@@ -89,7 +89,7 @@
 [mud: 9: 12, 18]
 ]
 
-:water tiles:
+:water set tiles:
 [edge: 0]
 [center: 1]
 [edge_ani_a: 2]
@@ -106,7 +106,7 @@
 [red: 11: 6]
 ]
 
-:door tiles:
+:door set tiles:
 [
 [hor_closed: 0]
 [hor_open: 1]

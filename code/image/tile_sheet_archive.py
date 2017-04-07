@@ -1,3 +1,5 @@
+import os
+import pygame
 
 
 class TileSheetArchive(object):
@@ -6,5 +8,5 @@ class TileSheetArchive(object):
 
     @classmethod
     def load_world_sheet(cls):
-        path = ''.join((os.path.dirname(__file__), ccc'..\\assets\\world.png'))
+        path = ''.join((os.path.dirname(__file__), '..\\..\\..\\assets\\world.png'))
         cls.world_sheet = pygame.image.load(path)
