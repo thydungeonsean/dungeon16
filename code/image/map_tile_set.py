@@ -8,11 +8,8 @@ class MapTileSet(TileSet):
         
         sheet_id = 'world'
         TileSet.__init__(self, sheet_id, set_type, set_id)
-        
-    
+
     def load_tile_sheet(self):
         if TSA.world_sheet is None:
             TSA.load_world_sheet()
         return TSA.world_sheet
-    
-    

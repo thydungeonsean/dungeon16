@@ -115,3 +115,51 @@
 [ver_open_top: 4]
 [ver_open_bot: 5]
 ]
+
+:town floor sets:
+[
+[wood: 11: 12]
+[outdoor: 16: 7]
+]
+
+:town floor set tiles:
+[
+[base: 0]
+[var_a: 1]
+[var_b: 2]
+[var_c: 3]
+]
+
+:house sets:
+[
+[house: 17: 0]
+]
+
+:house set tiles:
+[
+[window_dark: 0]
+[window_lit: 12]
+[door_closed: 1]
+[door_open: 2]
+[roof_bot_a: 3]
+[roof_bot_b: 4]
+[roof_mid_a: 5]
+[roof_mid_b: 6]
+[roof_chimney: 7]
+[blank_sign: 8]
+[weapon_sign: 9]
+[potion_sign: 10]
+[inn_sign: 11]
+]
+
+:trap door sets:
+[
+[trap door: 10: 12]
+]
+
+:trap door set tiles:
+[
+[closed: 0]
+[open_bot: 1]
+[open_top: 2]
+]

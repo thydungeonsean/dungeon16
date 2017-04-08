@@ -1,5 +1,6 @@
 from tilesheet_key_parser import *
 import pygame
+from image import Image
 
 
 class TileSet(object):
@@ -52,12 +53,10 @@ class TileSet(object):
         return tiles
             
     def set_tile_image(self, key):
-        image = pygame.Surface((self.tile_w, self.tile_h)).convert()
+        tile = Image(self.tile_w, self.tile_h, self.colorkey)
         tx, ty = self.tileset_pos_dict[key]
-        image.blit(self.tilesheet, (0,0), (tx*self.tile_w, ty*self.tile_h, self.tile_w, self.tile_h))
-        image.set_colorkey(self.colorkey)
-        return image
+        tile.image.blit(self.tilesheet, (0, 0), (tx*self.tile_w, ty*self.tile_h, self.tile_w, self.tile_h))
+        return tile
         
     def get_tile_image(self, tile_key):
         return self.tiles[tile_key]
-        

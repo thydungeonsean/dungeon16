@@ -2,13 +2,15 @@ from code.image.map_tile_set import MapTileSet
 from code.states.test_state import TestState
 import pygame
 
+from code.map.map_generator import MapGenerator
+from code.image.map_image_generator import MapImageGenerator
+
 
 def change_screen():
-    t = MapTileSet('floor', 'cave')
-    ta = t.get_tile_image('var_a')
-    tr = ta.get_rect()
-    pygame.display.get_surface().blit(ta, tr)
 
+    m = MapGenerator.load_map('test_map')
+    m_image = MapImageGenerator.generate_image(m)
+    m_image.draw(pygame.display.get_surface())
 
 def test():
     pygame.init()

@@ -1,7 +1,7 @@
 import os
 
 
-asset_path = os.path.dirname(__file__) + '\\..\\..\\assets\\'
+asset_path = ''.join((os.path.dirname(__file__), '\\..\\..\\assets\\'))
 
 
 def get_block(key_id, block_id):
