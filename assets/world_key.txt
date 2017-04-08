@@ -36,7 +36,7 @@
 [ver_c: 9]
 [ver_d: 11]
 [ver_crack: 10]
-[down_Stairs: 12]
+[down_stairs: 12]
 [up_stairs: 13]
 ]
 
@@ -44,7 +44,7 @@
 [
 [dungeon_a: 4: 0]
 [dungeon_b: 4: 8]
-[cavern: 5: 0]
+[cave: 5: 0]
 [grass: 5: 8]
 ]
 

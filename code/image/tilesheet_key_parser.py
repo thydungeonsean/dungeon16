@@ -1,7 +1,7 @@
 import os
 
 
-asset_path = os.path.dirname(__file__) + '\\..\\assets\\'
+asset_path = os.path.dirname(__file__) + '\\..\\..\\assets\\'
 
 
 def get_block(key_id, block_id):
@@ -94,3 +94,7 @@ def get_sheet_dimentions(key_id):
     
 def get_tile_dimensions(key_id):
     return parse_block(get_block(key_id, 'tile_dim'), 'tuple')
+    
+    
+def get_colorkey(key_id):
+    return parse_block(get_block(key_id, 'colorkey'), 'tuple')

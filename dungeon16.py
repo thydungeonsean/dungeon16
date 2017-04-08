@@ -1,5 +1,5 @@
 from code.main import main
 
 
-if __name__ == '__main__.py':
+if __name__ == '__main__':
     main()
