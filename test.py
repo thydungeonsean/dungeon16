@@ -1,9 +1,8 @@
-from code.image.map_tile_set import MapTileSet
-from code.states.test_state import TestState
 import pygame
 
+from code.image.map_image.map_image_generator import MapImageGenerator
 from code.map.map_generator import MapGenerator
-from code.image.map_image_generator import MapImageGenerator
+from code.states.test_state import TestState
 
 
 def change_screen():

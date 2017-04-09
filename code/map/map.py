@@ -1,3 +1,5 @@
+from code.map.tile_id_map import TileIDMap
+from code.map.tileset_zone_map import TilesetZoneMap
 
 
 class Map(object):
@@ -8,11 +10,28 @@ class Map(object):
         self.h = h
         self.map = None
 
+        self.zone_map = None
+        self.tile_map = None
+
     def init_basic_map(self):
         self.map = [['#' for y in range(self.h)] for x in range(self.w)]
 
     def set_map(self, map):
         self.map = map
+
+    @property
+    def all_coords(self):
+        coords = []
+        for y in range(self.h):
+            for x in range(self.w):
+                coords.append((x, y))
+        return coords
+
+    def generate_zone_map(self):
+        self.zone_map = TilesetZoneMap.dungeon(self)
+
+    def generate_tile_map(self):  # once mapgen is complete
+        self.tile_map = TileIDMap(self)
 
     # coordinate methods
 
@@ -56,7 +75,7 @@ class Map(object):
 
         for dir_key, point in direction_dict.items():
             if self.is_on_map(point):
-                adj_dict[dir_key] = self.get_tile(point)
+                adj_dict[dir_key] = self.get_tile_code(point)
                 adj_dict[''.join((dir_key, '_coord'))] = point
                 direction_list.append(dir_key)
 
@@ -64,7 +83,7 @@ class Map(object):
 
         return adj_dict
 
-    def get_tile(self, (x, y)):
+    def get_tile_code(self, (x, y)):
         return self.map[x][y]
 
 

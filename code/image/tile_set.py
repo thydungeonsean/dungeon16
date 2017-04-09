@@ -60,3 +60,6 @@ class TileSet(object):
         
     def get_tile_image(self, tile_key):
         return self.tiles[tile_key]
+
+    def get_any_tile_id(self):
+        return self.tiles.keys()[0]

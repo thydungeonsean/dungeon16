@@ -81,12 +81,12 @@
 
 :water sets:
 [
-[blue: 8: 0, 6]
-[sewer: 8: 6, 12]
-[gloomy: 8: 12, 18]
-[green: 9: 0, 6]
-[lava: 9: 6, 12]
-[mud: 9: 12, 18]
+[blue: 8: 0]
+[sewer: 8: 6]
+[murky: 8: 12]
+[green: 9: 0]
+[lava: 9: 6]
+[mud: 9: 12]
 ]
 
 :water set tiles:
@@ -96,6 +96,17 @@
 [edge_ani_b: 3]
 [center_ani_a: 4]
 [center_ani_b: 5]
+]
+
+:pit sets:
+[
+[pit: 6: 0]
+]
+
+:pit set tiles:
+[
+[edge: 0: 1]
+[pit: 0: 0]
 ]
 
 :door sets:

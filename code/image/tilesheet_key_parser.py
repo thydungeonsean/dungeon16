@@ -84,7 +84,7 @@ def get_key_line(parsed_block, key_id):
     for line in parsed_block:
         if line[0] == key_id:
             return line
-    raise Exception('Tried to find invalid key in tile_set block')
+    raise Exception('Tried to find invalid key: %s in tile_set block' % (key_id))
         
 
 # combo functions

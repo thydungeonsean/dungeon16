@@ -8,6 +8,7 @@ class MapTileSet(TileSet):
         
         sheet_id = 'world'
         TileSet.__init__(self, sheet_id, set_type, set_id)
+        self.set_type = set_type
 
     def load_tile_sheet(self):
         if TSA.world_sheet is None:
