@@ -1,4 +1,4 @@
-from code.image.map_tile_set import MapTileSet
+from code.image.tilesets.map_tile_set import MapTileSet
 
 
 class TilesetZone(object):
@@ -7,6 +7,8 @@ class TilesetZone(object):
         self.point = point
         self.w = w
         self.h = h
+
+        self.set_type = set_type
 
         self.tileset = MapTileSet(set_type, set_id)
 

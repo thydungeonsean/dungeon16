@@ -1,6 +1,4 @@
-import pygame
 from code.image.image import Image
-from code.image.map_tile_set import MapTileSet
 
 
 class MapImageGenerator(object):

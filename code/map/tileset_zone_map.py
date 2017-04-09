@@ -1,4 +1,7 @@
-from code.image.map_tile_set import MapTileSet
+from code.image.tilesets.wall_tileset import WallTileSet
+from code.image.tilesets.floor_tileset import FloorTileSet
+from code.image.tilesets.water_tileset import WaterTileSet
+from code.image.tilesets.pit_tileset import PitTileSet
 
 
 class TilesetZoneMap(object):
@@ -29,10 +32,10 @@ class TilesetZoneMap(object):
         self.h = base_map.h
 
         self.main_tilesets = {
-                'wall': MapTileSet('wall', wall),
-                'floor': MapTileSet('floor', floor),
-                'water': MapTileSet('water', water),
-                'pit': MapTileSet('pit', 'pit')
+                'wall': WallTileSet(wall),
+                'floor': FloorTileSet(floor),
+                'water': WaterTileSet(water),
+                'pit': PitTileSet('pit')
                 }
         self.zones = {
             'wall': [],
@@ -62,7 +65,7 @@ class TilesetZoneMap(object):
             return self.get_water_tileset(point)
 
         elif point_type == '"':
-            return self.get_pit_tileset(point)  # add pit tileset
+            return self.get_pit_tileset(point)
 
         raise Exception('invalid point code in map array')
 

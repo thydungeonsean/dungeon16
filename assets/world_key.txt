@@ -38,6 +38,8 @@
 [ver_crack: 10]
 [down_stairs: 12]
 [up_stairs: 13]
+[pool: 14]
+[empty_pool:15]
 ]
 
 :floor sets:

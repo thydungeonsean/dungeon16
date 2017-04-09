@@ -1,6 +1,5 @@
-from tilesheet_key_parser import *
-import pygame
-from image import Image
+from code.image.tilesheet_key_parser import *
+from code.image.image import Image
 
 
 class TileSet(object):
