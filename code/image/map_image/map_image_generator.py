@@ -1,10 +1,7 @@
-from code.image.image import Image
+from code.image.map_image.map_image import MapImage
 
 
 class MapImageGenerator(object):
-
-    tile_w = 16
-    tile_h = 16
 
     @classmethod
     def generate_image(cls, map):
@@ -12,23 +9,24 @@ class MapImageGenerator(object):
         if map.zone_map is None:  # these are temp!!!!
             map.generate_zone_map()
 
-        if map.tile_map is None: # TODO find a better init
+        if map.tile_map is None:  # TODO find a better init
             map.generate_tile_map()
 
-        image_w = map.w * cls.tile_w
-        image_h = map.h * cls.tile_h
+        map_image = MapImage(map.w, map.h)
 
-        map_image = Image(image_w, image_h)
-
-        for x, y in map.all_coords:
-            tileset, tilekey = map.tile_map.get_tile_id((x, y))
-            tile = tileset.get_tile_image(tilekey)
-            tile.position((x*cls.tile_w, y*cls.tile_h))
-            tile.draw(map_image)
+        for ani_key in ('a', 'b'):
+            cls.render_map(map, map_image, ani_key)
 
         map_image.scale_up()
         return map_image
 
+    @classmethod
+    def render_map(cls, map, map_image, ani_key):
 
+        for x, y in map.all_coords:
+            tileset, tilekey = map.tile_map.get_tile_id((x, y), ani_key)
+            tile = tileset.get_tile_image(tilekey)
+            tile.position((x*MapImage.tile_w, y*MapImage.tile_h))
+            tile.draw(map_image.get_image(ani_key))
 
 

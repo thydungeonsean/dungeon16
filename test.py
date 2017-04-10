@@ -15,7 +15,7 @@ def change_screen():
     # m.zone_map.add_zone(z)
     # m.zone_map.add_zone(z2)
     m_image = MapImageGenerator.generate_image(m)
-    m_image.draw(pygame.display.get_surface())
+    m_image.draw(pygame.display.get_surface(), 'a')
 
 
 def test():

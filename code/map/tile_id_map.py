@@ -30,7 +30,7 @@ class TileIDMap(object):
             return self.get_pit_tile(tileset, point)
         raise Exception('tileset does not have valid set_type')
 
-    def get_tile_id(self, point):
+    def get_tile_id(self, point, ani_key):
         return self.tile_id_map[point]
 
     def get_tile_id_from_tileset(self, tileset, **kwargs):
