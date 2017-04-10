@@ -28,7 +28,7 @@ class Map(object):
         return coords
 
     def generate_zone_map(self):
-        self.zone_map = TilesetZoneMap.town(self)
+        self.zone_map = TilesetZoneMap.ruin(self)
 
     def generate_tile_map(self):  # once mapgen is complete
         self.tile_map = TileIDMap(self)

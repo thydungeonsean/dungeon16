@@ -15,7 +15,11 @@ def change_screen():
     # m.zone_map.add_zone(z)
     # m.zone_map.add_zone(z2)
     m_image = MapImageGenerator.generate_image(m)
-    m_image.draw(pygame.display.get_surface(), 'a')
+    return m_image
+
+
+def render(m_image):
+    m_image.draw(pygame.display.get_surface())
 
 
 def test():
@@ -26,11 +30,12 @@ def test():
     state = TestState()
     state.init_state()
     
-    change_screen()
+    m = change_screen()
+    state.render = render
 
     while True:
 
-        state.render()
+        state.render(m)
 
         state.run()
         state.handle_input()

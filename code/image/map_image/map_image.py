@@ -1,5 +1,7 @@
 from code.image.image import Image
 
+from code.states.clock import Clock
+
 
 class MapImage(object):
 
@@ -24,8 +26,8 @@ class MapImage(object):
         for image in self.each_image:
             image.position((x, y))
 
-    def draw(self, surface, key):
-        self.get_image(key).draw(surface)
+    def draw(self, surface):
+        self.get_image(self.get_key()).draw(surface)
 
     def get_image(self, key):
         return self.images[key]
@@ -37,3 +39,9 @@ class MapImage(object):
     @staticmethod
     def set_image(w, h):
         return Image(w, h)
+
+    def get_key(self):
+        frame = Clock.get_instance().frame
+        if frame <= Clock.half_point:
+            return 'a'
+        return 'b'

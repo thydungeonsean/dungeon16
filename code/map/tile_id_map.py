@@ -31,7 +31,10 @@ class TileIDMap(object):
         raise Exception('tileset does not have valid set_type')
 
     def get_tile_id(self, point, ani_key):
-        return self.tile_id_map[point]
+        tileset, tilekey = self.tile_id_map[point]
+        if tilekey.endswith('ani'):
+            tilekey = '_'.join((tilekey, ani_key))
+        return tileset, tilekey
 
     def get_tile_id_from_tileset(self, tileset, **kwargs):
         vary = randint(1, 100)

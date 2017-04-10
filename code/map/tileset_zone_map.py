@@ -20,7 +20,7 @@ class TilesetZoneMap(object):
 
     @classmethod
     def ruin(cls, map):
-        return cls(map, 'ruin', 'dungeon_b')
+        return cls(map, 'ruin', 'dungeon_b', 'sewer')
 
     @classmethod
     def town(cls, map):

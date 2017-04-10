@@ -24,5 +24,5 @@ class WaterTileSet(MapTileSet):
 
     def get_varied_tile(self, **kwargs):
         if kwargs.get('edge', False):
-            return WaterTileSet.edge_var+'_a'
-        return WaterTileSet.center_var+'_a'
+            return WaterTileSet.edge_var
+        return WaterTileSet.center_var
