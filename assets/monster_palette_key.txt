@@ -117,55 +117,344 @@
 [weapon: iron]
 ]
 
-[goblin: 6: 0]
-[goblin_shaman: 6: 4]
-[goblin_warrior: 6: 8]
-[troll: 6: 12]
-[skeleton: 8: 0]
-[skeleton_warrior: 8: 4]
-[skeleton_mage: 8: 8]
-[lich: 8: 12]
-[vampire: 10: 0]
-[zombie: 10: 4]
-[beholder: 10: 8]
-[dark_knight: 10: 12]
-[demon: 12: 0]
-[ghost: 12: 4]
-[pixie: 12: 8]
-[golem: 12: 12]
-[dog: 14: 0]
-[cat: 14: 4]
-[bat: 14: 8]
-[snake: 14: 12]
-[spider: 16: 0]
-[rat: 16: 4]
-[slime: 16: 8]
-[butterfly: 16: 12]
-[man: 18: 0]
-[woman: 18: 4]
-[merchant: 18: 8]
-[dragon: 18: 12]
-[king: 20: 0]
-[queen: 20: 4]
-[reaper: 20: 8]
-[minotaur: 20: 12]
-[bird: 22: 0]
-[mimic: 22: 4]
-[centaur: 22: 8]
-[satyr: 22: 12]
+:goblin:
+[
+[skin: green]
+[pants: dk_brown]
+[weapon: iron]
+[eyes: gold]
+]
+
+:goblin_shaman:
+[
+[skin: green]
+[pants: dk_brown]
+[weapon: brown]
+[eyes: gold]
+[tatoo: dk_blue]
+]
+
+:goblin_warrior:
+[
+[skin: green]
+[pants: dk_brown]
+[weapon: steel]
+[eyes: gold]
+[shield: iron]
+]
+
+:troll: 
+[
+[skin: iron]
+[pants: dk_brown]
+[hair: dk_brown]
+[eyes: gold]
+]
+
+
+:skeleton:
+[
+[skin: white]
+]
+
+:skeleton_warrior:
+[
+[skin: white]
+[weapon: iron]
+[shield: brown]
+]
+
+:skeleton_mage:
+[
+[skin: white]
+[pants: dk_brown]
+[weapon: brown]
+]
+
+:lich:
+[
+[skin: white]
+[pants: purple]
+[crown: gold]
+]
+
+:vampire:
+[
+[skin: light_skin]
+[hair: white]
+[shirt: dk_blue]
+[pants: dk_blue]
+[cloak: blue_grey]
+[highlight: red]
+]
+
+:zombie:
+[
+[skin: light_skin]
+[hair: iron]
+[shirt: green]
+[pants: dk_brown]
+]
+
+:beholder:
+[
+[skin: brown]
+[highlight: lt_brown]
+[eyes: white]
+[pupil: blue_grey]
+]
+
+:dark_knight:
+[
+[skin: light_skin]
+[helmet: nr_black]
+[cloak: red]
+[eyes: gold]
+[weapon: steel]
+[shield: iron]
+[belt: dk_brown]
+[deco: white]
+]
+
+:demon:
+[
+[skin: red]
+[horns: dk_brown]
+[pants: dk_brown]
+[belt: grey]
+]
+
+:ghost:
+[
+[skin: lt_blue]
+[eyes: white]
+]
+
+
+:pixie:
+[
+[skin: light_skin]
+[wings: iron]
+[hair: gold]
+[shirt: pink]
+]
+
+:golem:
+[
+[skin: blue]
+[highlight: blue_grey]
+[eyes: white]
+]
+
+:dog:
+[
+[skin: dk_brown]
+]
+
+:cat:
+[
+[skin: lt_brown]
+]
+
+:bat:
+[
+[skin: nr_black]
+[eyes: red]
+]
+
+:snake:
+[
+[skin: green]
+[highlight: gold]
+]
+
+
+:spider:
+[
+[skin: nr_black]
+[eyes: red]
+]
+
+:rat:
+[
+[skin: iron]
+[eyes: red]
+]
+
+:slime:
+[
+[skin: green]
+[eyes: white]
+[pupil: blue_grey]
+]
+
+:butterfly:
+[
+[wings:	white]
+[skin: iron]
+[highlight: gold]
+]
+
+:man:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[cloak: blue_grey]
+[shirt: green]
+[pants: dk_brown]
+]
+
+:woman:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[cloak: blue_grey]
+[shirt: pink]
+[pants: iron]
+]
+
+:merchant:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[cloak: blue_grey]
+[shirt: dk_brown]
+[feather: white]
+]
+
+:dragon:
+[
+[skin: red]
+[tail: dk_red]
+[highlight: gold]
+]
+
+:king:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[cloak: dk_blue]
+[shirt: blue]
+[crown: gold]
+[highlight: gold]
+[belt: brown]
+]
+
+:queen:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[cloak: dk_red]
+[shirt: red]
+[crown: gold]
+[highlight: gold]
+[belt: brown]
+]
+
+:reaper:
+[
+[skin: nr_black]
+[weapon: iron]
+[staff: dk_brown]
+[eyes: gold]
+]
+
+:minotaur:
+[
+[skin: brown]
+[eyes: red]
+[horns: white]
+[hair: dk_brown]
+]
+
+:bird:
+[
+[skin: red]
+[beak: gold]
+[claws: gold]
+]
+
+:mimic:
+[
+[lid: brown]
+[chest: dk_brown]
+[highlight: lt_brown]
+[lid_shadow: dkr_brown]
+[tongue: red]
+[tongue_shadow: dk_red]
+[teeth: white]
+[latch: gold]
+[bands: iron]
+]
+
+:centaur:
+[
+[hair: nr_black]
+[skin: light_skin]
+[body: brown]
+[weapon: steel]
+[staff: brown]
+[hooves: iron]
+] 
+
+:satyr:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[horns: white]
+[body: brown]
+[hooves: iron]
+[flute: gold]
+]
+
 [angel: 24: 0]
 [dwarf: 24: 4]
 [hobbit: 24: 8]
 [gryphon: 24: 12]
 [plant: 26: 0]
-[bug: 26: 4]
-[horse: 26: 8]
-[unicorn: 26: 12]
+
+:bug:
+[
+[skin: nr_black]
+[eyes: red]
+]
+
+:horse:
+[
+[hair: nr_black]
+[skin:] brown
+[hooves: iron]
+[saddle: dk_blue]
+]
+
+:unicorn:
+[
+[hair: iron]
+[skin: white]
+[horn: gold]
+[hooves: steel]
+]
+
 [mummy: 28: 0]
 [cube: 28: 4]
 [orb: 28: 8]
 [flame: 28: 12]
 [savage: 30: 0]
-[treant: 30: 4]
-[yeti: 30: 8]
-[fly_swarm: 30: 12]
+
+:treant:
+[
+[skin: brown]
+[eyes: white]
+]
+
+:yeti:
+[
+[skin: white]
+[highlight: iron]
+]
+
+:fly_swarm:
+[
+[skin: nr_black]
+[wings: iron]
+]
