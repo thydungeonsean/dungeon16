@@ -87,6 +87,13 @@ def get_key_line(parsed_block, key_id):
     raise Exception('Tried to find invalid key: %s in tile_set block' % (key_id))
         
 
+def get_set_keys_from_block(parsed_block):
+    keys = []
+    for line in parsed_block:
+        keys.append(line[0])
+    return keys
+
+
 # combo functions
 def get_sheet_dimentions(key_id):
     return parse_block(get_block(key_id, 'sheet_dim'), 'tuple')
@@ -98,3 +105,7 @@ def get_tile_dimensions(key_id):
     
 def get_colorkey(key_id):
     return parse_block(get_block(key_id, 'colorkey'), 'tuple')
+
+
+def get_set_keys(key_id, block_id):
+    return get_set_keys_from_block(parse_set_block(get_block(key_id, ''.join((block_id, ' sets')))))

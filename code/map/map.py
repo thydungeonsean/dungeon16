@@ -1,5 +1,6 @@
 from code.map.tile_id_map import TileIDMap
 from code.map.tileset_zone_map import TilesetZoneMap
+from code.map.deco_map import DecoMap
 
 
 class Map(object):
@@ -12,6 +13,7 @@ class Map(object):
 
         self.zone_map = None
         self.tile_map = None
+        self.deco_map = None
 
     def init_basic_map(self):
         self.map = [['#' for y in range(self.h)] for x in range(self.w)]
@@ -32,6 +34,9 @@ class Map(object):
 
     def generate_tile_map(self):  # once mapgen is complete
         self.tile_map = TileIDMap(self)
+
+    def generate_deco_map(self):
+        self.deco_map = DecoMap(self)
 
     # coordinate methods
 

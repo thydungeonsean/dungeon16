@@ -1,41 +1,38 @@
-from code.image.tilesets.wall_tileset import WallTileSet
-from code.image.tilesets.floor_tileset import FloorTileSet
-from code.image.tilesets.water_tileset import WaterTileSet
-from code.image.tilesets.pit_tileset import PitTileSet
+from code.image.tilesets.tileset_archive import TileSetArchive
 
 
 class TilesetZoneMap(object):
 
     @classmethod
     def dungeon(cls, map):
-        return cls(map, 'dungeon', 'dungeon_a')
+        return cls(map, 'dungeon_wall', 'dungeon_floor_a')
 
     @classmethod
     def crypt(cls, map):
-        return cls(map, 'crypt', 'dungeon_a', 'murky')
+        return cls(map, 'crypt_wall', 'dungeon_floor_a', 'murky')
 
     @classmethod
     def cavern(cls, map):
-        return cls(map, 'cave', 'cave')
+        return cls(map, 'cave_wall', 'cave_floor')
 
     @classmethod
     def ruin(cls, map):
-        return cls(map, 'ruin', 'dungeon_b', 'sewer')
+        return cls(map, 'ruin_wall', 'dungeon_floor_b', 'sewer')
 
     @classmethod
     def town(cls, map):
-        return cls(map, 'ruin', 'grass')
+        return cls(map, 'ruin_wall', 'grass_floor')
 
-    def __init__(self, base_map, wall='dungeon', floor='dungeon_a', water='blue'):
+    def __init__(self, base_map, wall='dungeon_wall', floor='dungeon_floor_a', water='blue'):
         self.base_map = base_map
         self.w = base_map.w
         self.h = base_map.h
 
         self.main_tilesets = {
-                'wall': WallTileSet(wall),
-                'floor': FloorTileSet(floor),
-                'water': WaterTileSet(water),
-                'pit': PitTileSet('pit')
+                'wall': TileSetArchive.get_tileset(wall),
+                'floor': TileSetArchive.get_tileset(floor),
+                'water': TileSetArchive.get_tileset(water),
+                'pit': TileSetArchive.get_tileset('pit')
                 }
         self.zones = {
             'wall': [],
@@ -48,7 +45,7 @@ class TilesetZoneMap(object):
         key = zone.set_type
         try:
             self.zones[key].append(zone)
-        except ZeroDivisionError:
+        except KeyError:
             self.zones[key] = [zone]
 
     def get_tileset_for_point(self, point):

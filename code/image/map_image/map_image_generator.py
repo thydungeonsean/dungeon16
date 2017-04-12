@@ -24,9 +24,27 @@ class MapImageGenerator(object):
     def render_map(cls, map, map_image, ani_key):
 
         for x, y in map.all_coords:
+
+            tile_x = x * MapImage.tile_w
+            tile_y = y * MapImage.tile_h
+
+            # draw base tiles
             tileset, tilekey = map.tile_map.get_tile_id((x, y), ani_key)
             tile = tileset.get_tile_image(tilekey)
-            tile.position((x*MapImage.tile_w, y*MapImage.tile_h))
+            tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))
 
+            # draw deco
+
+
+            # draw shadow
+
+
+            # draw torches
+
+
+            # draw blocks
+
+
+            # draw features
 

@@ -1,16 +1,25 @@
 from map_tile_set import MapTileSet
 from random import choice
+from code.image.tilesheet_key_parser import get_set_keys
 
 
 class FloorTileSet(MapTileSet):
 
-    standard_sets = ('dungeon_a', 'dungeon_b', 'cave', 'grass')
-    deco_sets = ('tile_a', 'tile_b', 'tile_c', 'tile_d', 'cobble', 'carpet')
+    standard_sets = None
+    deco_sets = None
 
     std_variable_tiles = ('var_a', 'var_b', 'var_c', 'var_d', 'var_e')
     deco_variable_tiles = ('base', 'var_a', 'var_b', 'var_c', 'var_d')
 
+    @classmethod
+    def init_set_tuples(cls):
+        if cls.standard_sets is None:
+            cls.standard_sets = tuple(get_set_keys('world_key', 'floor'))
+        if cls.deco_sets is None:
+            cls.deco_sets = tuple(get_set_keys('world_key', 'deco floor'))
+
     def __init__(self, set_id):
+        FloorTileSet.init_set_tuples()
         set_type = self.get_set_type(set_id)
         MapTileSet.__init__(self, set_type, set_id)
         self.set_type = 'floor'

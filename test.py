@@ -3,14 +3,18 @@ import pygame
 from code.image.map_image.map_image_generator import MapImageGenerator
 from code.map.map_generator import MapGenerator
 from code.states.test_state import TestState
+
 from code.map.tileset_zone import TilesetZone
+from code.image.tilesets.tileset_archive import TileSetArchive
 
 
 def change_screen():
 
+    TileSetArchive.init_set_keys()
+
     m = MapGenerator.load_map('test_map')
-    # z = TilesetZone((0, 0), 7, 6, 'wall', 'ruin')
-    # z2 = TilesetZone((0, 0), 7, 6, 'floor', 'grass')
+    # z = TilesetZone((10, 0), 7, 6, 'water', 'blue')
+    # z2 = TilesetZone((0, 0), 7, 6, 'floor', 'cave_floor')
     # m.generate_zone_map()
     # m.zone_map.add_zone(z)
     # m.zone_map.add_zone(z2)

@@ -16,10 +16,10 @@
 
 :wall sets:
 [
-[dungeon: 0 : 0]
-[cave: 1: 0]
-[crypt: 2: 0]
-[ruin: 3: 0]
+[dungeon_wall: 0 : 0]
+[cave_wall: 1: 0]
+[crypt_wall: 2: 0]
+[ruin_wall: 3: 0]
 ]
 
 :wall set tiles:
@@ -44,10 +44,10 @@
 
 :floor sets:
 [
-[dungeon_a: 4: 0]
-[dungeon_b: 4: 8]
-[cave: 5: 0]
-[grass: 5: 8]
+[dungeon_floor_a: 4: 0]
+[dungeon_floor_b: 4: 8]
+[cave_floor: 5: 0]
+[grass_floor: 5: 8]
 ]
 
 :floor set tiles:
@@ -64,12 +64,12 @@
 
 :deco floor sets:
 [
-[tile_a: 6: 1]
-[tile_b: 6: 6]
-[carpet: 6: 11]
-[tile_c: 7: 1]
-[cobble: 7: 6]
-[tile_d: 7: 11]
+[tile_floor_a: 6: 1]
+[tile_floor_b: 6: 6]
+[carpet_floor: 6: 11]
+[tile_floor_c: 7: 1]
+[cobble_floor: 7: 6]
+[tile_floor_d: 7: 11]
 ]
 
 :deco floor set tiles:
@@ -86,7 +86,7 @@
 [blue: 8: 0]
 [sewer: 8: 6]
 [murky: 8: 12]
-[green: 9: 0]
+[acid: 9: 0]
 [lava: 9: 6]
 [mud: 9: 12]
 ]
@@ -113,10 +113,10 @@
 
 :door sets:
 [
-[wooden: 10: 0]
-[dungeon: 10: 6]
-[stone: 11: 0]
-[red: 11: 6]
+[wooden_door: 10: 0]
+[dungeon_door: 10: 6]
+[stone_door: 11: 0]
+[red_door: 11: 6]
 ]
 
 :door set tiles:
@@ -131,8 +131,8 @@
 
 :town floor sets:
 [
-[wood: 11: 12]
-[outdoor: 16: 7]
+[wood_floor: 11: 12]
+[outdoor_floor: 16: 7]
 ]
 
 :town floor set tiles:
@@ -163,7 +163,7 @@
 
 :trap door sets:
 [
-[trap door: 10: 12]
+[trap_door: 10: 12]
 ]
 
 :trap door set tiles:
