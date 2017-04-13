@@ -5,6 +5,7 @@ from code.image.tilesets.floor_tileset import FloorTileSet
 from code.image.tilesets.water_tileset import WaterTileSet
 from code.image.tilesets.pit_tileset import PitTileSet
 # from code.image.tilesets.
+from code.image.tilesets.shadow_tileset import ShadowTileSet
 
 
 class TileSetArchive(object):
@@ -72,7 +73,7 @@ class TileSetArchive(object):
             return
 
         elif tileset_key == 'shadow':
-            return
+            return ShadowTileSet(tileset_key)
 
         elif tileset_key == 'deco':
             return

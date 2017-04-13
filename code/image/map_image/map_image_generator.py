@@ -1,4 +1,7 @@
 from code.image.map_image.map_image import MapImage
+from code.image.tilesets.tileset_archive import TileSetArchive
+from pygame.locals import *
+import pygame
 
 
 class MapImageGenerator(object):
@@ -11,6 +14,9 @@ class MapImageGenerator(object):
 
         if map.tile_map is None:  # TODO find a better init
             map.generate_tile_map()
+
+        if map.deco_map is None:
+            map.generate_deco_map()
 
         map_image = MapImage(map.w, map.h)
 
@@ -38,7 +44,12 @@ class MapImageGenerator(object):
 
 
             # draw shadow
+            if (x, y) in map.deco_map.shadow_map:
+                tileset = TileSetArchive.get_tileset('shadow')
+                tile = tileset.get_tile_image(tileset.get_base_tile())
 
+                blended = tile.get_blended_image(map_image.get_image(ani_key), (tile_x, tile_y))
+                blended.draw(map_image.get_image(ani_key))
 
             # draw torches
 
