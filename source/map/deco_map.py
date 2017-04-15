@@ -12,9 +12,10 @@ class DecoMap(object):
         self.deco_map = {}
         self.deco_coords = set()
         self.shadow_map = self.set_shadow_map()
+        self.set_deco_map()
+
         self.torch_map = self.set_torch_map()
         self.glow_map = self.set_glow_map()
-        self.set_deco_map()
 
     def add_deco(self, point, key):
         self.deco_map[point] = key
@@ -35,11 +36,28 @@ class DecoMap(object):
     def set_torch_map(self):
 
         wall_tiles = MapTools.all_walls(self.base_map)
-        hor_walls = list(filter(lambda x: MapTools.wall_valid_for_torch(self.base_map, x), wall_tiles))
+        valid_torches = list(filter(lambda x: MapTools.wall_valid_for_torch(self.base_map, self, x), wall_tiles))
 
-        torches = sample(hor_walls, int(len(hor_walls)*.2))
+        target_num_torches = int(len(valid_torches)*.2)
+        max_iterations = len(valid_torches)
+        shuffle(valid_torches)
+
+        torches = set()
+
+        for i in range(max_iterations):
+            if self.torch_is_single(valid_torches[i], torches):
+                torches.add(valid_torches[i])
+            if len(torches) >= target_num_torches:
+                return torches
 
         return set(torches)
+
+    def torch_is_single(self, point, torches):
+        adj = self.base_map.get_adj_coords(point)
+        for a in adj:
+            if a in torches:
+                return False
+        return True
 
     def set_glow_map(self):
 
@@ -58,9 +76,28 @@ class DecoMap(object):
         open_floor = self.add_tufts(open_floor)
         self.add_roots(open_floor)
 
+        water = MapTools.all_water(self.base_map)
+        self.add_lily_pads(water)
+
+    def valid_for_deco(self, key, point):
+
+        toggle = self.passes_deco_toggle(key, point)
+        valid_tile = True
+        tileset, tilekey = self.base_map.tile_map.tile_id_map[point]
+        if tileset.set_type == 'floor' and tileset.sub_type == 'floor':
+            if tilekey != 'base':
+                valid_tile = False
+
+        return toggle and valid_tile
+
+    def passes_deco_toggle(self, key, point):
+        tileset = self.base_map.zone_map.get_tileset_for_point(point)
+        return tileset.deco_toggles[key]
+
     def add_cobwebs(self, open_floor):
 
         valid_for_cobwebs = MapTools.filter_corners(self.base_map, open_floor)
+        valid_for_cobwebs = list(filter(lambda x: self.valid_for_deco('cobweb', x), valid_for_cobwebs))
         cobwebs = sample(valid_for_cobwebs, int(len(valid_for_cobwebs)*.4))
         for point in cobwebs:
             corner_id = MapTools.get_corner_id(self.base_map, point)
@@ -71,7 +108,7 @@ class DecoMap(object):
 
     def add_gore(self, open_floor):
 
-        valid_for_gore = open_floor  # filter by tileset
+        valid_for_gore = list(filter(lambda x: self.valid_for_deco('gore', x), open_floor))
 
         gore = sample(valid_for_gore, int(len(valid_for_gore) * .1))
 
@@ -84,7 +121,7 @@ class DecoMap(object):
 
     def add_bones(self, open_floor):
 
-        valid_for_bones = open_floor  # filter by tileset
+        valid_for_bones = list(filter(lambda x: self.valid_for_deco('bones', x), open_floor))
 
         bones = sample(valid_for_bones, int(len(valid_for_bones) * .1))
 
@@ -97,7 +134,7 @@ class DecoMap(object):
 
     def add_tufts(self, open_floor):
 
-        valid_for_tufts = open_floor  # filter by tileset
+        valid_for_tufts = list(filter(lambda x: self.valid_for_deco('tufts', x), open_floor))
 
         tufts = sample(valid_for_tufts, int(len(valid_for_tufts) * .1))
 
@@ -110,7 +147,7 @@ class DecoMap(object):
 
     def add_roots(self, open_floor):
 
-        valid_for_roots = open_floor  # filter by tileset
+        valid_for_roots = list(filter(lambda x: self.valid_for_deco('roots', x), open_floor))
 
         roots = sample(valid_for_roots, int(len(valid_for_roots) * .1))
 
@@ -120,3 +157,15 @@ class DecoMap(object):
             open_floor.remove(point)
 
         return open_floor
+
+    def add_lily_pads(self, water):
+
+        valid_for_lilypads = list(filter(lambda x: self.valid_for_deco('lilypad', x), water))
+
+        lilypads = sample(valid_for_lilypads, int(len(valid_for_lilypads) * .1))
+
+        for point in lilypads:
+            lilypad_id = DecoTileSet.get_any_lilypad()
+            self.add_deco(point, lilypad_id)
+
+

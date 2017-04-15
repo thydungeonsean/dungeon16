@@ -44,7 +44,10 @@ class MapImageGenerator(object):
             tileset = TileSetArchive.get_tileset('deco')
             deco = map.deco_map
             if (x, y) in deco.deco_coords:
-                tile = tileset.get_tile_image(deco.get_tile((x, y)))
+                tilekey = deco.get_tile((x, y))
+                if tilekey.endswith('ani'):
+                    tilekey = '_'.join((tilekey, ani_key))
+                tile = tileset.get_tile_image(tilekey)
                 tile.position((tile_x, tile_y))
                 tile.draw(map_image.get_image(ani_key))
 

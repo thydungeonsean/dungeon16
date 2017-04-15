@@ -231,12 +231,12 @@
 [torch_bot_ani_b: 8]
 
 [lilypad_1_ani_a: 8: 2]
-[lilypad_1_ani_b: 9: 2]
-[lilypad_2_ani_a: 10: 2]
-[lilypad_2_ani_b: 11: 2]
-[lilypad_3_ani_a: 12: 2]
-[lilypad_3_ani_b: 13: 2]
-[lilypad_4_ani_a: 14: 2]
+[lilypad_2_ani_a: 9: 2]
+[lilypad_3_ani_a: 10: 2]
+[lilypad_4_ani_a: 11: 2]
+[lilypad_1_ani_b: 12: 2]
+[lilypad_2_ani_b: 13: 2]
+[lilypad_3_ani_b: 14: 2]
 [lilypad_4_ani_b: 15: 2]
 ]
 

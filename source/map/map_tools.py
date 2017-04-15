@@ -72,11 +72,15 @@ class MapTools(object):
         return False
 
     @staticmethod
-    def wall_valid_for_torch(base_map, coord):
+    def wall_valid_for_torch(base_map, deco_map, coord):
+
         adj = base_map.get_adj_tile_dict(coord)
-        if 's' in adj['directions'] and adj['s'] in ('.', '"', '~'):  # and not a feature
+
+        if 's' in adj['directions'] and adj['s'] in ('.', '"', '~') and adj['s_coord'] not in deco_map.deco_map.keys() \
+                and base_map.tile_map.tile_id_map[coord][1] != 'hor_d':
             return True
-        return False
+        else:
+            return False
 
     @staticmethod
     def all_floors(base_map):
@@ -85,3 +89,7 @@ class MapTools(object):
     @staticmethod
     def all_walls(base_map):
         return list(filter(lambda x: base_map.get_tile_code(x) == '#', base_map.all_coords))
+
+    @staticmethod
+    def all_water(base_map):
+        return list(filter(lambda x: base_map.get_tile_code(x) == '~', base_map.all_coords))

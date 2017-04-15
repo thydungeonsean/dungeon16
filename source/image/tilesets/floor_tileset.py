@@ -7,9 +7,11 @@ class FloorTileSet(MapTileSet):
 
     standard_sets = None
     deco_sets = None
+    town_sets = None
 
     std_variable_tiles = ('var_a', 'var_b', 'var_c', 'var_d', 'var_e')
     deco_variable_tiles = ('base', 'var_a', 'var_b', 'var_c', 'var_d')
+    town_variable_tiles = ('base', 'var_a', 'var_b', 'var_c')
 
     deco_toggle_keys = ('gore', 'bones', 'cobweb', 'tufts', 'roots')
 
@@ -26,9 +28,10 @@ class FloorTileSet(MapTileSet):
         'tile_floor_b': toggle_set_dungeon,
         'tile_floor_c': toggle_set_dungeon,
         'cobble_floor': toggle_set_dungeon,
-        'tile_floor_d': toggle_set_dungeon
+        'tile_floor_d': toggle_set_dungeon,
+        'wood_floor': (),
+        'outdoor_floor': ()
     }
-
 
     @classmethod
     def init_set_tuples(cls):
@@ -36,6 +39,8 @@ class FloorTileSet(MapTileSet):
             cls.standard_sets = tuple(get_set_keys('world_key', 'floor'))
         if cls.deco_sets is None:
             cls.deco_sets = tuple(get_set_keys('world_key', 'deco floor'))
+        if cls.town_sets is None:
+            cls.town_sets = tuple(get_set_keys('world_key', 'town floor'))
 
     def __init__(self, set_id):
         FloorTileSet.init_set_tuples()
@@ -43,8 +48,8 @@ class FloorTileSet(MapTileSet):
         MapTileSet.__init__(self, set_type, set_id)
         self.set_type = 'floor'
         self.sub_type = set_type
-        self.variable_tiles = self.get_variable_tile_list(set_type)
-        self.set_base_tile_function(set_type)
+        self.variable_tiles = self.get_variable_tile_list(self.sub_type)
+        self.set_base_tile_function(self.sub_type)
 
         self.deco_toggles = self.set_deco_toggles()
 
@@ -65,13 +70,18 @@ class FloorTileSet(MapTileSet):
             return 'floor'
         elif set_id in cls.deco_sets:
             return 'deco floor'
+        elif set_id in cls.town_sets:
+            return 'town floor'
         raise Exception('set_id: %s is not valid ' % set_id)
 
     @classmethod
     def get_variable_tile_list(cls, set_type):
         if set_type == 'floor':
             return cls.std_variable_tiles[:]
-        return cls.deco_variable_tiles[:]
+        elif set_type == 'deco floor':
+            return cls.deco_variable_tiles[:]
+        elif set_type == 'town floor':
+            return cls.town_variable_tiles[:]
 
     def set_deco_toggles(self):
 

@@ -14,10 +14,10 @@ def change_screen():
 
     m = MapGenerator.load_map('test_map')
     # z = TilesetZone((10, 0), 7, 6, 'water', 'blue')
-    # z2 = TilesetZone((0, 0), 7, 6, 'floor', 'cave_floor')
-    # m.generate_zone_map()
+    z2 = TilesetZone((0, 0), 12, 9, 'floor', 'tile_floor_d')
+    m.generate_zone_map()
     # m.zone_map.add_zone(z)
-    # m.zone_map.add_zone(z2)
+    m.zone_map.add_zone(z2)
     m_image = MapImageGenerator.generate_image(m, scale=2)
 
     return m_image

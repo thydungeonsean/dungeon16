@@ -30,7 +30,7 @@ class Map(object):
         return coords
 
     def generate_zone_map(self):
-        self.zone_map = TilesetZoneMap.ruin(self)
+        self.zone_map = TilesetZoneMap.test(self)
 
     def generate_tile_map(self):  # once mapgen is complete
         self.tile_map = TileIDMap(self)
@@ -46,7 +46,7 @@ class Map(object):
         else:
             return False
 
-    def get_adj(self, (x, y), diag=False):
+    def get_adj_coords(self, (x, y), diag=False):
 
         raw_adj = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
         if diag:

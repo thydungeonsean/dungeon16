@@ -23,6 +23,10 @@ class TilesetZoneMap(object):
     def town(cls, map):
         return cls(map, 'ruin_wall', 'grass_floor')
 
+    @classmethod
+    def test(cls, map):
+        return cls(map, 'crypt_wall', 'cobble_floor', 'sewer')
+
     def __init__(self, base_map, wall='dungeon_wall', floor='dungeon_floor_a', water='blue'):
         self.base_map = base_map
         self.w = base_map.w
