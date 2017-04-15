@@ -1,6 +1,6 @@
-from code.image.image import Image
+from source.image.image import Image
 
-from code.states.clock import Clock
+from source.states.clock import Clock
 
 
 class MapImage(object):

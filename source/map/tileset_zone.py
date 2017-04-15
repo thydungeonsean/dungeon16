@@ -1,4 +1,4 @@
-from code.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.tileset_archive import TileSetArchive
 
 
 class TilesetZone(object):

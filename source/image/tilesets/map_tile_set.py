@@ -1,5 +1,5 @@
-from code.image.tile_sheet_archive import TileSheetArchive as TSA
-from code.image.tilesets.tile_set import TileSet
+from source.image.tile_sheet_archive import TileSheetArchive as TSA
+from source.image.tilesets.tile_set import TileSet
 
 
 class MapTileSet(TileSet):

@@ -1,5 +1,5 @@
-from code.image.tilesheet_key_parser import *
-from code.image.image import Image
+from source.image.tilesheet_key_parser import *
+from source.image.image import Image
 
 
 class TileSet(object):

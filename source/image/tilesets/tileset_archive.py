@@ -1,11 +1,11 @@
-from code.image.tilesheet_key_parser import *
-from code.image.tilesets.wall_tileset import WallTileSet
-from code.image.tilesets.floor_tileset import FloorTileSet
-# from code.image.tilesets.door_tileset import DoorTileSet
-from code.image.tilesets.water_tileset import WaterTileSet
-from code.image.tilesets.pit_tileset import PitTileSet
-# from code.image.tilesets.
-from code.image.tilesets.shadow_tileset import ShadowTileSet
+from source.image.tilesheet_key_parser import *
+from source.image.tilesets.wall_tileset import WallTileSet
+from source.image.tilesets.floor_tileset import FloorTileSet
+# from source.image.tilesets.door_tileset import DoorTileSet
+from source.image.tilesets.water_tileset import WaterTileSet
+from source.image.tilesets.pit_tileset import PitTileSet
+from source.image.tilesets.deco_tileset import DecoTileSet
+from source.image.tilesets.shadow_tileset import ShadowTileSet
 
 
 class TileSetArchive(object):
@@ -76,7 +76,7 @@ class TileSetArchive(object):
             return ShadowTileSet(tileset_key)
 
         elif tileset_key == 'deco':
-            return
+            return DecoTileSet(tileset_key)
 
         elif tileset_key == 'block':
             return

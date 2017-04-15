@@ -1,6 +1,6 @@
 from map_tile_set import MapTileSet
 from random import choice
-from code.image.tilesheet_key_parser import get_set_keys
+from source.image.tilesheet_key_parser import get_set_keys
 
 
 class FloorTileSet(MapTileSet):
@@ -10,6 +10,25 @@ class FloorTileSet(MapTileSet):
 
     std_variable_tiles = ('var_a', 'var_b', 'var_c', 'var_d', 'var_e')
     deco_variable_tiles = ('base', 'var_a', 'var_b', 'var_c', 'var_d')
+
+    deco_toggle_keys = ('gore', 'bones', 'cobweb', 'tufts', 'roots')
+
+    toggle_set_dungeon = ('gore', 'bones', 'cobweb')
+    toggle_set_cave = ('gore', 'bones', 'cobweb', 'tufts', 'roots')
+    toggle_set_outdoor = ('tufts', 'roots')
+
+    deco_toggle_def = {
+        'dungeon_floor_a': toggle_set_dungeon,
+        'dungeon_floor_b': toggle_set_dungeon,
+        'cave_floor': toggle_set_cave,
+        'grass_floor': toggle_set_outdoor,
+        'tile_floor_a': toggle_set_dungeon,
+        'tile_floor_b': toggle_set_dungeon,
+        'tile_floor_c': toggle_set_dungeon,
+        'cobble_floor': toggle_set_dungeon,
+        'tile_floor_d': toggle_set_dungeon
+    }
+
 
     @classmethod
     def init_set_tuples(cls):
@@ -26,6 +45,8 @@ class FloorTileSet(MapTileSet):
         self.sub_type = set_type
         self.variable_tiles = self.get_variable_tile_list(set_type)
         self.set_base_tile_function(set_type)
+
+        self.deco_toggles = self.set_deco_toggles()
 
     def get_base_tile(self, **kwargs):
         return 'base'
@@ -52,5 +73,22 @@ class FloorTileSet(MapTileSet):
             return cls.std_variable_tiles[:]
         return cls.deco_variable_tiles[:]
 
+    def set_deco_toggles(self):
 
+        cls = FloorTileSet
+
+        deco_toggles = {}
+
+        if self.set_id in cls.deco_toggle_def.keys():
+            modify = cls.deco_toggle_def[self.set_id]
+        else:
+            modify = ()
+
+        for key in cls.deco_toggle_keys:
+            if key in modify:
+                deco_toggles[key] = True
+            else:
+                deco_toggles[key] = False
+
+        return deco_toggles
 

@@ -1,11 +1,11 @@
 import pygame
 
-from code.image.map_image.map_image_generator import MapImageGenerator
-from code.map.map_generator import MapGenerator
-from code.states.test_state import TestState
+from source.image.map_image.map_image_generator import MapImageGenerator
+from source.map.map_generator import MapGenerator
+from source.states.test_state import TestState
 
-from code.map.tileset_zone import TilesetZone
-from code.image.tilesets.tileset_archive import TileSetArchive
+from source.map.tileset_zone import TilesetZone
+from source.image.tilesets.tileset_archive import TileSetArchive
 
 
 def change_screen():
@@ -18,7 +18,8 @@ def change_screen():
     # m.generate_zone_map()
     # m.zone_map.add_zone(z)
     # m.zone_map.add_zone(z2)
-    m_image = MapImageGenerator.generate_image(m)
+    m_image = MapImageGenerator.generate_image(m, scale=2)
+
     return m_image
 
 

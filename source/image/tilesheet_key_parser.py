@@ -22,12 +22,15 @@ def get_block(key_id, block_id):
                 f.close()
                 return block_lines
             else:
-                block_lines.append(line.strip().lstrip('[').rstrip(']'))
+                l = line.strip().lstrip('[').rstrip(']')
+                if l == '' or l[0] == '#':
+                    continue
+                block_lines.append(l)
     
     f.close()
     if not block_lines:
         raise Exception('no data for %s in %s' % (block_id, key_id))
-    
+
     
 # region block parsing funcions
 def parse_block(block, block_type):

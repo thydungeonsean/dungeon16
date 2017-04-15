@@ -1,4 +1,4 @@
-from code.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.tileset_archive import TileSetArchive
 
 
 class TilesetZoneMap(object):
@@ -64,7 +64,7 @@ class TilesetZoneMap(object):
         elif point_type == '"':
             return self.get_pit_tileset(point)
 
-        raise Exception('invalid point code in map array')
+        raise Exception('invalid point source in map array')
 
     def get_tileset(self, point, tile_type):
         if self.zones[tile_type]:

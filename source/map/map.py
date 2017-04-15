@@ -1,6 +1,6 @@
-from code.map.tile_id_map import TileIDMap
-from code.map.tileset_zone_map import TilesetZoneMap
-from code.map.deco_map import DecoMap
+from source.map.tile_id_map import TileIDMap
+from source.map.tileset_zone_map import TilesetZoneMap
+from source.map.deco_map import DecoMap
 
 
 class Map(object):
@@ -30,7 +30,7 @@ class Map(object):
         return coords
 
     def generate_zone_map(self):
-        self.zone_map = TilesetZoneMap.crypt(self)
+        self.zone_map = TilesetZoneMap.ruin(self)
 
     def generate_tile_map(self):  # once mapgen is complete
         self.tile_map = TileIDMap(self)
