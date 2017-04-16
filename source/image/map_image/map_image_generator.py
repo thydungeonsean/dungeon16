@@ -1,7 +1,5 @@
 from source.image.map_image.map_image import MapImage
 from source.image.tilesets.tileset_archive import TileSetArchive
-from pygame.locals import *
-import pygame
 
 
 class MapImageGenerator(object):
@@ -12,11 +10,16 @@ class MapImageGenerator(object):
         if map.zone_map is None:  # these are temp!!!!
             map.generate_zone_map()
 
-        if map.tile_map is None:  # TODO find a better init
-            map.generate_tile_map()
+        if map.tile_id_map is None:  # TODO find a better init
+            map.generate_tile_id_map()
 
         if map.deco_map is None:
             map.generate_deco_map()
+
+
+        # test block map
+        # block = TileSetArchive.get_tileset('block').get_any_mushroom()
+        # map.block_map.add_block((8, 5), block)
 
         map_image = MapImage(map.w, map.h)
 
@@ -35,7 +38,7 @@ class MapImageGenerator(object):
             tile_y = y * MapImage.tile_h
 
             # draw base tiles
-            tileset, tilekey = map.tile_map.get_tile_id((x, y), ani_key)
+            tileset, tilekey = map.tile_id_map.get_tile_id((x, y), ani_key)
             tile = tileset.get_tile_image(tilekey)
             tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))
@@ -44,9 +47,7 @@ class MapImageGenerator(object):
             tileset = TileSetArchive.get_tileset('deco')
             deco = map.deco_map
             if (x, y) in deco.deco_coords:
-                tilekey = deco.get_tile((x, y))
-                if tilekey.endswith('ani'):
-                    tilekey = '_'.join((tilekey, ani_key))
+                tilekey = deco.get_tile((x, y), ani_key)
                 tile = tileset.get_tile_image(tilekey)
                 tile.position((tile_x, tile_y))
                 tile.draw(map_image.get_image(ani_key))
@@ -74,6 +75,12 @@ class MapImageGenerator(object):
                 tile.draw(map_image.get_image(ani_key))
 
             # draw blocks
+
+            if (x, y) in map.block_map.block_coords:
+                tileset = TileSetArchive.get_tileset('block')
+                tile = tileset.get_tile_image(map.block_map.get_tile((x, y), ani_key))
+                tile.position((tile_x, tile_y))
+                tile.draw(map_image.get_image(ani_key))
 
 
             # draw features

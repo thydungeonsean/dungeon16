@@ -1,4 +1,4 @@
-from map_tile_set import MapTileSet
+from map_tileset import MapTileSet
 
 
 class ShadowTileSet(MapTileSet):

@@ -1,4 +1,4 @@
-from source.image.tilesets.map_tile_set import MapTileSet
+from source.image.tilesets.map_tileset import MapTileSet
 from random import randint
 
 
@@ -32,14 +32,6 @@ class DecoTileSet(MapTileSet):
 
     def __init__(self, set_id):
         MapTileSet.__init__(self, 'deco', set_id)
-
-    def get_base_tile(self, **kwargs):
-        if kwargs.get('edge', False):
-            return 'edge'
-        return 'pit'
-
-    def get_varied_tile(self, **kwargs):
-        return self.get_base_tile(**kwargs)
 
     def get_torch_tile(self, anikey):
         return ''.join(('torch_ani_', anikey))

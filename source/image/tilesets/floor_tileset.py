@@ -1,4 +1,4 @@
-from map_tile_set import MapTileSet
+from map_tileset import MapTileSet
 from random import choice
 from source.image.tilesheet_key_parser import get_set_keys
 

@@ -255,9 +255,9 @@
 [grey_stone: 14]
 [brown_stone: 15]
 
-[mushroom_a: 5: 2]
-[mushroom_b: 6: 2]
-[mushroom_c: 7: 2]
+[mushroom_1: 5: 2]
+[mushroom_2: 6: 2]
+[mushroom_3: 7: 2]
 
 [chair_left: 3: 3]
 [table_full: 4: 3]
@@ -268,32 +268,32 @@
 [table_center_b: 9: 3]
 [table_chair_right: 10: 3]
 
-[altar_a: 11: 3]
-[altar_b: 12: 3]
+[altar_1: 11: 3]
+[altar_2: 12: 3]
 [altar_left: 13: 3]
 [altar_center: 14: 3]
 [altar_right: 15: 3]
 
-[tree_a: 5: 4]
-[tree_b: 6: 4]
+[tree_1: 5: 4]
+[tree_2: 6: 4]
 
-[throne_a: 14: 4]
-[throne_b: 15: 4]
+[throne_1: 14: 4]
+[throne_2: 15: 4]
 
 [blank_sign: 8: 5]
 [weapon_sign: 9: 5]
 [potion_sign: 10: 5]
 [inn_sign: 11: 5]
 
-[statue_a: 13: 5]
-[statue_b: 14: 5]
-[statue_c: 15: 5]
+[statue_1: 13: 5]
+[statue_2: 14: 5]
+[statue_3: 15: 5]
 
-[jars_a: 12: 6]
-[jars_b: 13: 6]
+[jars_1: 12: 6]
+[jars_2: 13: 6]
 
-[stalagtite_a: 14: 6]
-[stalagtite_b: 15: 6]
+[stalagtite_1: 14: 6]
+[stalagtite_2: 15: 6]
 
 # animated blocks
 

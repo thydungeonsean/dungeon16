@@ -21,8 +21,11 @@ class DecoMap(object):
         self.deco_map[point] = key
         self.deco_coords.add(point)
 
-    def get_tile(self, point):
-        return self.deco_map[point]
+    def get_tile(self, point, ani_key='a'):
+        tilekey = self.deco_map[point]
+        if tilekey.endswith('ani'):
+            tilekey = '_'.join((tilekey, ani_key))
+        return tilekey
 
     def set_shadow_map(self):
 
@@ -81,9 +84,12 @@ class DecoMap(object):
 
     def valid_for_deco(self, key, point):
 
+        if point in self.base_map.block_map.block_coords:
+            return False
+
         toggle = self.passes_deco_toggle(key, point)
         valid_tile = True
-        tileset, tilekey = self.base_map.tile_map.tile_id_map[point]
+        tileset, tilekey = self.base_map.tile_id_map.tile_id_map[point]
         if tileset.set_type == 'floor' and tileset.sub_type == 'floor':
             if tilekey != 'base':
                 valid_tile = False

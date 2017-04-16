@@ -407,11 +407,52 @@
 [flute: gold]
 ]
 
-[angel: 24: 0]
-[dwarf: 24: 4]
-[hobbit: 24: 8]
-[gryphon: 24: 12]
-[plant: 26: 0]
+:angel:
+[
+[skin: light_skin]
+[hair: gold]
+[shirt: iron]
+[pants: iron]
+[wings: white]
+[belt: blue]
+]
+
+:dwarf:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[weapon: iron]
+[pole: brown]
+[shirt: blue]
+[cloak: dk_blue]
+[pants: dk_brown]
+[belt: blue_grey]
+]
+
+:hobbit:
+[
+[skin: light_skin]
+[hair: lt_brown]
+[cloak: brown]
+[shirt: gold]
+[weapon: iron]
+[belt: blue_grey]
+[pants: dk_brown]
+]
+
+:gryphon:
+[
+[skin: brown]
+[highlight: white]
+[claws: gold]
+[beak: gold]
+]
+
+:plant:
+[
+[skin: green]
+[highlight: lt_green]
+]
 
 :bug:
 [
@@ -422,7 +463,7 @@
 :horse:
 [
 [hair: nr_black]
-[skin:] brown
+[skin: brown]
 [hooves: iron]
 [saddle: dk_blue]
 ]
@@ -435,11 +476,31 @@
 [hooves: steel]
 ]
 
-[mummy: 28: 0]
-[cube: 28: 4]
-[orb: 28: 8]
-[flame: 28: 12]
-[savage: 30: 0]
+:mummy:
+[
+[]
+]
+
+
+:cube:
+[
+[]
+]
+
+:orb:
+[
+[]
+]
+
+:flame:
+[
+[]
+]
+
+:savage:
+[
+[]
+]
 
 :treant:
 [

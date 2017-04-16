@@ -77,7 +77,7 @@ class MapTools(object):
         adj = base_map.get_adj_tile_dict(coord)
 
         if 's' in adj['directions'] and adj['s'] in ('.', '"', '~') and adj['s_coord'] not in deco_map.deco_map.keys() \
-                and base_map.tile_map.tile_id_map[coord][1] != 'hor_d':
+                and base_map.tile_id_map.tile_id_map[coord][1] != 'hor_d':
             return True
         else:
             return False

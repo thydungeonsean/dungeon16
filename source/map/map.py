@@ -1,6 +1,7 @@
 from source.map.tile_id_map import TileIDMap
 from source.map.tileset_zone_map import TilesetZoneMap
 from source.map.deco_map import DecoMap
+from source.map.block_map import BlockMap
 
 
 class Map(object):
@@ -12,7 +13,9 @@ class Map(object):
         self.map = None
 
         self.zone_map = None
-        self.tile_map = None
+        self.block_map = BlockMap(self)
+
+        self.tile_id_map = None
         self.deco_map = None
 
     def init_basic_map(self):
@@ -32,8 +35,8 @@ class Map(object):
     def generate_zone_map(self):
         self.zone_map = TilesetZoneMap.test(self)
 
-    def generate_tile_map(self):  # once mapgen is complete
-        self.tile_map = TileIDMap(self)
+    def generate_tile_id_map(self):
+        self.tile_id_map = TileIDMap(self)
 
     def generate_deco_map(self):
         self.deco_map = DecoMap(self)

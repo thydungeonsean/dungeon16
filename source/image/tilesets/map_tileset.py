@@ -15,11 +15,3 @@ class MapTileSet(TileSet):
         if TSA.world_sheet is None:
             TSA.load_world_sheet()
         return TSA.world_sheet
-
-    def get_base_tile(self, **kwargs):
-        raise NotImplementedError
-
-    def get_varied_tile(self, **kwargs):
-        raise NotImplementedError
-
-
