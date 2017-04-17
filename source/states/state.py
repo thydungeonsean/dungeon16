@@ -1,6 +1,7 @@
 from ..controller.controller import Controller
 from clock import Clock
 from screen_layout import ScreenLayout  # dummy layout
+import pygame
 
 
 class State(object):
@@ -9,6 +10,7 @@ class State(object):
         self.controller = Controller.get_instance()
         self.screen_layout = None
 
+        self.screen = pygame.display.get_surface()
         self.clock = Clock.get_instance()
 
     def init_state(self):

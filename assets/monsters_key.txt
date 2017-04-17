@@ -87,7 +87,7 @@
 [cube: 28: 4]
 [orb: 28: 8]
 [flame: 28: 12]
-[savage: 30: 0]
+[giant: 30: 0]
 [treant: 30: 4]
 [yeti: 30: 8]
 [fly_swarm: 30: 12]

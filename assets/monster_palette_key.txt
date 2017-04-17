@@ -478,28 +478,40 @@
 
 :mummy:
 [
-[]
+[highlight: gold]
+[helmet: lt_brown]
+[pants: lt_brown]
+[skin: white]
 ]
-
 
 :cube:
 [
-[]
+[highlight: ltr_purple]
+[light: lt_purple]
+[med: md_purple]
+[dark: blue_grey]
 ]
 
 :orb:
 [
-[]
+[skin: nr_black]
+[highlight: blue_grey]
+[glow: gold]
+[sparkle: white]
 ]
 
 :flame:
 [
-[]
+[fire: red]
+[highlight: gold]
+[core: white]
 ]
 
-:savage:
+:giant:
 [
-[]
+[skin: light_skin]
+[pants: brown]
+[hair: lt_brown]
 ]
 
 :treant:

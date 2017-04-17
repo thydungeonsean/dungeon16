@@ -2,6 +2,7 @@ from source.map.tile_id_map import TileIDMap
 from source.map.tileset_zone_map import TilesetZoneMap
 from source.map.deco_map import DecoMap
 from source.map.block_map import BlockMap
+from source.map.feature_map import FeatureMap
 
 
 class Map(object):
@@ -14,6 +15,7 @@ class Map(object):
 
         self.zone_map = None
         self.block_map = BlockMap(self)
+        self.feature_map = FeatureMap(self)
 
         self.tile_id_map = None
         self.deco_map = None
@@ -33,7 +35,7 @@ class Map(object):
         return coords
 
     def generate_zone_map(self):
-        self.zone_map = TilesetZoneMap.test(self)
+        self.zone_map = TilesetZoneMap.crypt(self)
 
     def generate_tile_id_map(self):
         self.tile_id_map = TileIDMap(self)

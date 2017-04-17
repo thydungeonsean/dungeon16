@@ -79,6 +79,10 @@ class TileIDMap(object):
                 edge_tileset = self.zone_map.get_tileset_for_point(adj['n_coord'])
                 if edge_tileset.sub_type == 'floor':
                     return edge_tileset, 'pit_edge'
+            elif adj['n'] == '#':
+                edge_tileset = self.zone_map.get_tileset_for_point(adj['n_coord'], point_type='.')
+                if edge_tileset.sub_type == 'floor':
+                    return edge_tileset, 'pit_edge'
 
             return self.get_tile_id_from_tileset(tileset, edge=True)
         return self.get_tile_id_from_tileset(tileset)

@@ -25,7 +25,7 @@ class TilesetZoneMap(object):
 
     @classmethod
     def test(cls, map):
-        return cls(map, 'crypt_wall', 'cobble_floor', 'sewer')
+        return cls(map, 'crypt_wall', 'cave_floor', 'sewer')
 
     def __init__(self, base_map, wall='dungeon_wall', floor='dungeon_floor_a', water='blue'):
         self.base_map = base_map
@@ -52,9 +52,10 @@ class TilesetZoneMap(object):
         except KeyError:
             self.zones[key] = [zone]
 
-    def get_tileset_for_point(self, point):
+    def get_tileset_for_point(self, point, point_type=None):
 
-        point_type = self.base_map.get_tile_code(point)
+        if point_type is None:
+            point_type = self.base_map.get_tile_code(point)
 
         if point_type == '#':
             return self.get_wall_tileset(point)

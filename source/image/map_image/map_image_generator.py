@@ -16,11 +16,6 @@ class MapImageGenerator(object):
         if map.deco_map is None:
             map.generate_deco_map()
 
-
-        # test block map
-        # block = TileSetArchive.get_tileset('block').get_any_mushroom()
-        # map.block_map.add_block((8, 5), block)
-
         map_image = MapImage(map.w, map.h)
 
         for ani_key in ('a', 'b'):
@@ -37,51 +32,55 @@ class MapImageGenerator(object):
             tile_x = x * MapImage.tile_w
             tile_y = y * MapImage.tile_h
 
-            # draw base tiles
-            tileset, tilekey = map.tile_id_map.get_tile_id((x, y), ani_key)
+            cls.render_tile((x, y), (tile_x, tile_y), map, map_image, ani_key)
+
+    @classmethod
+    def render_tile(cls, (x, y), (tile_x, tile_y), map, map_image, ani_key):
+
+        # draw base tiles
+        tileset, tilekey = map.tile_id_map.get_tile_id((x, y), ani_key)
+        tile = tileset.get_tile_image(tilekey)
+        tile.position((tile_x, tile_y))
+        tile.draw(map_image.get_image(ani_key))
+
+        # draw deco
+        tileset = TileSetArchive.get_tileset('deco')
+        deco = map.deco_map
+        if (x, y) in deco.deco_coords:
+            tilekey = deco.get_tile((x, y), ani_key)
             tile = tileset.get_tile_image(tilekey)
             tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))
 
-            # draw deco
+        # draw shadow
+        if (x, y) in map.deco_map.shadow_map:
+            tileset = TileSetArchive.get_tileset('shadow')
+            tile = tileset.get_tile_image(tileset.get_base_tile())
+
+            blended = tile.get_blended_image(map_image.get_image(ani_key), (tile_x, tile_y))
+            blended.draw(map_image.get_image(ani_key))
+
+        # draw torches
+        if (x, y) in map.deco_map.torch_map:
             tileset = TileSetArchive.get_tileset('deco')
-            deco = map.deco_map
-            if (x, y) in deco.deco_coords:
-                tilekey = deco.get_tile((x, y), ani_key)
-                tile = tileset.get_tile_image(tilekey)
-                tile.position((tile_x, tile_y))
-                tile.draw(map_image.get_image(ani_key))
+            tile = tileset.get_tile_image(tileset.get_torch_tile(ani_key))
+            tile.position((tile_x, tile_y))
+            tile.draw(map_image.get_image(ani_key))
 
-            # draw shadow
-            if (x, y) in map.deco_map.shadow_map:
-                tileset = TileSetArchive.get_tileset('shadow')
-                tile = tileset.get_tile_image(tileset.get_base_tile())
+        # draw_torch_glow
+        if (x, y) in map.deco_map.glow_map:
+            tileset = TileSetArchive.get_tileset('deco')
+            tile = tileset.get_tile_image(tileset.get_torch_glow_tile(ani_key))
+            tile.position((tile_x, tile_y))
+            tile.draw(map_image.get_image(ani_key))
 
-                blended = tile.get_blended_image(map_image.get_image(ani_key), (tile_x, tile_y))
-                blended.draw(map_image.get_image(ani_key))
+        # draw blocks
 
-            # draw torches
-            if (x, y) in map.deco_map.torch_map:
-                tileset = TileSetArchive.get_tileset('deco')
-                tile = tileset.get_tile_image(tileset.get_torch_tile(ani_key))
-                tile.position((tile_x, tile_y))
-                tile.draw(map_image.get_image(ani_key))
+        if (x, y) in map.block_map.block_coords:
+            tileset = TileSetArchive.get_tileset('block')
+            tile = tileset.get_tile_image(map.block_map.get_tile((x, y), ani_key))
+            tile.position((tile_x, tile_y))
+            tile.draw(map_image.get_image(ani_key))
 
-            # draw_torch_glow
-            if (x, y) in map.deco_map.glow_map:
-                tileset = TileSetArchive.get_tileset('deco')
-                tile = tileset.get_tile_image(tileset.get_torch_glow_tile(ani_key))
-                tile.position((tile_x, tile_y))
-                tile.draw(map_image.get_image(ani_key))
-
-            # draw blocks
-
-            if (x, y) in map.block_map.block_coords:
-                tileset = TileSetArchive.get_tileset('block')
-                tile = tileset.get_tile_image(map.block_map.get_tile((x, y), ani_key))
-                tile.position((tile_x, tile_y))
-                tile.draw(map_image.get_image(ani_key))
-
-
-            # draw features
+        # draw features
 
