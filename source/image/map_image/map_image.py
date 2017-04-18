@@ -1,4 +1,5 @@
 from source.image.image import Image
+from source.objects.map_image_coord import MapImageCoord
 
 from source.states.clock import Clock
 
@@ -9,14 +10,16 @@ class MapImage(object):
     tile_h = 16
 
     def __init__(self, w, h):
-        pix_w = w * MapImage.tile_w
-        pix_h = h * MapImage.tile_h
-        self.image_a = self.set_image(pix_w, pix_h)
-        self.image_b = self.set_image(pix_w, pix_h)
+
+        self.coord = MapImageCoord()
+
+        self.image_a = self.set_image(w, h)
+        self.image_b = self.set_image(w, h)
         self.images = {
             'a': self.image_a,
             'b': self.image_b
             }
+
 
     @property
     def each_image(self):
@@ -36,9 +39,12 @@ class MapImage(object):
         for image in self.each_image:
             image.scale_up(scale=scale)
 
-    @staticmethod
-    def set_image(w, h):
-        return Image(w, h)
+    def set_image(self, w, h):
+        pix_w = w * MapImage.tile_w
+        pix_h = h * MapImage.tile_h
+        i = Image(pix_w, pix_h)
+        self.coord.bind(i.coord)
+        return i
 
     def get_key(self):
         frame = Clock.get_instance().frame

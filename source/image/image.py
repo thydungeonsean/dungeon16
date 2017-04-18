@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from source.objects.pixel_coord import PixelCoord
 
 
 class Image(object):
@@ -8,6 +9,9 @@ class Image(object):
 
         self.image = pygame.Surface((w, h)).convert()
         self.rect = self.image.get_rect()
+        self.coord = PixelCoord()
+        self.coord.set_owner(self)
+        self.coord.toggle_auto_position_owner()
         if colorkey:
             self.image.set_colorkey(colorkey)
 
@@ -20,6 +24,10 @@ class Image(object):
         return self.image.get_height()
 
     def position(self, (x, y)):
+        self.coord.set((x, y))
+
+    def reset_position(self):
+        x, y = self.coord.get
         self.rect.topleft = (x, y)
 
     def draw(self, surface, special_flags=0):

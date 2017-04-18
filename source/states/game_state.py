@@ -1,20 +1,19 @@
 from state import State
-import pygame
 from source.image.map_image.map_image_generator import MapImageGenerator
 from source.states.view import View
 
 
 class GameState(State):
 
-    def load_level(self, level):
-        self.level = level
-        self.map_image = MapImageGenerator.generate_image(self.level, scale=2)
-
     def __init__(self):
         State.__init__(self)
         self.level = None
         self.map_image = None
         self.view = View()
+
+    def init_state(self):
+        self.controller.bind_to_state(self)
+        self.switch_screen_layout()
 
     def render(self):
 
@@ -23,3 +22,8 @@ class GameState(State):
 
     def run(self):
         pass
+
+    def load_level(self, level):
+        self.level = level
+        self.map_image = MapImageGenerator.generate_image(self.level, scale=2)
+        self.view.set_map_image(self.map_image)
