@@ -5,11 +5,8 @@
 *.pyc
 
 # ignore sprites to protect Oryx licence
-assets/sprites/infantry.png
-assets/sprites/archer.png
-assets/sprites/chariot.png
 assets/world.png
-assets/monster.png
+assets/monsters.png
 
 # ignore screenshot
 

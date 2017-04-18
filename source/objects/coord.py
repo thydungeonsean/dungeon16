@@ -8,6 +8,7 @@ class Coord(object):
         self.bound = None
         self.owner = None
         self.auto_position_owner = False
+        self.coord_type = 'base'
 
     def set_owner(self, owner):
         self.owner = owner
@@ -26,12 +27,18 @@ class Coord(object):
         return self.x, self.y
         
     def set(self, (x, y)):
-        self.x = x
-        self.y = y
+        self.set_coords((x, y))
         if self.bound is not None:
-            self.bound.set((x, y))
+            if self.bound.coord_type != self.coord_type:
+                self.bound.translate((self.x, self.y))
+            else:
+                self.bound.set((self.x, self.y))
         if self.auto_position_owner:
             self.auto_position()
+
+    def set_coords(self, (x, y)):
+        self.x = x
+        self.y = y
 
     def bind(self, coord):
         self.bound = coord
