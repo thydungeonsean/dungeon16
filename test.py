@@ -11,6 +11,8 @@ from source.objects.dummy import Dummy
 from source.map.tileset_zone import TilesetZone
 from source.image.tilesets.tileset_archive import TileSetArchive
 
+from source.states.settings import Settings
+
 
 def gen():
 
@@ -42,12 +44,17 @@ def test():
     state.load_level(m)
     state.init_state()
 
-    player = Dummy(10, 10)
-    state.view.bind_view(player)
+    x = 1
+    y = 2
+
+    player = Dummy(x, y)
+    player.pixel_coord.set((100, 100))
+    state.view.focus_object(player)
 
     while True:
 
         state.render()
+        draw_focus()
 
         state.run()
 
@@ -55,7 +62,23 @@ def test():
 
         pygame.display.update()
         state.clock.tick(60)
-        
+
+
+def draw_focus():
+    s = pygame.display.get_surface()
+    x_offset = ((25 - 1) / 2) * Settings.SC_TILE_W
+    y_offset = ((17 - 1) / 2) * Settings.SC_TILE_H
+    i = pygame.Surface((Settings.SC_TILE_W, Settings.SC_TILE_H))
+    i.fill((230, 10, 15))
+    i2 = pygame.Surface((Settings.SC_TILE_W - 2 , Settings.SC_TILE_H-2))
+    r2 = i2.get_rect()
+    r2.topleft = (1, 1)
+    i2.fill((255, 255, 255))
+    i.blit(i2, r2)
+    i.set_colorkey((255, 255, 255))
+    r = i.get_rect()
+    r.topleft = (x_offset, y_offset)
+    s.blit(i, r)
         
 if __name__ == '__main__':
     test()

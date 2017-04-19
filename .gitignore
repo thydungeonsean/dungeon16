@@ -8,6 +8,8 @@
 assets/world.png
 assets/monsters.png
 
+assets/oryx/
+
 # ignore screenshot
 
 # ignore pyinstaller artifacts

@@ -38,9 +38,9 @@ class Coord(object):
         self.set_coords((x, y))
         if self.bound is not None:
             if self.bound.coord_type != self.coord_type:
-                self.bound.translate((self.x, self.y))
+                self.bound.translate(self.get)
             else:
-                self.bound.set((self.x, self.y))
+                self.bound.set(self.get)
         if self.auto_position_owner:
             self.auto_position()
 
@@ -51,9 +51,9 @@ class Coord(object):
     def bind(self, coord):
         self.bound = coord
         if self.bound.coord_type != self.coord_type:
-            self.bound.translate((self.x, self.y))
+            self.bound.translate(self.get)
         else:
-            self.bound.set((self.x, self.y))
+            self.bound.set(self.get)
 
     def unbind(self):
         self.bound = None

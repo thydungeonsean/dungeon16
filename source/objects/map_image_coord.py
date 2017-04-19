@@ -14,13 +14,9 @@ class MapImageCoord(Coord):
         self.set_coords((x, y))
         if self.bound is not None:
             for c in self.bound:
-                c.set((self.x, self.y))
+                c.set(self.get)
         if self.auto_position_owner:
             self.auto_position()
-
-    def set_coords(self, (x, y)):
-        self.x = x
-        self.y = y
 
     def bind(self, coord):
         if self.bound is None:
