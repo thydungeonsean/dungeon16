@@ -13,6 +13,7 @@ from source.image.tilesets.tileset_archive import TileSetArchive
 
 from source.states.settings import Settings
 
+from source.controller.move_control import MoveControl
 
 def gen():
 
@@ -48,8 +49,9 @@ def test():
     y = 2
 
     player = Dummy(x, y)
-    player.pixel_coord.set((100, 100))
     state.view.focus_object(player)
+    MoveControl(player)
+
 
     while True:
 

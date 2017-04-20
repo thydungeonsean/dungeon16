@@ -8,7 +8,11 @@ class Controller(object):
 
     key_bind = {
         'esc': K_ESCAPE,
-        'ret': K_RETURN
+        'ret': K_RETURN,
+        'up': K_UP,
+        'down': K_DOWN,
+        'right': K_RIGHT,
+        'left': K_LEFT
     }
 
     instance = None
@@ -24,6 +28,8 @@ class Controller(object):
         self.mouse = Mouse.get_instance()
         self.state = None
 
+        self.components = []
+
     def bind_to_state(self, state):
         self.state = state
         self.mouse.bind_to_state(state)
@@ -31,6 +37,12 @@ class Controller(object):
     def unbind(self):
         self.state = None
         self.mouse.unbind()
+
+    def add_component(self, component):
+        self.components.append(component)
+
+    def remove_component(self, component):
+        self.components.remove(component)
 
     def handle_input(self):
 
@@ -47,6 +59,11 @@ class Controller(object):
 
                 elif event.key == self.key('ret'):
                     pass
+
+                else:
+                    for component in self.components:
+                        component.press(event.key)
+
 
             elif event.type == MOUSEBUTTONDOWN:
 
