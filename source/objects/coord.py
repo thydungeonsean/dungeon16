@@ -1,3 +1,4 @@
+from source.states.settings import Settings
 
 
 class Coord(object):
@@ -37,10 +38,11 @@ class Coord(object):
     def set(self, (x, y)):
         self.set_coords((x, y))
         if self.bound is not None:
-            if self.bound.coord_type != self.coord_type:
-                self.bound.translate(self.get)
-            else:
-                self.bound.set(self.get)
+            for coord in self.bound:
+                if coord.coord_type != self.coord_type:
+                    coord.translate(self.get)
+                else:
+                    coord.set(self.get)
         if self.auto_position_owner:
             self.auto_position()
 
@@ -49,11 +51,35 @@ class Coord(object):
         self.y = y
 
     def bind(self, coord):
-        self.bound = coord
-        if self.bound.coord_type != self.coord_type:
-            self.bound.translate(self.get)
+        if self.bound is None:
+            self.bound = []
+        self.bound.append(coord)
+        if coord.coord_type != self.coord_type:
+            coord.translate(self.get)
         else:
-            self.bound.set(self.get)
+            coord.set(self.get)
 
     def unbind(self):
         self.bound = None
+
+    def translate(self, (x, y)):
+        self.translate_coords((x, y))
+        if self.bound is not None:
+            for c in self.bound:
+                c.set(self.get)
+        if self.auto_position_owner:
+            self.auto_position()
+
+    def translate_coords(self, (x, y)):
+        self.x = (x / Settings.SC_TILE_W)
+        self.y = (y / Settings.SC_TILE_H)
+
+    def add(self, coord):
+
+        if isinstance(coord, Coord):
+            cx, cy = coord.get
+        else:
+            cx, cy = coord
+        x, y = self.get
+        return x + cx, y + cy
+

@@ -17,7 +17,7 @@ class TileSetArchive(object):
     floor_keys = None
     door_keys = None
     water_keys = None
-    # pit, house, trap door, shadow, deco, block, feature - only one set per category
+    # house, trap door, feature - only one set per category
 
     @classmethod
     def init_set_keys(cls):

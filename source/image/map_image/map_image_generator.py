@@ -75,12 +75,8 @@ class MapImageGenerator(object):
             tile.draw(map_image.get_image(ani_key))
 
         # draw blocks
-
         if (x, y) in map.block_map.block_coords:
             tileset = TileSetArchive.get_tileset('block')
             tile = tileset.get_tile_image(map.block_map.get_tile((x, y), ani_key))
             tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))
-
-        # draw features
-

@@ -64,7 +64,6 @@ class Controller(object):
                     for component in self.components:
                         component.press(event.key)
 
-
             elif event.type == MOUSEBUTTONDOWN:
 
                 if event.button == 1:

@@ -11,7 +11,7 @@ class MapObject(object):
         self.coord.bind(self.pixel_coord)
 
     def draw(self, surface):
-        pass
+        print 'draw'
 
     def on_bump(self):
         pass

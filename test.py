@@ -8,12 +8,15 @@ from source.states.test_state import TestState
 from source.states.game_state import GameState
 
 from source.objects.dummy import Dummy
+from source.objects.map_object import MapObject
 from source.map.tileset_zone import TilesetZone
 from source.image.tilesets.tileset_archive import TileSetArchive
 
 from source.states.settings import Settings
 
 from source.controller.move_control import MoveControl
+from source.objects.coord import Coord
+from source.objects.pixel_coord import PixelCoord
 
 def gen():
 
@@ -40,18 +43,21 @@ def test():
 
     m = gen()
 
-    #state = TestState()
     state = GameState()
     state.load_level(m)
     state.init_state()
 
-    x = 1
-    y = 2
+    x = 10
+    y = 10
 
     player = Dummy(x, y)
     state.view.focus_object(player)
     MoveControl(player)
 
+    c = state.view.coord.get
+
+    x = MapObject((10, 12))
+    m.feature_map.add_feature((10, 12), x)
 
     while True:
 
@@ -61,6 +67,8 @@ def test():
         state.run()
 
         state.handle_input()
+
+        c = print_coord(state.view, c)
 
         pygame.display.update()
         state.clock.tick(60)
@@ -72,7 +80,7 @@ def draw_focus():
     y_offset = ((17 - 1) / 2) * Settings.SC_TILE_H
     i = pygame.Surface((Settings.SC_TILE_W, Settings.SC_TILE_H))
     i.fill((230, 10, 15))
-    i2 = pygame.Surface((Settings.SC_TILE_W - 2 , Settings.SC_TILE_H-2))
+    i2 = pygame.Surface((Settings.SC_TILE_W-2, Settings.SC_TILE_H-2))
     r2 = i2.get_rect()
     r2.topleft = (1, 1)
     i2.fill((255, 255, 255))
@@ -81,6 +89,15 @@ def draw_focus():
     r = i.get_rect()
     r.topleft = (x_offset, y_offset)
     s.blit(i, r)
-        
+
+
+def print_coord(v, c):
+
+    if c != v.coord.get:
+        print v.coord.get
+        return v.coord.get
+    return c
+
+
 if __name__ == '__main__':
     test()
