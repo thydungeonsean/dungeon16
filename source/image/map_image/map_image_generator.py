@@ -1,5 +1,6 @@
 from source.image.map_image.map_image import MapImage
 from source.image.tilesets.tileset_archive import TileSetArchive
+from source.states.settings import Settings
 
 
 class MapImageGenerator(object):
@@ -21,7 +22,7 @@ class MapImageGenerator(object):
         for ani_key in ('a', 'b'):
             cls.render_map(map, map_image, ani_key)
 
-        map_image.scale_up(scale=scale)
+        #map_image.scale_up(scale=scale)
         return map_image
 
     @classmethod
@@ -29,8 +30,8 @@ class MapImageGenerator(object):
 
         for x, y in map.all_coords:
 
-            tile_x = x * MapImage.tile_w
-            tile_y = y * MapImage.tile_h
+            tile_x = x * Settings.SC_TILE_W
+            tile_y = y * Settings.SC_TILE_H
 
             cls.render_tile((x, y), (tile_x, tile_y), map, map_image, ani_key)
 

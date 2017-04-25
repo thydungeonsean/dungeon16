@@ -4,9 +4,17 @@ import pygame
 
 class TileSheetArchive(object):
 
-    world_sheet = None
+    sheets = {}
 
     @classmethod
-    def load_world_sheet(cls):
-        path = ''.join((os.path.dirname(__file__), '..\\..\\..\\assets\\world.png'))
-        cls.world_sheet = pygame.image.load(path)
+    def load_sheet(cls, key):
+        path = ''.join((os.path.dirname(__file__), '..\\..\\..\\assets\\', key, '.png'))
+        return pygame.image.load(path)
+
+    @classmethod
+    def get_tilesheet(cls, key):
+
+        if key not in cls.sheets.keys():
+            cls.sheets[key] = cls.load_sheet(key)
+
+        return cls.sheets[key]

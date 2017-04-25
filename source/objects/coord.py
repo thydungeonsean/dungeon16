@@ -83,3 +83,11 @@ class Coord(object):
         x, y = self.get
         return x + cx, y + cy
 
+    def subtract(self, coord):
+        if isinstance(coord, Coord):
+            cx, cy = coord.get
+        else:
+            cx, cy = coord
+        x, y = self.get
+        return x - cx, y - cy
+

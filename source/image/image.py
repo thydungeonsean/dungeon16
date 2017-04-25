@@ -1,11 +1,12 @@
 import pygame
 from pygame.locals import *
 from source.objects.pixel_coord import PixelCoord
+from source.states.settings import Settings
 
 
 class Image(object):
 
-    def __init__(self, w, h, colorkey=False):
+    def __init__(self, w, h, colorkey=False, auto_scale=True):
 
         self.image = pygame.Surface((w, h)).convert()
         self.rect = self.image.get_rect()
@@ -14,6 +15,8 @@ class Image(object):
         self.coord.toggle_auto_position_owner()
         if colorkey:
             self.image.set_colorkey(colorkey)
+        if auto_scale:
+            self.auto_scale()
 
     @property
     def w(self):
@@ -44,6 +47,9 @@ class Image(object):
         scaled = pygame.transform.scale(self.image, (int(self.rect.w*scale), int(self.rect.h*scale)))
         self.image = scaled
         self.rect = self.image.get_rect()
+
+    def auto_scale(self):
+        self.scale_up(scale=Settings.SCALE)
 
     def get_blended_image(self, background_image, (x, y)):
 

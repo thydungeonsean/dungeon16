@@ -40,6 +40,6 @@ class BlockTileSet(MapTileSet):
     def get_any_altar(cls):
         return ''.join(('altar_', str(randint(1, cls.altar))))
 
-    def __init__(self, set_id):
-        MapTileSet.__init__(self, 'block', set_id)
+    def __init__(self):
+        MapTileSet.__init__(self, 'block', 'block')
 

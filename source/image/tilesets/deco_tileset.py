@@ -30,8 +30,8 @@ class DecoTileSet(MapTileSet):
     def get_any_lilypad(cls):
         return ''.join(('lilypad_', str(randint(1, cls.lilypad)), '_ani'))
 
-    def __init__(self, set_id):
-        MapTileSet.__init__(self, 'deco', set_id)
+    def __init__(self):
+        MapTileSet.__init__(self, 'deco', 'deco')
 
     def get_torch_tile(self, anikey):
         return ''.join(('torch_ani_', anikey))

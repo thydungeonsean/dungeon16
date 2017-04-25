@@ -14,4 +14,4 @@ class ObjectManager(object):
 
         visible = filter(lambda x: self.view.object_in_view(x), self.coord_list)
         for coord in visible:
-            self.object_map[coord].draw(surface)
+            self.object_map[coord].draw_to_map(surface, self.view)

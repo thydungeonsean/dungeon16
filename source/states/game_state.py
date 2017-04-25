@@ -1,6 +1,7 @@
 from state import State
 from source.image.map_image.map_image_generator import MapImageGenerator
 from source.states.view import View
+from source.states.settings import Settings
 
 from source.objects.object_managers.feature_manager import FeatureManager
 
@@ -29,7 +30,7 @@ class GameState(State):
 
     def load_level(self, level):
         self.level = level
-        self.map_image = MapImageGenerator.generate_image(self.level, scale=2)
+        self.map_image = MapImageGenerator.generate_image(self.level, scale=Settings.SCALE)
 
         self.view.set_map_image(self.map_image)
 

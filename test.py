@@ -22,7 +22,7 @@ def gen():
 
     TileSetArchive.init_set_keys()
 
-    m = MapGenerator.load_map('test_map')
+    m = MapGenerator.load_map('map')
     # z = TilesetZone((10, 0), 7, 6, 'water', 'blue')
     # z2 = TilesetZone((0, 0), 12, 9, 'floor', 'tile_floor_d')
     # m.generate_zone_map()
@@ -56,8 +56,12 @@ def test():
 
     c = state.view.coord.get
 
-    x = MapObject((10, 12))
-    m.feature_map.add_feature((10, 12), x)
+    x = MapObject((9, 11))
+    y = MapObject((10, 11))
+    z = MapObject((11, 11))
+    m.feature_map.add_feature((9, 11), x)
+    m.feature_map.add_feature((10, 11), y)
+    m.feature_map.add_feature((11, 11), z)
 
     while True:
 

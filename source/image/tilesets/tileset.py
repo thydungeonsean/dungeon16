@@ -1,5 +1,6 @@
 from source.image.tilesheet_key_parser import *
 from source.image.image import Image
+from source.image.tile_sheet_archive import TileSheetArchive
 
 
 class TileSet(object):
@@ -7,7 +8,7 @@ class TileSet(object):
     def __init__(self, sheet, set_type, set_id):
         
         self.sheet_key = ''.join((sheet, '_key'))
-        self.tilesheet = self.load_tile_sheet()
+        self.tilesheet = self.load_tile_sheet(sheet)
         
         self.tile_w, self.tile_h = self.load_tile_dimensions()
         self.colorkey = self.load_colorkey()
@@ -15,8 +16,8 @@ class TileSet(object):
         self.tileset_pos_dict = self.set_tileset_dictionary(set_type, set_id)
         self.tiles = self.load_tiles()
               
-    def load_tile_sheet(self):
-        raise NotImplementedError
+    def load_tile_sheet(self, sheet):
+        return TileSheetArchive.get_tilesheet(sheet)
         
     def load_tile_dimensions(self):
         return get_tile_dimensions(self.sheet_key)
@@ -30,7 +31,7 @@ class TileSet(object):
         type_block = parse_block(get_block(self.sheet_key, type_key), 'set')
         set_line = get_key_line(type_block, set_id)
         
-        set_type_offset =  (set_line[2], set_line[1])
+        set_type_offset = (set_line[2], set_line[1])
         
         tile_list_key = ''.join((set_type, ' set tiles'))
         tile_list_block = parse_block(get_block(self.sheet_key, tile_list_key), 'tile')
@@ -52,9 +53,10 @@ class TileSet(object):
         return tiles
             
     def set_tile_image(self, key):
-        tile = Image(self.tile_w, self.tile_h, self.colorkey)
+        tile = Image(self.tile_w, self.tile_h, self.colorkey, auto_scale=False)
         tx, ty = self.tileset_pos_dict[key]
         tile.image.blit(self.tilesheet, (0, 0), (tx*self.tile_w, ty*self.tile_h, self.tile_w, self.tile_h))
+        tile.auto_scale()
         return tile
         
     def get_tile_image(self, tile_key):

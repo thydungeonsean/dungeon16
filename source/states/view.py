@@ -68,6 +68,7 @@ class View(object):
 
     def draw(self, surface):
         self.view_surface.fill((0, 0, 0))
+
         self.map_image.draw(self.view_surface)
 
         self.feature_manager.draw(self.view_surface)
@@ -84,4 +85,4 @@ class View(object):
         x = mx - vx
         y = my - vy
 
-        return 0 < x < 5 and 0 < y < 5
+        return 0 <= x < View.w and 0 <= y < View.h

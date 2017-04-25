@@ -171,6 +171,7 @@
 [closed: 0]
 [open_bot: 1]
 [open_top: 2]
+]
 
 :shadow sets:
 [

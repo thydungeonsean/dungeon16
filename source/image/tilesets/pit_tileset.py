@@ -3,8 +3,8 @@ from map_tileset import MapTileSet
 
 class PitTileSet(MapTileSet):
 
-    def __init__(self, set_id):
-        MapTileSet.__init__(self, 'pit', set_id)
+    def __init__(self):
+        MapTileSet.__init__(self, 'pit', 'pit')
 
     def get_base_tile(self, **kwargs):
         if kwargs.get('edge', False):

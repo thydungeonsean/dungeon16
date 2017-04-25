@@ -1,12 +1,14 @@
 from source.image.tilesheet_key_parser import *
+
 from source.image.tilesets.wall_tileset import WallTileSet
 from source.image.tilesets.floor_tileset import FloorTileSet
-# from source.image.tilesets.door_tileset import DoorTileSet
+from source.image.tilesets.door_tileset import DoorTileSet
 from source.image.tilesets.water_tileset import WaterTileSet
 from source.image.tilesets.pit_tileset import PitTileSet
 from source.image.tilesets.deco_tileset import DecoTileSet
 from source.image.tilesets.shadow_tileset import ShadowTileSet
 from source.image.tilesets.block_tileset import BlockTileSet
+from source.image.tilesets.feature_tileset import FeatureTileSet
 
 
 class TileSetArchive(object):
@@ -17,7 +19,7 @@ class TileSetArchive(object):
     floor_keys = None
     door_keys = None
     water_keys = None
-    # house, trap door, feature - only one set per category
+    # house, trap door- only one set per category
 
     @classmethod
     def init_set_keys(cls):
@@ -59,13 +61,13 @@ class TileSetArchive(object):
             return FloorTileSet(tileset_key)
 
         elif tileset_key in cls.door_keys:
-            return
+            return DoorTileSet(tileset_key)
 
         elif tileset_key in cls.water_keys:
             return WaterTileSet(tileset_key)
 
         elif tileset_key == 'pit':
-            return PitTileSet(tileset_key)
+            return PitTileSet()
 
         elif tileset_key == 'trap door':
             return
@@ -74,13 +76,13 @@ class TileSetArchive(object):
             return
 
         elif tileset_key == 'shadow':
-            return ShadowTileSet(tileset_key)
+            return ShadowTileSet()
 
         elif tileset_key == 'deco':
-            return DecoTileSet(tileset_key)
+            return DecoTileSet()
 
         elif tileset_key == 'block':
-            return BlockTileSet(tileset_key)
+            return BlockTileSet()
 
         elif tileset_key == 'feature':
-            return
+            return FeatureTileSet()
