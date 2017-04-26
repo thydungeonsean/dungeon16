@@ -45,7 +45,7 @@ def test():
     x = 16
     y = 10
 
-    player = Actor((x, y))
+    player = Actor((x, y), 'paladin')
     state.view.focus_object(player)
     MoveControl(player)
 

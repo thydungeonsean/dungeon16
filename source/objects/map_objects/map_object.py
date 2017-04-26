@@ -37,3 +37,6 @@ class MapObject(object):
 
     def on_bump(self):
         pass
+
+    def move(self, c):
+        raise Exception('Attempting to move non mobile map object')

@@ -18,17 +18,13 @@ class MoveControl(ControlComponent):
         }
 
     def up(self):
-        x, y = self.owner.coord.get
-        self.owner.coord.set((x, y-1))
+        self.owner.move('up')
 
     def down(self):
-        x, y = self.owner.coord.get
-        self.owner.coord.set((x, y+1))
+        self.owner.move('down')
 
     def right(self):
-        x, y = self.owner.coord.get
-        self.owner.coord.set((x+1, y))
+        self.owner.move('right')
 
     def left(self):
-        x, y = self.owner.coord.get
-        self.owner.coord.set((x-1, y))
+        self.owner.move('left')

@@ -39,6 +39,7 @@ class View(object):
 
     def init(self):
         self.feature_manager = self.state.feature_manager
+        self.actor_manager = self.state.actor_manager
 
     def init_coord(self):  # the nearest map coord of the topleft corner of view
         coord = Coord()
@@ -73,7 +74,7 @@ class View(object):
 
         self.feature_manager.draw(self.view_surface)
         # object_manager.draw
-        # actor_manager.draw
+        self.actor_manager.draw(self.view_surface)
         # effect_manager.draw
 
         surface.blit(self.view_surface, self.view_rect)

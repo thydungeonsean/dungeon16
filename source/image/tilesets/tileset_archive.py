@@ -44,12 +44,10 @@ class TileSetArchive(object):
     @classmethod
     def get_tileset(cls, tileset_key):
 
-        if tileset_key in cls.loaded_tilesets.keys():
-            return cls.loaded_tilesets[tileset_key]
-
-        else:
+        if tileset_key not in cls.loaded_tilesets.keys():
             cls.loaded_tilesets[tileset_key] = cls.generate_tileset(tileset_key)
-            return cls.loaded_tilesets[tileset_key]
+
+        return cls.loaded_tilesets[tileset_key]
 
     @classmethod
     def generate_tileset(cls, tileset_key):
