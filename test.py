@@ -1,22 +1,17 @@
 import pygame
 
-from source.image.map_image.map_image_generator import MapImageGenerator
-from source.map.map_generator import MapGenerator
-
-
-from source.states.test_state import TestState
-from source.states.game_state import GameState
-
-from source.objects.dummy import Dummy
-from source.objects.map_object import MapObject
-from source.map.tileset_zone import TilesetZone
+from source.controller.move_control import MoveControl
 from source.image.tilesets.tileset_archive import TileSetArchive
+from source.map.map_generator import MapGenerator
+from source.objects.map_objects.actor import Actor
 
+
+from source.objects.map_objects.map_object import MapObject
+from source.objects.map_objects.door import Door
+
+from source.states.game_state import GameState
 from source.states.settings import Settings
 
-from source.controller.move_control import MoveControl
-from source.objects.coord import Coord
-from source.objects.pixel_coord import PixelCoord
 
 def gen():
 
@@ -47,24 +42,26 @@ def test():
     state.load_level(m)
     state.init_state()
 
-    x = 10
+    x = 16
     y = 10
 
-    player = Dummy(x, y)
+    player = Actor((x, y))
     state.view.focus_object(player)
     MoveControl(player)
 
     c = state.view.coord.get
 
-    x = MapObject((9, 11))
-    y = MapObject((10, 11))
-    z = MapObject((11, 11))
-    m.feature_map.add_feature((9, 11), x)
-    m.feature_map.add_feature((10, 11), y)
-    m.feature_map.add_feature((11, 11), z)
+    x = Door((20, 7), 'hor', 'stone_door')
+    x.open()
+    y = Door((22, 8), 'ver', 'wooden_door')
+    y.open()
+    m.feature_map.add_feature((20, 7), x)
+    m.feature_map.add_feature((22, 8), y)
+
+    i = 0
 
     while True:
-
+        #i += 1
         state.render()
         draw_focus()
 
@@ -72,10 +69,15 @@ def test():
 
         state.handle_input()
 
-        c = print_coord(state.view, c)
+        # c = print_coord(state.view, c)
 
         pygame.display.update()
         state.clock.tick(60)
+
+        # if i == 60:
+        #     y.toggle()
+        #     x.toggle()
+        #     i = 0
 
 
 def draw_focus():

@@ -1,4 +1,4 @@
-from map_object import MapObject
+from source.objects.map_objects.map_object import MapObject
 
 
 class Actor(MapObject):

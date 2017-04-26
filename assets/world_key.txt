@@ -123,10 +123,10 @@
 [
 [hor_closed: 0]
 [hor_open: 1]
-[ver_closed_bot: 2]
+[ver_closed: 2]
 [ver_closed_top: 3]
 [ver_open_top: 4]
-[ver_open_bot: 5]
+[ver_open: 5]
 ]
 
 :town floor sets:
