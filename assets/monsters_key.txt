@@ -17,12 +17,12 @@
 [
 [right_a: 0: 0]
 [right_b: 0: 1]
-[down_a: 0: 1]
+[down_a: 1: 0]
 [down_b: 1: 1]
-[up_a: 0: 2]
-[up_b: 1: 2]
-[left_a: 0: 3]
-[left_b: 1: 3]
+[up_a: 2: 0]
+[up_b: 2: 1]
+[left_a: 3: 0]
+[left_b: 3: 1]
 ]
 
 :sprite sets:

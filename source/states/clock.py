@@ -11,6 +11,12 @@ class Clock(object):
     third_point = frame_roll / 3
     quarter_point = frame_roll / 4
 
+    speed = {
+        2: half_point,
+        3: third_point,
+        4: quarter_point
+    }
+
     @classmethod
     def get_instance(cls):
         if cls.instance is None:
@@ -32,3 +38,10 @@ class Clock(object):
         self.frame += 1
         if self.frame > Clock.frame_roll:
             self.frame = 0
+
+    def get_anikey(self, speed=2, mod=0):
+        if self.frame == 0:
+            return 'a'
+        if (self.frame / (Clock.speed[speed]+mod)) % 2 == 0:
+            return 'a'
+        return 'b'

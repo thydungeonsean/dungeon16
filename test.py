@@ -2,15 +2,10 @@ import pygame
 
 from source.controller.move_control import MoveControl
 from source.image.tilesets.tileset_archive import TileSetArchive
-
-from source.map.level_generator import LevelGenerator
+from source.map.level.level_generator import LevelGenerator
 from source.map.map_generator import MapGenerator
 from source.objects.map_objects.actor import Actor
-
-
-from source.objects.map_objects.map_object import MapObject
 from source.objects.map_objects.door import Door
-
 from source.states.game_state import GameState
 from source.states.settings import Settings
 
@@ -51,7 +46,7 @@ def test():
     x = 16
     y = 10
 
-    player = Actor((x, y), 'paladin')
+    player = Actor((x, y), 'dragon')
     state.view.focus_object(player)
     MoveControl(player)
 
@@ -63,12 +58,14 @@ def test():
     l.base_map.feature_map.add_feature((20, 7), x)
     l.base_map.feature_map.add_feature((22, 8), y)
 
+    l.actors.add_actor(player)
+
     i = 0
 
     while True:
         #i += 1
         state.render()
-        draw_focus()
+        #draw_focus()
 
         state.run()
 

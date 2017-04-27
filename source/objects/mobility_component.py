@@ -11,11 +11,13 @@ class MobilityComponent(object):
 
     def __init__(self, owner):
         self.owner = owner
+        self.facing = 'down'
 
     def move(self, c):
         if isinstance(c, tuple):
             self.owner.coord.set(c)
         else:
+            self.set_facing(c)
             c = self.get_dir_coord(c)
             self.owner.coord.set(c)
 
@@ -24,3 +26,5 @@ class MobilityComponent(object):
         x, y = self.owner.coord.get
         return dx + x, dy + y
 
+    def set_facing(self, c):
+        self.facing = c

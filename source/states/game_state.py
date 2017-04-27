@@ -30,6 +30,7 @@ class GameState(State):
         pass
 
     def load_level(self, level):
+
         self.level = level
 
         self.view.set_map_image(self.level.map_image)
@@ -37,3 +38,4 @@ class GameState(State):
         self.view.init()
 
         self.feature_manager.init()
+        self.actor_manager.init()

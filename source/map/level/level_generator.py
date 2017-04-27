@@ -1,5 +1,5 @@
-from level import Level
-from map_generator import MapGenerator
+from source.map.level.level import Level
+from source.map.map_generator import MapGenerator
 from source.image.map_image.map_image_generator import MapImageGenerator
 
 

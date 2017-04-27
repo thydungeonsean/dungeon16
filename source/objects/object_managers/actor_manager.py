@@ -6,11 +6,12 @@ class ActorManager(ObjectManager):
     def __init__(self, state):
 
         ObjectManager.__init__(self, state)
-        self.actors = []
 
     def init(self):
-        self.coord_list = self.state.level.feature_map.feature_coords
-        self.object_map = self.state.level.feature_map.feature_map
+        self.objects = self.state.level.actors.actors
 
-    def get_coords(self):
-        return [x.coord.get for x in self.actors]
+    def draw(self, surface):
+
+        visible = filter(lambda x: self.view.object_in_view(x), self.objects)
+        for obj in visible:
+            obj.draw_to_map(surface, self.view)

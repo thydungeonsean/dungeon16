@@ -79,7 +79,7 @@ class View(object):
 
         surface.blit(self.view_surface, self.view_rect)
 
-    def object_in_view(self, (mx, my)):
+    def coord_in_view(self, (mx, my)):
 
         vx, vy = self.coord.get
 
@@ -87,3 +87,6 @@ class View(object):
         y = my - vy
 
         return 0 <= x < View.w and 0 <= y < View.h
+
+    def object_in_view(self, obj):
+        return self.coord_in_view(obj.coord.get)

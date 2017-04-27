@@ -1,6 +1,7 @@
 from source.objects.map_objects.map_object import MapObject
 from source.objects.mobility_component import MobilityComponent
 from source.image.tilesets.sprite_archive import SpriteArchive
+from source.states.clock import Clock
 
 
 class Actor(MapObject):
@@ -14,7 +15,7 @@ class Actor(MapObject):
         self.mobility_component.move(c)
 
     def set_images(self):
-        return SpriteArchive.get_tileset(self.sprite)
+        return SpriteArchive.get_tileset(self.sprite).tiles
 
     def get_image_key(self):
-        return 'down_a'
+        return '_'.join((self.mobility_component.facing, Clock.get_instance().get_anikey(speed=4)))

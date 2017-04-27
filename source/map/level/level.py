@@ -1,4 +1,4 @@
-from base_map import BaseMap
+from source.map.level.actor_list import ActorList
 
 
 class Level(object):
@@ -7,6 +7,7 @@ class Level(object):
 
         self.base_map = None
         self.map_image = None
+        self.actors = ActorList()
 
     def set_base_map(self, base_map):
         self.base_map = base_map

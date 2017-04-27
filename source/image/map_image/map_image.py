@@ -44,7 +44,4 @@ class MapImage(object):
         return i
 
     def get_key(self):
-        frame = Clock.get_instance().frame
-        if frame <= Clock.half_point:
-            return 'a'
-        return 'b'
+        return Clock.get_instance().get_anikey()
