@@ -8,5 +8,5 @@ class FeatureManager(ObjectManager):
         ObjectManager.__init__(self, state)
 
     def init(self):
-        self.coord_list = self.state.level.feature_map.feature_coords
-        self.object_map = self.state.level.feature_map.feature_map
+        self.coord_list = self.state.level.base_map.feature_map.feature_coords
+        self.object_map = self.state.level.base_map.feature_map.feature_map

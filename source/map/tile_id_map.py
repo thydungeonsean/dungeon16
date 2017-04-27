@@ -4,7 +4,7 @@ from map_tools import MapTools
 
 class TileIDMap(object):
 
-    def __init__(self, base_map, variance=50):
+    def __init__(self, base_map, variance=20):
 
         self.base_map = base_map
         self.zone_map = base_map.zone_map

@@ -12,7 +12,6 @@ class GameState(State):
     def __init__(self):
         State.__init__(self)
         self.level = None
-        self.map_image = None
         self.view = View(self)
 
         self.feature_manager = FeatureManager(self)
@@ -32,9 +31,8 @@ class GameState(State):
 
     def load_level(self, level):
         self.level = level
-        self.map_image = MapImageGenerator.generate_image(self.level, scale=Settings.SCALE)
 
-        self.view.set_map_image(self.map_image)
+        self.view.set_map_image(self.level.map_image)
 
         self.view.init()
 

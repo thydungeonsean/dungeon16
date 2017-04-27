@@ -1,4 +1,4 @@
-from map import Map
+from base_map import BaseMap
 from random import *
 import os
 
@@ -20,6 +20,6 @@ class MapGenerator(object):
         h = len(map_lines)
         w = len(map_lines[0])
         map = [[map_lines[y][x] for y in range(h)] for x in range(w)]
-        new = Map(w, h)
+        new = BaseMap(w, h)
         new.set_map(map)
         return new

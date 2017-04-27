@@ -2,6 +2,8 @@ import pygame
 
 from source.controller.move_control import MoveControl
 from source.image.tilesets.tileset_archive import TileSetArchive
+
+from source.map.level_generator import LevelGenerator
 from source.map.map_generator import MapGenerator
 from source.objects.map_objects.actor import Actor
 
@@ -15,7 +17,7 @@ from source.states.settings import Settings
 
 def gen():
 
-    TileSetArchive.init_set_keys()
+    l = LevelGenerator.load_level('map')
 
     m = MapGenerator.load_map('map')
     # z = TilesetZone((10, 0), 7, 6, 'water', 'blue')
@@ -24,7 +26,7 @@ def gen():
     # m.zone_map.add_zone(z)
     # m.zone_map.add_zone(z2)
 
-    return m
+    return l
 
 
 def render(m_image):
@@ -33,13 +35,17 @@ def render(m_image):
 
 def test():
 
+    # basic init functions
     pygame.init()
     pygame.display.set_mode((800, 600))
+    TileSetArchive.init_set_keys()
 
-    m = gen()
+    # generate the level
+    l = gen()
 
+    # create the gamestate
     state = GameState()
-    state.load_level(m)
+    state.load_level(l)
     state.init_state()
 
     x = 16
@@ -52,11 +58,10 @@ def test():
     c = state.view.coord.get
 
     x = Door((20, 7), 'hor', 'stone_door')
-    x.open()
     y = Door((22, 8), 'ver', 'wooden_door')
     y.open()
-    m.feature_map.add_feature((20, 7), x)
-    m.feature_map.add_feature((22, 8), y)
+    l.base_map.feature_map.add_feature((20, 7), x)
+    l.base_map.feature_map.add_feature((22, 8), y)
 
     i = 0
 

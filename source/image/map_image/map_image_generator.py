@@ -6,23 +6,13 @@ from source.states.settings import Settings
 class MapImageGenerator(object):
 
     @classmethod
-    def generate_image(cls, map, scale=2):
-
-        if map.zone_map is None:  # these are temp!!!!
-            map.generate_zone_map()
-
-        if map.tile_id_map is None:  # TODO find a better init
-            map.generate_tile_id_map()
-
-        if map.deco_map is None:
-            map.generate_deco_map()
+    def generate_image(cls, map):
 
         map_image = MapImage(map.w, map.h)
 
         for ani_key in ('a', 'b'):
             cls.render_map(map, map_image, ani_key)
 
-        #map_image.scale_up(scale=scale)
         return map_image
 
     @classmethod

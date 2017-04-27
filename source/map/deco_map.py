@@ -116,7 +116,7 @@ class DecoMap(object):
 
         valid_for_gore = list(filter(lambda x: self.valid_for_deco('gore', x), open_floor))
 
-        gore = sample(valid_for_gore, int(len(valid_for_gore) * .1))
+        gore = sample(valid_for_gore, int(len(valid_for_gore) * .05))
 
         for point in gore:
             gore_id = DecoTileSet.get_any_gore()
@@ -129,7 +129,7 @@ class DecoMap(object):
 
         valid_for_bones = list(filter(lambda x: self.valid_for_deco('bones', x), open_floor))
 
-        bones = sample(valid_for_bones, int(len(valid_for_bones) * .1))
+        bones = sample(valid_for_bones, int(len(valid_for_bones) * .05))
 
         for point in bones:
             bones_id = DecoTileSet.get_any_bones()
