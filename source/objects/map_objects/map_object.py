@@ -17,6 +17,11 @@ class MapObject(object):
         self.block_move = True
         self.block_view = False
 
+        self.level = None
+
+    def set_level(self, level):
+        self.level = level
+
     def set_images(self):
         return {0: TileSetArchive.get_tileset('dungeon_wall').get_tile_image('pool')}
 

@@ -9,6 +9,7 @@ from source.objects.map_objects.door import Door
 from source.states.game_state import GameState
 from source.states.settings import Settings
 
+from random import randint
 
 def gen():
 
@@ -46,7 +47,7 @@ def test():
     x = 16
     y = 10
 
-    player = Actor((x, y), 'dragon')
+    player = Actor((x, y), 'paladin')
     state.view.focus_object(player)
     MoveControl(player)
 
@@ -59,6 +60,8 @@ def test():
     l.base_map.feature_map.add_feature((22, 8), y)
 
     l.actors.add_actor(player)
+
+    # add_actors(l, (x, y))
 
     i = 0
 
@@ -105,6 +108,17 @@ def print_coord(v, c):
         print v.coord.get
         return v.coord.get
     return c
+
+def add_actors(l, p):
+
+    for c in l.base_map.all_coords:
+        if c == p:
+            pass
+        else:
+            if randint(0, 1) < 1:
+                l.actors.add_actor(Actor(c, 'goblin'))
+
+
 
 
 if __name__ == '__main__':

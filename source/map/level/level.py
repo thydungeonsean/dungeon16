@@ -7,7 +7,7 @@ class Level(object):
 
         self.base_map = None
         self.map_image = None
-        self.actors = ActorList()
+        self.actors = ActorList(self)
 
     def set_base_map(self, base_map):
         self.base_map = base_map
