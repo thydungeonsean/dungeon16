@@ -9,13 +9,14 @@ from source.objects.map_objects.door import Door
 from source.states.game_state import GameState
 from source.states.settings import Settings
 
+from source.libtcod import libtcodpy as libtcod
+
 from random import randint
 
 def gen():
 
     l = LevelGenerator.load_level('map')
 
-    m = MapGenerator.load_map('map')
     # z = TilesetZone((10, 0), 7, 6, 'water', 'blue')
     # z2 = TilesetZone((0, 0), 12, 9, 'floor', 'tile_floor_d')
     # m.generate_zone_map()
@@ -65,6 +66,9 @@ def test():
 
     i = 0
 
+    red = libtcod.Color(255, 0, 0)
+    print red
+
     while True:
         #i += 1
         state.render()
@@ -109,16 +113,15 @@ def print_coord(v, c):
         return v.coord.get
     return c
 
+
 def add_actors(l, p):
 
     for c in l.base_map.all_coords:
         if c == p:
             pass
         else:
-            if randint(0, 1) < 1:
+            if randint(0, 6) < 1:
                 l.actors.add_actor(Actor(c, 'goblin'))
-
-
 
 
 if __name__ == '__main__':

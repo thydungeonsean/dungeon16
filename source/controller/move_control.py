@@ -18,13 +18,13 @@ class MoveControl(ControlComponent):
         }
 
     def up(self):
-        self.owner.move('up')
+        self.owner.try_move('up')
 
     def down(self):
-        self.owner.move('down')
+        self.owner.try_move('down')
 
     def right(self):
-        self.owner.move('right')
+        self.owner.try_move('right')
 
     def left(self):
-        self.owner.move('left')
+        self.owner.try_move('left')

@@ -9,9 +9,10 @@ class Actor(MapObject):
     def __init__(self, (x, y), sprite):
         self.sprite = sprite
         MapObject.__init__(self, (x, y))
+
         self.mobility_component = MobilityComponent(self)
 
-    def move(self, c):
+    def try_move(self, c):
         self.mobility_component.try_move(c)
 
     def set_level(self, level):
@@ -22,7 +23,11 @@ class Actor(MapObject):
         return SpriteArchive.get_tileset(self.sprite).tiles
 
     def get_image_key(self):
-        return '_'.join((self.mobility_component.facing, Clock.get_instance().get_anikey(speed=4)))
+        return '_'.join((self.mobility_component.facing, Clock.get_instance().get_anikey(speed=3)))
 
-    def bump(self, point):
-        pass
+    def move(self, coord):
+        self.coord.set(coord)
+
+    def bump(self, map_object):
+
+        map_object.on_bump()

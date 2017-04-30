@@ -22,10 +22,12 @@ class MobilityComponent(object):
             move = self.get_dir_coord(c)
             self.set_facing(c)
 
-        if self.move_is_clear(move):
-            self.owner.coord.set(move)
+        clear, blocker = self.move_is_clear(move)
+        if clear:
+            self.move(move)
         else:
-            self.owner.bump(move)
+            if blocker is not None:
+                self.owner.bump(blocker)
 
     def get_dir_coord(self, c):
         dx, dy = MobilityComponent.dir_mods[c]
@@ -35,16 +37,30 @@ class MobilityComponent(object):
     def set_facing(self, c):
         self.facing = c
 
-    def move_is_clear(self, (x, y)):
+    def move_is_clear(self, move):
+        # returns boolean if move is successful or not
+        # and if not, it gives the blocking entity as the second value
+        # otherwise returs None as second value
 
-        floor = self.level.base_map.get_tile_code((x, y)) == '.'
+        floor = self.level.base_map.get_tile_code(move) in ('.', '~')
+        if not floor:
+            return floor, None
 
-        feature = self.level.base_map.feature_map.feature_map.get((x, y))
+        block = move not in self.level.base_map.block_map.block_coords
+        if not block:
+            return block, None
+
+        feature = self.level.base_map.feature_map.feature_map.get(move)
         if feature is not None:
-            feature = not feature.block_move
-        else:
-            feature = True
+            if feature.block_move:
+                return False, feature
 
+        actor = self.level.actors.actor_map.get(move)
+        if actor is not None:
+            return False, actor
 
+        return True, None
 
-        return floor and feature
+    def move(self, point):
+        self.level.actors.move_actor(self.owner, point)
+        self.owner.move(point)

@@ -5,11 +5,11 @@ class Clock(object):
 
     instance = None
 
-    frame_roll = 60
+    frame_roll = 120
 
-    half_point = frame_roll / 2
-    third_point = frame_roll / 3
-    quarter_point = frame_roll / 4
+    half_point = frame_roll / 4
+    third_point = frame_roll / 6
+    quarter_point = frame_roll / 8
 
     speed = {
         2: half_point,

@@ -4,6 +4,9 @@
 # python byte files
 *.pyc
 
+# don't track dll's
+*.dll
+
 # ignore sprites to protect Oryx licence
 assets/world.png
 assets/monsters.png

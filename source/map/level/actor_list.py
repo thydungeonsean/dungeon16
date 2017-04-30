@@ -18,3 +18,13 @@ class ActorList(object):
         self.actor_coords.add(actor.coord.get)
         self.actor_map[actor.coord.get] = actor
 
+    def move_actor(self, actor, point):
+
+        old = actor.coord.get
+        self.actor_coords.remove(old)
+        del self.actor_map[old]
+
+        self.actor_coords.add(point)
+        self.actor_map[point] = actor
+
+
