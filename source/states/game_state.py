@@ -5,6 +5,7 @@ from source.states.settings import Settings
 
 from source.objects.object_managers.feature_manager import FeatureManager
 from source.objects.object_managers.actor_manager import ActorManager
+from source.objects.object_managers.shroud_manager import ShroudManager
 
 
 class GameState(State):
@@ -16,6 +17,7 @@ class GameState(State):
 
         self.feature_manager = FeatureManager(self)
         self.actor_manager = ActorManager(self)
+        self.shroud_manager = ShroudManager(self)
 
     def init_state(self):
         self.controller.bind_to_state(self)
@@ -39,3 +41,4 @@ class GameState(State):
 
         self.feature_manager.init()
         self.actor_manager.init()
+        self.shroud_manager.init()

@@ -23,6 +23,8 @@ class LevelGenerator(object):
 
         level.set_map_image(MapImageGenerator.generate_image(map))
 
+        level.init_fov_map()
+
         return level
 
     @classmethod

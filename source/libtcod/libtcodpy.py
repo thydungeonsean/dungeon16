@@ -471,7 +471,7 @@ class ConsoleBuffer:
     def blit(self, dest, fill_fore=True, fill_back=True):
         # use libtcod's "fill" functions to write the buffer to a console.
         if (console_get_width(dest) != self.width or
-            console_get_height(dest) != self.height):
+                console_get_height(dest) != self.height):
             raise ValueError('ConsoleBuffer.blit: Destination console has an incorrect size.')
 
         s = struct.Struct('%di' % len(self.back_r))
@@ -509,8 +509,10 @@ BKGND_OVERLAY = 11
 BKGND_ALPH = 12
 BKGND_DEFAULT=13
 
+
 def BKGND_ALPHA(a):
     return BKGND_ALPH | (int(a * 255) << 8)
+
 
 def BKGND_ADDALPHA(a):
     return BKGND_ADDA | (int(a * 255) << 8)
@@ -875,11 +877,11 @@ def console_rect(con, x, y, w, h, clr, flag=BKGND_DEFAULT):
 
 
 def console_hline(con, x, y, l, flag=BKGND_DEFAULT):
-    _lib.TCOD_console_hline( con, x, y, l, flag)
+    _lib.TCOD_console_hline(con, x, y, l, flag)
 
 
 def console_vline(con, x, y, l, flag=BKGND_DEFAULT):
-    _lib.TCOD_console_vline( con, x, y, l, flag)
+    _lib.TCOD_console_vline(con, x, y, l, flag)
 
 
 def console_print_frame(con, x, y, w, h, clear=True, flag=BKGND_DEFAULT, fmt=0):
@@ -925,13 +927,13 @@ def console_get_fading_color():
 
 # handling keyboard input
 def console_wait_for_keypress(flush):
-    k=Key()
+    k = Key()
     _lib.TCOD_console_wait_for_keypress_wrapper(byref(k), c_bool(flush))
     return k
 
 
 def console_check_for_keypress(flags=KEY_RELEASED):
-    k=Key()
+    k = Key()
     _lib.TCOD_console_check_for_keypress_wrapper(byref(k), c_int(flags))
     return k
 
@@ -978,7 +980,7 @@ def console_delete(con):
 
 
 # fast color filling
-def console_fill_foreground(con, r, g, b) :
+def console_fill_foreground(con, r, g, b):
     if len(r) != len(g) or len(r) != len(b):
         raise TypeError('R, G and B must all have the same size.')
 
@@ -1132,12 +1134,12 @@ def sys_register_SDL_renderer(callback):
 # events
 EVENT_KEY_PRESS = 1
 EVENT_KEY_RELEASE = 2
-EVENT_KEY = EVENT_KEY_PRESS|EVENT_KEY_RELEASE
+EVENT_KEY = EVENT_KEY_PRESS | EVENT_KEY_RELEASE
 EVENT_MOUSE_MOVE = 4
 EVENT_MOUSE_PRESS = 8
 EVENT_MOUSE_RELEASE = 16
 EVENT_MOUSE = EVENT_MOUSE_MOVE|EVENT_MOUSE_PRESS|EVENT_MOUSE_RELEASE
-EVENT_ANY = EVENT_KEY|EVENT_MOUSE
+EVENT_ANY = EVENT_KEY | EVENT_MOUSE
 
 
 def sys_check_for_event(mask, k, m):
@@ -1165,13 +1167,13 @@ def line_step():
     ret = _lib.TCOD_line_step(byref(x), byref(y))
     if not ret:
         return x.value, y.value
-    return None,None
+    return None, None
 
 
-def line(xo,yo,xd,yd,py_callback) :
-    LINE_CBK_FUNC=CFUNCTYPE(c_bool,c_int,c_int)
-    c_callback=LINE_CBK_FUNC(py_callback)
-    return _lib.TCOD_line(xo,yo,xd,yd,c_callback)
+def line(xo, yo, xd, yd, py_callback) :
+    LINE_CBK_FUNC = CFUNCTYPE(c_bool,c_int,c_int)
+    c_callback = LINE_CBK_FUNC(py_callback)
+    return _lib.TCOD_line(xo, yo, xd, yd, c_callback)
 
 
 def line_iter(xo, yo, xd, yd):
@@ -1197,40 +1199,40 @@ def image_new(width, height):
     return _lib.TCOD_image_new(width, height)
 
 
-def image_clear(image,col) :
-    _lib.TCOD_image_clear(image,col)
+def image_clear(image, col):
+    _lib.TCOD_image_clear(image, col)
 
 
-def image_invert(image) :
+def image_invert(image):
     _lib.TCOD_image_invert(image)
 
 
-def image_hflip(image) :
+def image_hflip(image):
     _lib.TCOD_image_hflip(image)
 
 
-def image_rotate90(image, num=1) :
-    _lib.TCOD_image_rotate90(image,num)
+def image_rotate90(image, num=1):
+    _lib.TCOD_image_rotate90(image, num)
 
 
-def image_vflip(image) :
+def image_vflip(image):
     _lib.TCOD_image_vflip(image)
 
 
-def image_scale(image, neww, newh) :
-    _lib.TCOD_image_scale(image,c_int(neww),c_int(newh))
+def image_scale(image, neww, newh):
+    _lib.TCOD_image_scale(image, c_int(neww), c_int(newh))
 
 
-def image_set_key_color(image,col) :
-    _lib.TCOD_image_set_key_color(image,col)
+def image_set_key_color(image, col):
+    _lib.TCOD_image_set_key_color(image, col)
 
 
-def image_get_alpha(image,x,y) :
-    return _lib.TCOD_image_get_alpha(image,c_int(x),c_int(y))
+def image_get_alpha(image, x, y):
+    return _lib.TCOD_image_get_alpha(image, c_int(x), c_int(y))
 
 
-def image_is_pixel_transparent(image,x,y) :
-    return _lib.TCOD_image_is_pixel_transparent(image,c_int(x),c_int(y))
+def image_is_pixel_transparent(image, x, y):
+    return _lib.TCOD_image_is_pixel_transparent(image, c_int(x), c_int(y))
 
 
 def image_load(filename):
@@ -1276,7 +1278,7 @@ def image_blit_rect(image, console, x, y, w, h, bkgnd_flag):
 
 
 def image_blit_2x(image, console, dx, dy, sx=0, sy=0, w=-1, h=-1):
-    _lib.TCOD_image_blit_2x(image, console, dx,dy,sx,sy,w,h)
+    _lib.TCOD_image_blit_2x(image, console, dx, dy, sx, sy, w, h)
 
 
 def image_save(image, filename):
@@ -1341,11 +1343,11 @@ _lib.TCOD_parser_get_color_property.restype = Color
 
 
 class Dice(Structure):
-    _fields_=[('nb_dices', c_int),
-              ('nb_faces', c_int),
-              ('multiplier', c_float),
-              ('addsub', c_float),
-              ]
+    _fields_ = [('nb_dices', c_int),
+                ('nb_faces', c_int),
+                ('multiplier', c_float),
+                ('addsub', c_float),
+                ]
 
     def __repr__(self):
         return "Dice(%d, %d, %s, %s)" % (self.nb_dices, self.nb_faces,
@@ -1353,15 +1355,15 @@ class Dice(Structure):
 
 
 class _CValue(Union):
-    _fields_=[('c',c_uint8),
-              ('i',c_int),
-              ('f',c_float),
-              ('s',c_char_p),
-              # JBR03192012 See http://bugs.python.org/issue14354 for why these are not defined as their actual types
-              ('col',c_uint8 * 3),
-              ('dice',c_int * 4),
-              ('custom',c_void_p),
-              ]
+    _fields_ = [('c', c_uint8),
+                ('i', c_int),
+                ('f', c_float),
+                ('s', c_char_p),
+                # JBR03192012 See http://bugs.python.org/issue14354 for why these are not defined as their actual types
+                ('col', c_uint8 * 3),
+                ('dice', c_int * 4),
+                ('custom', c_void_p),
+                ]
 
 _CFUNC_NEW_STRUCT = CFUNCTYPE(c_uint, c_void_p, c_char_p)
 _CFUNC_NEW_FLAG = CFUNCTYPE(c_uint, c_char_p)
@@ -1370,10 +1372,10 @@ _CFUNC_NEW_PROPERTY = CFUNCTYPE(c_uint, c_char_p, c_int, _CValue)
 
 class _CParserListener(Structure):
     _fields_=[('new_struct', _CFUNC_NEW_STRUCT),
-              ('new_flag',_CFUNC_NEW_FLAG),
-              ('new_property',_CFUNC_NEW_PROPERTY),
-              ('end_struct',_CFUNC_NEW_STRUCT),
-              ('error',_CFUNC_NEW_FLAG),
+              ('new_flag', _CFUNC_NEW_FLAG),
+              ('new_property', _CFUNC_NEW_PROPERTY),
+              ('end_struct', _CFUNC_NEW_STRUCT),
+              ('error', _CFUNC_NEW_FLAG),
               ]
 
 # property types
@@ -2041,10 +2043,10 @@ def bsp_delete(node):
 # heightmap module
 ############################
 class _CHeightMap(Structure):
-    _fields_=[('w', c_int),
-              ('h', c_int),
-              ('values', POINTER(c_float)),
-              ]
+    _fields_ = [('w', c_int),
+                ('h', c_int),
+                ('values', POINTER(c_float)),
+                ]
 
 _lib.TCOD_heightmap_new.restype = POINTER(_CHeightMap)
 _lib.TCOD_heightmap_get_value.restype = c_float
@@ -2181,7 +2183,7 @@ def heightmap_get_value(hm, x, y):
 
 def heightmap_get_interpolated_value(hm, x, y):
     return _lib.TCOD_heightmap_get_interpolated_value(hm.p, c_float(x),
-                                                     c_float(y))
+                                                      c_float(y))
 
 
 def heightmap_get_slope(hm, x, y):
@@ -2222,15 +2224,15 @@ _lib.TCOD_namegen_generate.restype = c_char_p
 _lib.TCOD_namegen_generate_custom.restype = c_char_p
 
 
-def namegen_parse(filename,random=0) :
-    _lib.TCOD_namegen_parse(filename,random)
+def namegen_parse(filename, random=0):
+    _lib.TCOD_namegen_parse(filename, random)
 
 
-def namegen_generate(name) :
+def namegen_generate(name):
     return _lib.TCOD_namegen_generate(name, 0)
 
 
-def namegen_generate_custom(name, rule) :
+def namegen_generate_custom(name, rule):
     return _lib.TCOD_namegen_generate(name, rule, 0)
 
 

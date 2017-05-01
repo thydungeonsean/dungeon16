@@ -15,7 +15,7 @@ class BaseMap(object):
 
         self.zone_map = None
         self.block_map = BlockMap(self)
-        self.feature_map = FeatureMap(self)
+        # self.feature_map = FeatureMap(self)
 
         self.tile_id_map = None
         self.deco_map = None

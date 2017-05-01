@@ -1,6 +1,6 @@
-from source.objects.map_objects.map_object import MapObject
-from source.objects.mobility_component import MobilityComponent
 from source.image.tilesets.sprite_archive import SpriteArchive
+from source.objects.map_objects.map_object import MapObject
+from source.objects.map_objects.mobility_component import MobilityComponent
 from source.states.clock import Clock
 
 
@@ -10,6 +10,7 @@ class Actor(MapObject):
         self.sprite = sprite
         MapObject.__init__(self, (x, y))
 
+        self.actor_list = None
         self.mobility_component = MobilityComponent(self)
 
     def try_move(self, c):
@@ -18,6 +19,7 @@ class Actor(MapObject):
     def set_level(self, level):
         self.level = level
         self.mobility_component.level = level
+        self.actor_list = level.actors
 
     def set_images(self):
         return SpriteArchive.get_tileset(self.sprite).tiles
@@ -31,3 +33,8 @@ class Actor(MapObject):
     def bump(self, map_object):
 
         map_object.on_bump()
+        if isinstance(map_object, Actor):
+            map_object.die()
+
+    def die(self):
+        self.actor_list.remove_actor(self)

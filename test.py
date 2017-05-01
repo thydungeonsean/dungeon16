@@ -9,9 +9,10 @@ from source.objects.map_objects.door import Door
 from source.states.game_state import GameState
 from source.states.settings import Settings
 
-from source.libtcod import libtcodpy as libtcod
 
-from random import randint
+from source.map.map_tools import MapTools
+from random import randint, choice
+
 
 def gen():
 
@@ -45,10 +46,10 @@ def test():
     state.load_level(l)
     state.init_state()
 
-    x = 16
-    y = 10
+    px = 16
+    py = 10
 
-    player = Actor((x, y), 'paladin')
+    player = Actor((px, py), 'paladin')
     state.view.focus_object(player)
     MoveControl(player)
 
@@ -56,23 +57,22 @@ def test():
 
     x = Door((20, 7), 'hor', 'stone_door')
     y = Door((22, 8), 'ver', 'wooden_door')
-    y.open()
-    l.base_map.feature_map.add_feature((20, 7), x)
-    l.base_map.feature_map.add_feature((22, 8), y)
+    #y.open()
+    l.feature_map.add_feature((20, 7), x)
+    l.feature_map.add_feature((22, 8), y)
 
     l.actors.add_actor(player)
 
-    # add_actors(l, (x, y))
+    l.fov_map.set_fov_map()
+    l.fov_map.recompute_fov(player, state.view)
+
+    add_actors(l, (px, py))
 
     i = 0
-
-    red = libtcod.Color(255, 0, 0)
-    print red
 
     while True:
         #i += 1
         state.render()
-        #draw_focus()
 
         state.run()
 
@@ -82,6 +82,7 @@ def test():
 
         pygame.display.update()
         state.clock.tick(60)
+        print state.clock.get_fps()
 
         # if i == 60:
         #     y.toggle()
@@ -116,12 +117,12 @@ def print_coord(v, c):
 
 def add_actors(l, p):
 
-    for c in l.base_map.all_coords:
+    for c in MapTools.all_floors(l.base_map):
         if c == p:
             pass
         else:
-            if randint(0, 6) < 1:
-                l.actors.add_actor(Actor(c, 'goblin'))
+            if randint(0, 6) == 0:
+                l.actors.add_actor(Actor(c, choice(('goblin', 'skeleton', 'cube'))))
 
 
 if __name__ == '__main__':

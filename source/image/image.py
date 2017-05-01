@@ -6,7 +6,7 @@ from source.states.settings import Settings
 
 class Image(object):
 
-    def __init__(self, w, h, colorkey=False, auto_scale=True):
+    def __init__(self, w, h, colorkey=False, alpha=False, auto_scale=True):
 
         self.image = pygame.Surface((w, h)).convert()
         self.rect = self.image.get_rect()
@@ -14,7 +14,9 @@ class Image(object):
         self.coord.set_owner(self)
         self.coord.toggle_auto_position_owner()
         if colorkey:
-            self.image.set_colorkey(colorkey)
+            self.set_colorkey(colorkey)
+        if alpha:
+            self.set_alpha(alpha)
         if auto_scale:
             self.auto_scale()
 
@@ -25,6 +27,12 @@ class Image(object):
     @property
     def h(self):
         return self.image.get_height()
+
+    def set_colorkey(self, colorkey):
+        self.image.set_colorkey(colorkey)
+
+    def set_alpha(self, alpha):
+        self.image.set_alpha(alpha)
 
     def position(self, (x, y)):
         self.coord.set((x, y))

@@ -55,11 +55,13 @@ class Door(MapObject):
         self.state = 1
         self.block_view = False
         self.block_move = False
+        self.level.fov_map.update_point(self.coord.get)
 
     def close(self):
         self.state = 0
         self.block_move = True
         self.block_view = True
+        self.level.fov_map.update_point(self.coord.get)
 
     def toggle(self):
         if self.state == 0:

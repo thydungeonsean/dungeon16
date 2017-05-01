@@ -18,6 +18,8 @@ class View(object):
         self.state = state
         self.feature_manager = None
         self.actor_manager = None
+        self.fov_map = None
+        self.shroud_manager = None
 
         self.view_surface = self.init_view_surface()
         self.view_rect = self.view_surface.get_rect()
@@ -40,6 +42,8 @@ class View(object):
     def init(self):
         self.feature_manager = self.state.feature_manager
         self.actor_manager = self.state.actor_manager
+        self.fov_map = self.state.level.fov_map
+        self.shroud_manager = self.state.shroud_manager
 
     def init_coord(self):  # the nearest map coord of the topleft corner of view
         coord = Coord()
@@ -49,7 +53,7 @@ class View(object):
         return pygame.Surface((View.w*Settings.SC_TILE_W, View.h*Settings.SC_TILE_H)).convert()
 
     def reset_position(self):
-        pass
+        self.fov_map.needs_recompute()
 
     def focus_object(self, map_object):
 
@@ -77,6 +81,11 @@ class View(object):
         self.actor_manager.draw(self.view_surface)
         # effect_manager.draw
 
+        # fov draw
+        if self.fov_map.recompute:
+            self.fov_map.recompute_fov(self.focused_object, self)
+        self.shroud_manager.draw(self.view_surface)
+
         surface.blit(self.view_surface, self.view_rect)
 
     def coord_in_view(self, (mx, my)):
@@ -86,7 +95,15 @@ class View(object):
         x = mx - vx
         y = my - vy
 
-        return 0 <= x < View.w and 0 <= y < View.h
+        return 0 <= x < View.w and 0 <= y < View.h and self.fov_map.point_is_visible((mx, my))  # TODO temp
+
+    @property
+    def width(self):
+        return View.w
+
+    @property
+    def height(self):
+        return View.h
 
     def object_in_view(self, obj):
         return self.coord_in_view(obj.coord.get)

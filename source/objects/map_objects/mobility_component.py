@@ -50,7 +50,7 @@ class MobilityComponent(object):
         if not block:
             return block, None
 
-        feature = self.level.base_map.feature_map.feature_map.get(move)
+        feature = self.level.feature_map.feature_map.get(move)
         if feature is not None:
             if feature.block_move:
                 return False, feature

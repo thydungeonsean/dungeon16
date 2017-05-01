@@ -27,4 +27,10 @@ class ActorList(object):
         self.actor_coords.add(point)
         self.actor_map[point] = actor
 
+    def remove_actor(self, actor):
+
+        point = actor.coord.get
+        self.actor_coords.remove(point)
+        del self.actor_map[point]
+        self.actors.remove(actor)
 

@@ -1,0 +1,42 @@
+:sheet_dim:
+[
+[3, 3]
+]
+
+:tile_dim:
+[
+[16, 16]
+]
+
+:colorkey:
+[
+[255, 255, 255]
+]
+
+
+:shroud sets:
+[
+[shroud: 0: 0]
+]
+
+:shroud set tiles:
+[
+[tl: 0: 0]
+[t: 1: 0]
+[tr: 2: 0]
+[l: 0: 1]
+[full: 1: 1]
+[r: 2: 1]
+[br: 0: 2]
+[b: 1: 2]
+[bl: 2: 2]
+[tl_trans: 0: 0]
+[t_trans: 1: 0]
+[tr_trans: 2: 0]
+[l_trans: 0: 1]
+[full_trans: 1: 1]
+[r_trans: 2: 1]
+[br_trans: 0: 2]
+[b_trans: 1: 2]
+[bl_trans: 2: 2]
+]

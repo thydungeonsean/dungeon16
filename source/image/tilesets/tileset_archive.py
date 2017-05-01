@@ -9,6 +9,7 @@ from source.image.tilesets.deco_tileset import DecoTileSet
 from source.image.tilesets.shadow_tileset import ShadowTileSet
 from source.image.tilesets.block_tileset import BlockTileSet
 from source.image.tilesets.feature_tileset import FeatureTileSet
+from source.image.tilesets.shroud_tileset import ShroudTileSet
 
 
 class TileSetArchive(object):
@@ -84,3 +85,6 @@ class TileSetArchive(object):
 
         elif tileset_key == 'feature':
             return FeatureTileSet()
+
+        elif tileset_key == 'shroud':
+            return ShroudTileSet()
