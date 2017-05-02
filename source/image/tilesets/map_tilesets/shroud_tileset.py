@@ -1,4 +1,4 @@
-from tileset import TileSet
+from source.image.tilesets.tileset import TileSet
 from source.image.image import Image
 
 
@@ -11,7 +11,7 @@ class ShroudTileSet(TileSet):
 
         alpha = False
         if key.endswith('_trans'):
-            alpha = 200
+            alpha = 165
 
         colorkey = self.colorkey
         if key.startswith('full'):

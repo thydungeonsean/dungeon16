@@ -1,0 +1,97 @@
+:sheet_dim:
+[
+[16, 6]
+]
+
+:tile_dim:
+[
+[16, 16]
+]
+
+:colorkey:
+[
+[54, 54, 54]
+]
+
+:item sets:
+[
+[items: 0: 0]
+]
+
+:item set tiles:
+[
+
+[brown_book: 0: 0]
+[black_book: 1: 0]
+[green_book: 2: 0]
+
+[key_a: 3: 0]
+[key_b: 4: 0]
+[key_c: 5: 0]
+
+[scroll: 6: 0]
+
+[empty_heart: 7: 0]
+[full_heart: 8: 0]
+[empty_orb: 9: 0]
+[full_orb: 10: 0]
+
+[skull: 11: 0]
+[gold_skull: 12: 0]
+
+[food: 13: 0]
+
+[torch_ani_a: 14: 0]
+[torch_ani_b: 15: 0]
+
+[potion_blue: 0: 1]
+[potion_red: 1: 1]
+[potion_green: 2: 1]
+[potion_yellow: 3: 1]
+[potion_black: 4: 1]
+
+[crystal_purple: 5: 1]
+[crystal_red: 6: 1]
+[crystal_blue: 7: 1]
+[crystal_green: 8: 1]
+[crystal_yellow: 9: 1]
+
+[coins_copper: 10: 1]
+[coins_silver: 11: 1]
+[coins_gold: 12: 1]
+[coin_copper: 13: 1]
+[coin_silver: 14: 1]
+[coin_gold: 15: 1]
+
+[sack: 15: 2]
+
+]
+
+:armor sets:
+[
+[leather: 2: 0]
+[iron: 2: 5]
+[blue: 2: 10]
+]
+
+:armor set tiles:
+[
+[helmet: 0]
+[breastplate: 1]
+[gauntlet: 2]
+[greaves: 3]
+[boots: 4]
+]
+
+:robe sets:
+[
+[brown: 3: 0]
+[purple: 3: 2]
+[blue: 3: 4]
+]
+
+:robe set tiles:
+[
+[hat: 0]
+[cloak: 1]
+]

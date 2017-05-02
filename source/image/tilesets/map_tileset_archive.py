@@ -1,20 +1,22 @@
+from source.image.tilesets.map_tilesets.block_tileset import BlockTileSet
+from source.image.tilesets.map_tilesets.deco_tileset import DecoTileSet
+from source.image.tilesets.map_tilesets.door_tileset import DoorTileSet
+from source.image.tilesets.map_tilesets.floor_tileset import FloorTileSet
+from source.image.tilesets.map_tilesets.pit_tileset import PitTileSet
+from source.image.tilesets.map_tilesets.shadow_tileset import ShadowTileSet
+from source.image.tilesets.map_tilesets.shroud_tileset import ShroudTileSet
+from source.image.tilesets.map_tilesets.wall_tileset import WallTileSet
+from source.image.tilesets.map_tilesets.water_tileset import WaterTileSet
+from source.image.tilesets.map_tilesets.feature_tileset import FeatureTileSet
+
 from source.image.tilesheet_key_parser import *
 
-from source.image.tilesets.wall_tileset import WallTileSet
-from source.image.tilesets.floor_tileset import FloorTileSet
-from source.image.tilesets.door_tileset import DoorTileSet
-from source.image.tilesets.water_tileset import WaterTileSet
-from source.image.tilesets.pit_tileset import PitTileSet
-from source.image.tilesets.deco_tileset import DecoTileSet
-from source.image.tilesets.shadow_tileset import ShadowTileSet
-from source.image.tilesets.block_tileset import BlockTileSet
-from source.image.tilesets.feature_tileset import FeatureTileSet
-from source.image.tilesets.shroud_tileset import ShroudTileSet
 
-
-class TileSetArchive(object):
+class MapTileSetArchive(object):
 
     loaded_tilesets = {}
+
+    init = False
 
     wall_keys = None
     floor_keys = None
@@ -44,6 +46,10 @@ class TileSetArchive(object):
 
     @classmethod
     def get_tileset(cls, tileset_key):
+
+        if not cls.init:
+            cls.init_set_keys()
+            cls.init = True
 
         if tileset_key not in cls.loaded_tilesets.keys():
             cls.loaded_tilesets[tileset_key] = cls.generate_tileset(tileset_key)

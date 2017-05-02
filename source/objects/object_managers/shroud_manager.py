@@ -1,4 +1,4 @@
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 from source.states.settings import Settings
 
 
@@ -17,8 +17,8 @@ class ShroudManager(object):
 
         vx, vy = self.view.coord.get
 
-        shroud = TileSetArchive.get_tileset('shroud').get_tile_image('full')
-        fog = TileSetArchive.get_tileset('shroud').get_tile_image('full_trans')
+        shroud = MapTileSetArchive.get_tileset('shroud').get_tile_image('full')
+        fog = MapTileSetArchive.get_tileset('shroud').get_tile_image('full_trans')
 
         for x, y in self.fov.shroud:
             tx = (x - vx) * Settings.SC_TILE_W

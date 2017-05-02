@@ -22,7 +22,7 @@ class Actor(MapObject):
         self.actor_list = level.actors
 
     def set_images(self):
-        return SpriteArchive.get_tileset(self.sprite).tiles
+        return SpriteArchive.get_actor_tileset(self.sprite).tiles
 
     def get_image_key(self):
         return '_'.join((self.mobility_component.facing, Clock.get_instance().get_anikey(speed=3)))

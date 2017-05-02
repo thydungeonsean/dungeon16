@@ -1,0 +1,106 @@
+:sheet_dim:
+[
+[16, 8]
+]
+
+:tile_dim:
+[
+[16, 16]
+]
+
+:colorkey:
+[
+[54, 54, 54]
+]
+
+:bolt sets:
+[
+[fire_bolt: 0: 0]
+[ice_bolt: 1: 0]
+[poison_bolt: 2: 0]
+[magic_bolt: 3: 0]
+]
+
+:bolt set tiles:
+[
+[e: 0]
+[se: 1]
+[s: 2]
+[sw: 3]
+[n: 4]
+[nw: 5]
+[w: 6]
+[ne: 7]
+]
+
+:magic sets:
+[
+[fire_magic: 0: 8]
+[ice_magic: 1: 8]
+[poison_magic: 2: 8]
+[magic_magic: 3: 8]
+]
+
+:magic set tiles:
+[
+[blast_1: 0]
+[blast_2: 1]
+[blast_3: 2]
+[flames_ani_a: 3]
+[flames_ani_b: 4]
+[sparkle_ani_a: 5]
+[sparkle_ani_b: 6]
+[orb: 7]
+]
+
+:arrow sets:
+[
+[brown_arrow: 4: 0]
+[white_arrow: 4: 8]
+]
+
+:arrow set tiles:
+[
+[0: 0]
+[1: 1]
+[2: 2]
+[3: 3]
+[4: 4]
+[5: 5]
+[6: 6]
+[7: 7]
+]
+
+:impact sets:
+[
+[r_cut_imp: 0: 0]
+[l_cut_imp: 0: 3]
+[blunt_a_imp: 0: 6]
+[blunt_b_imp: 0 :9]
+[l_slash_imp: 0: 12]
+[s_slash_imp: 1: 0]
+[pierce_imp: 1: 3]
+[burst_imp: 1: 6]
+[tink_imp: 1: 9]
+]
+
+:impact set tiles:
+[
+[a: 0]
+[b: 1]
+[c: 2]
+]
+
+:special sets:
+[
+[swamp: 0: 0]
+[rain: 0: 2]
+[lightning: 0: 4]
+[smoke: 0: 6]
+]
+
+:special set tiles:
+[
+[a: 0]
+[b: 1]
+]

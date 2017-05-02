@@ -1,4 +1,4 @@
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 
 
 class TilesetZoneMap(object):
@@ -33,10 +33,10 @@ class TilesetZoneMap(object):
         self.h = base_map.h
 
         self.main_tilesets = {
-                'wall': TileSetArchive.get_tileset(wall),
-                'floor': TileSetArchive.get_tileset(floor),
-                'water': TileSetArchive.get_tileset(water),
-                'pit': TileSetArchive.get_tileset('pit')
+                'wall': MapTileSetArchive.get_tileset(wall),
+                'floor': MapTileSetArchive.get_tileset(floor),
+                'water': MapTileSetArchive.get_tileset(water),
+                'pit': MapTileSetArchive.get_tileset('pit')
                 }
         self.zones = {
             'wall': [],

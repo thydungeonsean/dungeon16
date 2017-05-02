@@ -1,7 +1,7 @@
 import pygame
 
 from source.controller.move_control import MoveControl
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 from source.map.level.level_generator import LevelGenerator
 from source.map.map_generator import MapGenerator
 from source.objects.map_objects.actor import Actor
@@ -36,7 +36,6 @@ def test():
     # basic init functions
     pygame.init()
     pygame.display.set_mode((800, 600))
-    TileSetArchive.init_set_keys()
 
     # generate the level
     l = gen()

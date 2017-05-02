@@ -1,5 +1,5 @@
 from source.image.map_image.map_image import MapImage
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 from source.states.settings import Settings
 
 
@@ -35,7 +35,7 @@ class MapImageGenerator(object):
         tile.draw(map_image.get_image(ani_key))
 
         # draw deco
-        tileset = TileSetArchive.get_tileset('deco')
+        tileset = MapTileSetArchive.get_tileset('deco')
         deco = map.deco_map
         if (x, y) in deco.deco_coords:
             tilekey = deco.get_tile((x, y), ani_key)
@@ -45,7 +45,7 @@ class MapImageGenerator(object):
 
         # draw shadow
         if (x, y) in map.deco_map.shadow_map:
-            tileset = TileSetArchive.get_tileset('shadow')
+            tileset = MapTileSetArchive.get_tileset('shadow')
             tile = tileset.get_tile_image(tileset.get_base_tile())
 
             blended = tile.get_blended_image(map_image.get_image(ani_key), (tile_x, tile_y))
@@ -53,21 +53,21 @@ class MapImageGenerator(object):
 
         # draw torches
         if (x, y) in map.deco_map.torch_map:
-            tileset = TileSetArchive.get_tileset('deco')
+            tileset = MapTileSetArchive.get_tileset('deco')
             tile = tileset.get_tile_image(tileset.get_torch_tile(ani_key))
             tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))
 
         # draw_torch_glow
         if (x, y) in map.deco_map.glow_map:
-            tileset = TileSetArchive.get_tileset('deco')
+            tileset = MapTileSetArchive.get_tileset('deco')
             tile = tileset.get_tile_image(tileset.get_torch_glow_tile(ani_key))
             tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))
 
         # draw blocks
         if (x, y) in map.block_map.block_coords:
-            tileset = TileSetArchive.get_tileset('block')
+            tileset = MapTileSetArchive.get_tileset('block')
             tile = tileset.get_tile_image(map.block_map.get_tile((x, y), ani_key))
             tile.position((tile_x, tile_y))
             tile.draw(map_image.get_image(ani_key))

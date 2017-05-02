@@ -1,4 +1,4 @@
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 
 
 class TilesetZone(object):
@@ -10,7 +10,7 @@ class TilesetZone(object):
 
         self.set_type = set_type
 
-        self.tileset = TileSetArchive.get_tileset(set_id)
+        self.tileset = MapTileSetArchive.get_tileset(set_id)
 
     def is_in_zone(self, (x, y)):
         px, py = self.point

@@ -1,6 +1,7 @@
-from map_tools import MapTools
-from source.image.tilesets.deco_tileset import DecoTileSet
 from random import *
+
+from map_tools import MapTools
+from source.image.tilesets.map_tilesets.deco_tileset import DecoTileSet
 
 
 class DecoMap(object):

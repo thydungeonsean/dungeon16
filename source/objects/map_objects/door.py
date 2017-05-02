@@ -1,5 +1,5 @@
 from map_object import MapObject
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 from source.states.settings import Settings
 
 
@@ -18,7 +18,7 @@ class Door(MapObject):
         self.block_move = True
 
     def set_images(self):
-        tileset = TileSetArchive.get_tileset(self.style)
+        tileset = MapTileSetArchive.get_tileset(self.style)
         images = {}
         for k in ('closed', 'open'):
             key = '_'.join((self.orientation, k))

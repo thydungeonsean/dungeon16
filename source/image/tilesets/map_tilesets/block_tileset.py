@@ -1,5 +1,6 @@
-from source.image.tilesets.map_tileset import MapTileSet
 from random import randint
+
+from source.image.tilesets.map_tilesets.map_tileset import MapTileSet
 
 
 class BlockTileSet(MapTileSet):

@@ -2,7 +2,6 @@ from source.map.tile_id_map import TileIDMap
 from source.map.tileset_zone_map import TilesetZoneMap
 from source.map.deco_map import DecoMap
 from source.map.block_map import BlockMap
-from source.map.feature_map import FeatureMap
 
 
 class BaseMap(object):
@@ -34,10 +33,10 @@ class BaseMap(object):
                 coords.append((x, y))
         return coords
 
-    def generate_zone_map(self):
-        self.zone_map = TilesetZoneMap.dungeon(self)
+    def generate_zone_map(self):  # tells tile id map what tilesets to use for what sections of the map
+        self.zone_map = TilesetZoneMap.crypt(self)
 
-    def generate_tile_id_map(self):
+    def generate_tile_id_map(self):  # gives the map image generator which tileset and tilekey to use for each cell
         self.tile_id_map = TileIDMap(self)
 
     def generate_deco_map(self):

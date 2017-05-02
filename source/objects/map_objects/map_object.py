@@ -1,7 +1,7 @@
 from source.objects.coord import Coord
 from source.objects.pixel_coord import PixelCoord
 
-from source.image.tilesets.tileset_archive import TileSetArchive
+from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 
 
 class MapObject(object):
@@ -23,7 +23,7 @@ class MapObject(object):
         self.level = level
 
     def set_images(self):
-        return {0: TileSetArchive.get_tileset('dungeon_wall').get_tile_image('pool')}
+        return {0: MapTileSetArchive.get_tileset('dungeon_wall').get_tile_image('pool')}
 
     def get_image_key(self):
         return 0
