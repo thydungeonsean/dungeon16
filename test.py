@@ -12,7 +12,7 @@ from source.states.settings import Settings
 
 from source.map.map_tools import MapTools
 from random import randint, choice
-
+from source.objects.effects.impact_effect import ImpactEffect
 
 def gen():
 
@@ -48,7 +48,7 @@ def test():
     px = 16
     py = 10
 
-    player = Actor((px, py), 'paladin')
+    player = Actor((px, py), 'wizard')
     state.view.focus_object(player)
     MoveControl(player)
 
@@ -81,7 +81,7 @@ def test():
 
         pygame.display.update()
         state.clock.tick(60)
-        print state.clock.get_fps()
+        # print state.clock.get_fps()
 
         # if i == 60:
         #     y.toggle()

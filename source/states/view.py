@@ -20,6 +20,7 @@ class View(object):
         self.actor_manager = None
         self.fov_map = None
         self.shroud_manager = None
+        self.effect_draw_manager = None
 
         self.view_surface = self.init_view_surface()
         self.view_rect = self.view_surface.get_rect()
@@ -44,6 +45,7 @@ class View(object):
         self.actor_manager = self.state.actor_manager
         self.fov_map = self.state.level.fov_map
         self.shroud_manager = self.state.shroud_manager
+        self.effect_draw_manager = self.state.effect_draw
 
     def init_coord(self):  # the nearest map coord of the topleft corner of view
         coord = Coord()
@@ -72,14 +74,18 @@ class View(object):
         self.map_image = None
 
     def draw(self, surface):
+
         self.view_surface.fill((0, 0, 0))
 
         self.map_image.draw(self.view_surface)
 
         self.feature_manager.draw(self.view_surface)
-        # object_manager.draw
+
+        # item_manager.draw
+
         self.actor_manager.draw(self.view_surface)
-        # effect_manager.draw
+
+        self.effect_draw_manager.draw(self.view_surface)
 
         # fov draw
         if self.fov_map.recompute:

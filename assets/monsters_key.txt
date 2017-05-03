@@ -91,4 +91,5 @@
 [treant: 30: 4]
 [yeti: 30: 8]
 [fly_swarm: 30: 12]
+[wolf: 32: 0]
 ]

@@ -2,7 +2,7 @@ from source.image.tilesets.map_tileset_archive import MapTileSetArchive
 from source.states.settings import Settings
 
 
-class ShroudManager(object):
+class ShroudDrawManager(object):
 
     def __init__(self, state):
 

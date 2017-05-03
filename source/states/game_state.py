@@ -3,9 +3,10 @@ from source.image.map_image.map_image_generator import MapImageGenerator
 from source.states.view import View
 from source.states.settings import Settings
 
-from source.objects.object_managers.feature_manager import FeatureManager
-from source.objects.object_managers.actor_manager import ActorManager
-from source.objects.object_managers.shroud_manager import ShroudManager
+from source.objects.object_draw_managers.feature_draw_manager import FeatureDrawManager
+from source.objects.object_draw_managers.actor_draw_manager import ActorDrawManager
+from source.objects.object_draw_managers.shroud_draw_manager import ShroudDrawManager
+from source.objects.object_draw_managers.effect_draw_manager import EffectDrawManager
 
 
 class GameState(State):
@@ -15,9 +16,10 @@ class GameState(State):
         self.level = None
         self.view = View(self)
 
-        self.feature_manager = FeatureManager(self)
-        self.actor_manager = ActorManager(self)
-        self.shroud_manager = ShroudManager(self)
+        self.feature_manager = FeatureDrawManager(self)
+        self.actor_manager = ActorDrawManager(self)
+        self.shroud_manager = ShroudDrawManager(self)
+        self.effect_draw = EffectDrawManager(self)
 
     def init_state(self):
         self.controller.bind_to_state(self)
@@ -29,7 +31,8 @@ class GameState(State):
         self.screen_layout.draw(self.screen)
 
     def run(self):
-        pass
+
+        self.level.effects.run()
 
     def load_level(self, level):
 
@@ -42,3 +45,4 @@ class GameState(State):
         self.feature_manager.init()
         self.actor_manager.init()
         self.shroud_manager.init()
+        self.effect_draw.init()

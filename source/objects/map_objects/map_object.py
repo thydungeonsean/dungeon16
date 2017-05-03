@@ -23,14 +23,14 @@ class MapObject(object):
         self.level = level
 
     def set_images(self):
-        return {0: MapTileSetArchive.get_tileset('dungeon_wall').get_tile_image('pool')}
+        raise NotImplementedError  # should be dict of tile ids to Image objects
 
     def get_image_key(self):
-        return 0
+        raise NotImplementedError
 
     @property
     def current_image(self):
-        return self.images[self.get_image_key()]
+        return self.images.get(self.get_image_key())
 
     def draw(self, surface):
         self.current_image.draw(surface)

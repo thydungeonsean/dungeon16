@@ -1,6 +1,7 @@
 from source.map.level.actor_list import ActorList
 from source.map.level.fov_map import FOVMap
 from source.map.feature_map import FeatureMap
+from effect_runner import EffectRunner
 
 
 class Level(object):
@@ -9,8 +10,10 @@ class Level(object):
 
         self.base_map = None
         self.map_image = None
+
         self.actors = ActorList(self)
         self.feature_map = FeatureMap(self)
+        self.effects = EffectRunner(self)
 
         self.fov_map = None
 

@@ -1,14 +1,17 @@
+from object_draw_manager import ObjectDrawManager
 
 
-class ObjectManager(object):
+class FeatureDrawManager(ObjectDrawManager):
 
     def __init__(self, state):
 
-        self.state = state
-        self.view = self.state.view
-
+        ObjectDrawManager.__init__(self, state)
         self.objects = None
         self.object_map = None
+
+    def init(self):
+        self.objects = self.state.level.feature_map.feature_coords
+        self.object_map = self.state.level.feature_map.feature_map
 
     def draw(self, surface):
 

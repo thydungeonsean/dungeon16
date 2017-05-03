@@ -531,3 +531,10 @@
 [skin: nr_black]
 [wings: iron]
 ]
+
+:wolf:
+[
+[skin: nr_black]
+[eyes: red]
+]
+

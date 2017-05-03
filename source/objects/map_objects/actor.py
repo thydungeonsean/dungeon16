@@ -2,6 +2,7 @@ from source.image.tilesets.sprite_archive import SpriteArchive
 from source.objects.map_objects.map_object import MapObject
 from source.objects.map_objects.mobility_component import MobilityComponent
 from source.states.clock import Clock
+from source.objects.effects.impact_effect import ImpactEffect
 
 
 class Actor(MapObject):
@@ -34,7 +35,15 @@ class Actor(MapObject):
 
         map_object.on_bump()
         if isinstance(map_object, Actor):
+            self.hit_actor(map_object)
             map_object.die()
+
+    def hit_actor(self, actor):
+
+        imp = 'blunt_a_imp'
+
+        p = actor.coord.get
+        self.level.effects.add_effect(ImpactEffect(p, imp))
 
     def die(self):
         self.actor_list.remove_actor(self)

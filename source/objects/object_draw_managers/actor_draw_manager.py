@@ -1,11 +1,12 @@
-from object_manager import ObjectManager
+from object_draw_manager import ObjectDrawManager
 
 
-class ActorManager(ObjectManager):
+class ActorDrawManager(ObjectDrawManager):
 
     def __init__(self, state):
 
-        ObjectManager.__init__(self, state)
+        ObjectDrawManager.__init__(self, state)
+        self.objects = None
 
     def init(self):
         self.objects = self.state.level.actors.actors
