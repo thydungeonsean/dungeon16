@@ -13,6 +13,7 @@ class Actor(MapObject):
 
         self.actor_list = None
         self.mobility_component = MobilityComponent(self)
+        self.stat_component = None
 
     def try_move(self, c):
         self.mobility_component.try_move(c)
@@ -36,7 +37,7 @@ class Actor(MapObject):
         map_object.on_bump()
         if isinstance(map_object, Actor):
             self.hit_actor(map_object)
-            map_object.die()
+            # map_object.die()
 
     def hit_actor(self, actor):
 

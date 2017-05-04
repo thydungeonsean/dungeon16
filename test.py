@@ -13,6 +13,7 @@ from source.states.settings import Settings
 from source.map.map_tools import MapTools
 from random import randint, choice
 from source.objects.effects.impact_effect import ImpactEffect
+from source.objects.map_objects.monster import Monster
 
 def gen():
 
@@ -48,7 +49,7 @@ def test():
     px = 16
     py = 10
 
-    player = Actor((px, py), 'wizard')
+    player = Monster((px, py), 'wizard')
     state.view.focus_object(player)
     MoveControl(player)
 
@@ -121,7 +122,7 @@ def add_actors(l, p):
             pass
         else:
             if randint(0, 6) == 0:
-                l.actors.add_actor(Actor(c, choice(('goblin', 'skeleton', 'cube'))))
+                l.actors.add_actor(Monster(c, choice(('goblin', 'skeleton', 'cube'))))
 
 
 if __name__ == '__main__':

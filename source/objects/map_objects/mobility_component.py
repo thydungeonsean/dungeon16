@@ -1,3 +1,4 @@
+import weakref
 
 
 class MobilityComponent(object):
@@ -10,7 +11,7 @@ class MobilityComponent(object):
     }
 
     def __init__(self, owner):
-        self.owner = owner
+        self.owner = weakref.ref(owner)
         self.level = None
 
         self.facing = 'down'
@@ -27,11 +28,11 @@ class MobilityComponent(object):
             self.move(move)
         else:
             if blocker is not None:
-                self.owner.bump(blocker)
+                self.owner().bump(blocker)
 
     def get_dir_coord(self, c):
         dx, dy = MobilityComponent.dir_mods[c]
-        x, y = self.owner.coord.get
+        x, y = self.owner().coord.get
         return dx + x, dy + y
 
     def set_facing(self, c):
@@ -62,5 +63,5 @@ class MobilityComponent(object):
         return True, None
 
     def move(self, point):
-        self.level.actors.move_actor(self.owner, point)
-        self.owner.move(point)
+        self.level.actors.move_actor(self.owner(), point)
+        self.owner().move(point)
