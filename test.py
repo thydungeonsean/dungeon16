@@ -14,6 +14,7 @@ from source.map.map_tools import MapTools
 from random import randint, choice
 from source.objects.effects.impact_effect import ImpactEffect
 from source.objects.map_objects.monster import Monster
+from source.objects.effects.animation_effect import AnimationEffect
 
 def gen():
 
@@ -67,6 +68,8 @@ def test():
     l.fov_map.recompute_fov(player, state.view)
 
     add_actors(l, (px, py))
+
+    # l.effects.add_effect(AnimationEffect(player))
 
     i = 0
 

@@ -9,7 +9,7 @@ class EffectDrawManager(ObjectDrawManager):
         self.objects = None
 
     def init(self):
-        self.objects = self.state.level.effects.effects
+        self.objects = self.state.level.effects.drawable_effects
 
     def draw(self, surface):
 

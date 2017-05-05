@@ -12,6 +12,7 @@ class MapObject(object):
         self.pixel_coord = PixelCoord()
         self.coord.bind(self.pixel_coord)
 
+        self.drawable = True
         self.images = self.set_images()
 
         self.block_move = True

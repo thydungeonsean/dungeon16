@@ -13,6 +13,10 @@ class Coord(object):
         self.x_offset = 0
         self.y_offset = 0
 
+    def set_offsets(self, (x, y)):
+        self.set_x_offset(x)
+        self.set_y_offset(y)
+
     def set_x_offset(self, off):
         self.x_offset = off
 

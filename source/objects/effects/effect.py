@@ -23,13 +23,13 @@ class Effect(MapObject):
 
     def increment(self):
         self.tick += 1
-        self.run_tick()
 
     def run_tick(self):
         pass
 
     def run(self):
         self.increment()
+        self.run_tick()
         if self.tick > self.end_tick:
             self.end()
             self.end_effect()
