@@ -13,7 +13,11 @@ h = l.h
 
 def f(self, (x, y)):
 
-    return self.get_tile_code((x, y)) in ('.','~')
+    return self.get_tile_code((x, y)) in ('.', '~')
+
+
+def f2(self, (x, y)):
+    return 0 <= x < w and 0 <= y < h
 
 l.passable = f
 
@@ -24,13 +28,21 @@ m = dm.DijkstraMap(w, h, l, l.passable)
 
 src = [(4, 3), (25, 25), (30, 10), (45, 16)]
 
+src2 = {
+        -20: {(4, 3), (45, 16)},
+        0: {(4, 8), (25, 25), (30, 10)},
+        10: {(30, 30), (26, 26)}
+       }
 t = time()
 m.calculate(src)
 print time()-t
 
-m._print()
+flee = dm.DijkstraMap.flee_map(m, -1.2)
+# m._print()
 print m.count
+m = flee
 
+# draw image
 import pygame
 
 tw = 10
@@ -44,7 +56,7 @@ r = dot.get_rect()
 
 for y in range(h):
     for x in range(w):
-        col_v = m.d_map[x][y]
+        col_v = m.d_map[x][y] + 20
         if col_v > 255:
             col_v = 255
         col = (col_v, col_v, col_v)
