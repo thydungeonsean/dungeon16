@@ -1,9 +1,18 @@
 
 
 class DijkstraCollection(object):
+    def __init__(self, level):
+        self.level = level
+        self.collection = {}
 
-    collection = {}
+    def access_map(self, map_key):
+        if map_key not in self.collection.keys():
+            self.collection[map_key] = self.generate_map(map_key)
 
-    @classmethod
-    def get_d_map(cls, map_key):
-        return
+        return self.collection[map_key]
+
+    def generate_map(self, map_key):
+        pass
+    # need source dict/list
+    # need passable_func - from dijkstra_tools
+    # "attack_party_walker"

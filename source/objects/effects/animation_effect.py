@@ -49,7 +49,7 @@ class Shake(AnimationEffect):
 
     frame_duration = 2
 
-    frame_sequence = (1, -1, 1, -1, 1, -1, 1, -1, 0)
+    frame_sequence = (1, -1, 1, -1, 1, -1, 0)
 
     def __init__(self, actor):
 

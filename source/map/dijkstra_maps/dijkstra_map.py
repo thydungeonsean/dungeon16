@@ -25,13 +25,14 @@ class DijkstraMap(object):
 
         return new
 
-    def __init__(self, w, h, base_map, passable):
+    def __init__(self, w, h, level, passable, source):
 
         self.w = w
         self.h = h
 
-        self.base_map = base_map
+        self.level = level
         self.passable_func = passable
+        self.source_func = source
 
         self.d_map = self.set_d_map()
         self.count = 0
@@ -48,7 +49,7 @@ class DijkstraMap(object):
         return self.d_map[x][y]
 
     def is_passable(self, (x, y)):
-        return self.passable_func(self.base_map, (x, y))
+        return self.passable_func(self.level, (x, y))
 
     def add_source_values(self, batch, value):
         return filter(lambda p: self.get_value(p) > value, batch)
@@ -56,7 +57,11 @@ class DijkstraMap(object):
     def set_batch_values(self, batch, value):
         map(self.set_value, batch, [value for v in range(len(batch))])
 
-    def calculate(self, r_source):
+    def calculate(self):
+        source = self.source_func()
+        self.calculate_source(source)
+
+    def calculate_source(self, r_source):
 
         source = self.parse_source(r_source)
         perimeter_value = min(source.keys())
