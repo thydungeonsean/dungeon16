@@ -1,9 +1,10 @@
 from source.states.message_system.subscriber import Subscriber
+from time import time
 
 
 class DijkstraMap(object):
 
-    def __init__(self, level, passable, source, source_args, subscription_tags, diag=False):
+    def __init__(self, level, passable, source, source_args, subscriber_ids, subscription_tags, diag=False):
 
         self.w = level.base_map.w
         self.h = level.base_map.h
@@ -13,7 +14,7 @@ class DijkstraMap(object):
         self.source_func = source
         self.source_args = source_args
 
-        self.subscriber = Subscriber(self, ('actor_move', 'actor_die'), subscription_tags)
+        self.subscriber = Subscriber(self, subscriber_ids, subscription_tags)
 
         self.diagonal = diag
 
@@ -54,12 +55,8 @@ class DijkstraMap(object):
         map(self.set_value, batch, [value for v in range(len(batch))])
 
     def calculate(self):
-        # print 'calc'
-        if not self.needs_update:
-            return
         source = self.source_func(self.level, *self.source_args)
         self.calculate_from_source(source)
-        print 'calculated'
 
     def calculate_from_source(self, r_source):
 
@@ -69,7 +66,12 @@ class DijkstraMap(object):
 
         perimeter = source[perimeter_value]
 
+        # start_time = time()
+
         while perimeter:
+
+            # if time() - start_time > .01:  #
+            #     break
 
             if perimeter_value in source.keys():
                 new_source = self.add_source_values(source[perimeter_value], perimeter_value)

@@ -67,6 +67,8 @@ def test():
 
     add_actors(l, (px, py))
 
+    l.dijkstra_collection.access_map('party_walker')
+
     # l.effects.add_effect(AnimationEffect(player))
 
     i = 0
@@ -83,7 +85,7 @@ def test():
 
         pygame.display.update()
         state.clock.tick(60)
-        # print state.clock.get_fps()
+        print state.clock.get_fps()
 
         # if i == 60:
         #     y.toggle()

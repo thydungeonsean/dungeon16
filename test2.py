@@ -29,14 +29,14 @@ def d(m):
     m.calculate()
 
 
-def draw_d_map(m, p):
+def draw_d_map(m, p, my=0):
 
     w = m.w
     h = m.h
 
     s = pygame.display.get_surface()
 
-    tw = 10
+    tw = 5
 
     image = pygame.Surface((w*tw, h*tw)).convert()
 
@@ -48,7 +48,7 @@ def draw_d_map(m, p):
 
             if (x, y) == p.coord.get:
                 dot.fill((255, 0, 10))
-                r.topleft = (x * tw, y * tw)
+                r.topleft = (x * tw, (y * tw))
                 image.blit(dot, r)
                 continue
 
@@ -68,11 +68,12 @@ def draw_d_map(m, p):
             else:
                 col = (col_v, col_v, col_v)
             dot.fill(col)
-            r.topleft = (x*tw, y*tw)
+            r.topleft = (x*tw, (y*tw))
             image.blit(dot, r)
 
-
-    s.blit(image, image.get_rect())
+    r = image.get_rect()
+    r.topleft = (0, my)
+    s.blit(image, r)
 
 
 def test():
@@ -106,7 +107,8 @@ def test():
 
     #m = dm.DijkstraMap(l, walker_passable, get_party_source)
 
-    m = l.dijkstra_collection.access_map('party_walker')
+    m = l.dijkstra_collection.access_map('range_3_party_walker')
+    x = l.dijkstra_collection.access_map('party_walker')
 
     d(m)
 
@@ -117,7 +119,8 @@ def test():
     while True:
         #i += 1
         #state.render()
-        draw_d_map(m, player)
+        draw_d_map(m, player, 0)
+        #draw_d_map(x, player, 200)
 
         state.run()
 
@@ -126,7 +129,8 @@ def test():
         pygame.display.update()
         state.clock.tick(60)
 
-        m.calculate()
+        #m.calculate()
+        #y.calculate()
         print state.clock.get_fps()
 
 

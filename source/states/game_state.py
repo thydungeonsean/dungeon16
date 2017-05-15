@@ -34,8 +34,10 @@ class GameState(State):
 
     def run(self):
 
-        self.level.effects.run()
         MessageCenter.get_instance().run()
+
+        self.level.effects.run()
+        self.level.dijkstra_manager.run()
 
     def load_level(self, level):
 
