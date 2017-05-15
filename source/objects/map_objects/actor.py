@@ -5,6 +5,8 @@ from source.states.clock import Clock
 from source.objects.effects.impact_effect import ImpactEffect
 from source.objects.effects.animation_effect import *
 
+from source.states.message_system.message import Message
+
 
 class Actor(MapObject):
 
@@ -15,6 +17,8 @@ class Actor(MapObject):
         self.actor_list = None
         self.mobility_component = MobilityComponent(self)
         self.stat_component = None
+
+        self.profile = self.set_profile()
 
     def try_move(self, c):
         self.mobility_component.try_move(c)
@@ -30,8 +34,15 @@ class Actor(MapObject):
     def get_image_key(self):
         return '_'.join((self.mobility_component.facing, Clock.get_instance().get_anikey(speed=3)))
 
+    def set_profile(self):
+        return {}
+
     def move(self, coord):
         self.coord.set(coord)
+        self.report_move()
+
+    def report_move(self):
+        Message('actor_move').send()
 
     def bump(self, map_object):
 
@@ -53,3 +64,7 @@ class Actor(MapObject):
 
     def die(self):
         self.actor_list.remove_actor(self)
+        self.report_death()
+
+    def report_death(self):
+        Message('actor_die', *self.profile.items()).send()

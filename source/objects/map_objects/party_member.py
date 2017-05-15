@@ -4,7 +4,7 @@ from source.objects.effects.impact_effect import ImpactEffect
 from source.states.message_system.message import Message
 
 
-class Monster(Actor):
+class PartyMember(Actor):
 
     def __init__(self, point, sprite):
 
@@ -12,14 +12,14 @@ class Monster(Actor):
         self.stat_component = get_monster_stats(self, sprite)
 
     def set_profile(self):
-        return {'allegiance': 'foe', 'group': 'monster', 'id': self.sprite}
+        return {'allegiance': 'friend', 'group': 'party', 'id': self.sprite}
 
     def report_move(self):
         Message('actor_move', *self.profile.items()).send()
 
     def hit_actor(self, actor):
 
-        imp = 'blunt_a_imp'
+        imp = 'burst_imp'
 
         p = actor.coord.get
         self.level.effects.add_effect(ImpactEffect(p, imp))

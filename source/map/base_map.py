@@ -93,6 +93,10 @@ class BaseMap(object):
         return adj_dict
 
     def get_tile_code(self, (x, y)):
+        try:
+            self.map[x][y]
+        except IndexError:
+            print (x, y)
         return self.map[x][y]
 
 

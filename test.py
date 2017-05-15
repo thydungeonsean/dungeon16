@@ -14,7 +14,9 @@ from source.map.map_tools import MapTools
 from random import randint, choice
 from source.objects.effects.impact_effect import ImpactEffect
 from source.objects.map_objects.monster import Monster
+from source.objects.map_objects.party_member import PartyMember
 from source.objects.effects.animation_effect import AnimationEffect
+
 
 def gen():
 
@@ -27,10 +29,6 @@ def gen():
     # m.zone_map.add_zone(z2)
 
     return l
-
-
-def render(m_image):
-    m_image.draw(pygame.display.get_surface())
 
 
 def test():
@@ -50,7 +48,7 @@ def test():
     px = 16
     py = 10
 
-    player = Monster((px, py), 'wizard')
+    player = PartyMember((px, py), 'wizard')
     state.view.focus_object(player)
     MoveControl(player)
 

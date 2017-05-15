@@ -8,6 +8,8 @@ from source.objects.object_draw_managers.actor_draw_manager import ActorDrawMana
 from source.objects.object_draw_managers.shroud_draw_manager import ShroudDrawManager
 from source.objects.object_draw_managers.effect_draw_manager import EffectDrawManager
 
+from source.states.message_system.message_center import MessageCenter
+
 
 class GameState(State):
 
@@ -33,6 +35,7 @@ class GameState(State):
     def run(self):
 
         self.level.effects.run()
+        MessageCenter.get_instance().run()
 
     def load_level(self, level):
 

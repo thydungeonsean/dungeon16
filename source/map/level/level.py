@@ -2,6 +2,7 @@ from source.map.level.actor_list import ActorList
 from source.map.level.fov_map import FOVMap
 from source.map.feature_map import FeatureMap
 from effect_runner import EffectRunner
+from source.map.dijkstra_maps.dijkstra_collection import DijkstraCollection
 
 
 class Level(object):
@@ -16,6 +17,8 @@ class Level(object):
         self.effects = EffectRunner(self)
 
         self.fov_map = None
+
+        self.dijkstra_collection = DijkstraCollection(self)
 
     def set_base_map(self, base_map):
         self.base_map = base_map

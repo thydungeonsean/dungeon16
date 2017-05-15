@@ -1,55 +1,51 @@
+from source.states.message_system.subscriber import Subscriber
 
 
 class DijkstraMap(object):
 
-    # returns a new DijkstraMap with d_map values transformed - for flee map
-    @classmethod
-    def flee_map(cls, d_map, mod):
+    def __init__(self, level, passable, source, source_args, subscription_tags, diag=False):
 
-        new = cls(d_map.w, d_map.h, d_map.base_map, d_map.passable_func)
-
-        transform = [[int(d_map.get_value((x, y)) * mod) for y in range(d_map.h)] for x in range(d_map.w)]
-        lowest = 0
-
-        coords = []
-
-        for y in range(new.h):
-            for x in range(new.w):
-                coords.append((x, y))
-                if transform[x][y] < lowest:
-                    lowest = transform[x][y]
-
-        flee_src = filter(lambda (x, y): transform[x][y] == lowest, coords)
-
-        new.calculate(flee_src)
-
-        return new
-
-    def __init__(self, w, h, level, passable, source):
-
-        self.w = w
-        self.h = h
+        self.w = level.base_map.w
+        self.h = level.base_map.h
 
         self.level = level
         self.passable_func = passable
         self.source_func = source
+        self.source_args = source_args
+
+        self.subscriber = Subscriber(self, ('actor_move', 'actor_die'), subscription_tags)
+
+        self.diagonal = diag
 
         self.d_map = self.set_d_map()
-        self.count = 0
+
+        self.needs_update = True
+
+        self.calculate()
+
+    def receive_report(self):
+        self.needs_update = True
+
+    @property
+    def all_coords(self):
+        coords = []
+        for y in range(self.h):
+            for x in range(self.w):
+                coords.append((x, y))
+        return coords
 
     def set_d_map(self):
 
-        return [[0 for y in range(self.h)] for x in range(self.w)]
+        return [[None for y in range(self.h)] for x in range(self.w)]
 
     def set_value(self, (x, y), value):
         self.d_map[x][y] = value
-        self.count += 1
 
     def get_value(self, (x, y)):
         return self.d_map[x][y]
 
     def is_passable(self, (x, y)):
-        return self.passable_func(self.level, (x, y))
+        return 0 <= x < self.w and 0 <= y < self.h and self.passable_func(self.level, (x, y))
 
     def add_source_values(self, batch, value):
         return filter(lambda p: self.get_value(p) > value, batch)
@@ -58,10 +54,14 @@ class DijkstraMap(object):
         map(self.set_value, batch, [value for v in range(len(batch))])
 
     def calculate(self):
-        source = self.source_func()
-        self.calculate_source(source)
+        # print 'calc'
+        if not self.needs_update:
+            return
+        source = self.source_func(self.level, *self.source_args)
+        self.calculate_from_source(source)
+        print 'calculated'
 
-    def calculate_source(self, r_source):
+    def calculate_from_source(self, r_source):
 
         source = self.parse_source(r_source)
         perimeter_value = min(source.keys())
@@ -74,11 +74,14 @@ class DijkstraMap(object):
             if perimeter_value in source.keys():
                 new_source = self.add_source_values(source[perimeter_value], perimeter_value)
                 perimeter.update(new_source)
+                touched.update(new_source)
 
             self.set_batch_values(perimeter, perimeter_value)
 
             perimeter_value += 1
             perimeter = self.get_perimeter(perimeter, touched, perimeter_value)
+
+        self.needs_update = False
 
     def get_perimeter(self, batch, touched, value):
 
@@ -93,7 +96,12 @@ class DijkstraMap(object):
         return perimeter
 
     def get_adj(self, (x, y), touched, value):
-        adj = filter(lambda p: self.is_passable(p), ((x+1, y), (x-1, y), (x, y+1), (x, y-1)))
+
+        adj_coords = [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+        if self.diagonal:
+            adj_coords.extend([(x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1), (x - 1, y - 1)])
+
+        adj = filter(lambda p: self.is_passable(p), adj_coords)
         return filter(lambda p: self.needs_new_value(p, touched, value), adj)
 
     def needs_new_value(self, p, touched, value):
@@ -114,7 +122,11 @@ class DijkstraMap(object):
         for y in range(self.h):
             line = []
             for x in range(self.w):
-                tag = str(self.get_value((x, y)))
+                if self.get_value((x, y)) is None:
+                    tag = ' '
+                else:
+                    tag = str(self.get_value((x, y)))
+
                 gap = 3-len(tag)
 
                 line.append(''.join([tag, ' '*gap]))
