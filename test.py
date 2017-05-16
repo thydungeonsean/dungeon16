@@ -85,7 +85,7 @@ def test():
 
         pygame.display.update()
         state.clock.tick(60)
-        print state.clock.get_fps()
+        # print state.clock.get_fps()
 
         # if i == 60:
         #     y.toggle()
