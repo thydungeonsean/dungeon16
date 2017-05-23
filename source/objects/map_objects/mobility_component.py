@@ -16,6 +16,9 @@ class MobilityComponent(object):
 
         self.facing = 'down'
 
+    def set_level(self, level):
+        self.level = level
+
     def try_move(self, c):
         if isinstance(c, tuple):
             move = c
@@ -25,10 +28,13 @@ class MobilityComponent(object):
 
         clear, blocker = self.move_is_clear(move)
         if clear:
-            self.move(move)
+            #self.move(move)
+            return 'move', [move]
         else:
             if blocker is not None:
-                self.owner().bump(blocker)
+                #self.bump(blocker)
+                return 'bump', [blocker]
+        return None
 
     def get_dir_coord(self, c):
         dx, dy = MobilityComponent.dir_mods[c]
@@ -41,7 +47,7 @@ class MobilityComponent(object):
     def move_is_clear(self, move):
         # returns boolean if move is successful or not
         # and if not, it gives the blocking entity as the second value
-        # otherwise returs None as second value
+        # otherwise returns None as second value
 
         floor = self.level.base_map.get_tile_code(move) in ('.', '~')
         if not floor:
@@ -65,3 +71,7 @@ class MobilityComponent(object):
     def move(self, point):
         self.level.actors.move_actor(self.owner(), point)
         self.owner().move(point)
+
+    def bump(self, target):
+        self.owner().bump(target)
+

@@ -12,7 +12,8 @@ class Controller(object):
         'up': K_UP,
         'down': K_DOWN,
         'right': K_RIGHT,
-        'left': K_LEFT
+        'left': K_LEFT,
+        'wait': K_z
     }
 
     instance = None
@@ -28,7 +29,7 @@ class Controller(object):
         self.mouse = Mouse.get_instance()
         self.state = None
 
-        self.components = []
+        self.components = {}
 
     def bind_to_state(self, state):
         self.state = state
@@ -38,11 +39,14 @@ class Controller(object):
         self.state = None
         self.mouse.unbind()
 
-    def add_component(self, component):
-        self.components.append(component)
+    def add_component(self, component, c_id):
+        self.components[c_id] = component
 
-    def remove_component(self, component):
-        self.components.remove(component)
+    def remove_component(self, c_id):
+        del self.components[c_id]
+
+    def turn_off_move_control(self):
+        self.remove_component('move_control')
 
     def handle_input(self):
 
@@ -61,7 +65,7 @@ class Controller(object):
                     pass
 
                 else:
-                    for component in self.components:
+                    for component in self.components.values():
                         component.press(event.key)
 
             elif event.type == MOUSEBUTTONDOWN:

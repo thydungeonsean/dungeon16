@@ -30,3 +30,7 @@ class Level(object):
 
     def init_fov_map(self):
         self.fov_map = FOVMap(self)
+
+    def run(self):
+        self.effects.run()
+        self.dijkstra_manager.run()

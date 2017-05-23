@@ -1,6 +1,7 @@
 from source.image.tilesets.sprite_archive import SpriteArchive
 from source.objects.map_objects.map_object import MapObject
 from source.objects.map_objects.mobility_component import MobilityComponent
+from source.objects.map_objects.ai.ai_archive import AIArchive
 from source.states.clock import Clock
 from source.objects.effects.impact_effect import ImpactEffect
 from source.objects.effects.animation_effect import *
@@ -14,18 +15,20 @@ class Actor(MapObject):
         self.sprite = sprite
         MapObject.__init__(self, (x, y))
 
+        self.profile = self.set_profile()
+
         self.actor_list = None
         self.mobility_component = MobilityComponent(self)
         self.stat_component = None
+        self.ai = self.init_ai()
 
-        self.profile = self.set_profile()
-
-    def try_move(self, c):
-        self.mobility_component.try_move(c)
+    def init_ai(self):
+        return AIArchive.get_ai(self, 'basic')
 
     def set_level(self, level):
         self.level = level
-        self.mobility_component.level = level
+        self.mobility_component.set_level(level)
+        self.ai.set_level(level)
         self.actor_list = level.actors
 
     def set_images(self):

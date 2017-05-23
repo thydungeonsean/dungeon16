@@ -9,6 +9,7 @@ from source.objects.object_draw_managers.shroud_draw_manager import ShroudDrawMa
 from source.objects.object_draw_managers.effect_draw_manager import EffectDrawManager
 
 from source.states.message_system.message_center import MessageCenter
+from source.states.turn_manager.turn_manager import TurnManager
 
 
 class GameState(State):
@@ -23,6 +24,8 @@ class GameState(State):
         self.shroud_manager = ShroudDrawManager(self)
         self.effect_draw = EffectDrawManager(self)
 
+        self.turn_manager = None
+
     def init_state(self):
         self.controller.bind_to_state(self)
         self.switch_screen_layout()
@@ -36,12 +39,14 @@ class GameState(State):
 
         MessageCenter.get_instance().run()
 
-        self.level.effects.run()
-        self.level.dijkstra_manager.run()
+        self.level.run()
+
+        self.turn_manager.run()
 
     def load_level(self, level):
 
         self.level = level
+        self.turn_manager = TurnManager(level)
 
         self.view.set_map_image(self.level.map_image)
 

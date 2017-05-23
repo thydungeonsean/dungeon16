@@ -15,6 +15,7 @@ from random import randint, choice
 from source.objects.effects.impact_effect import ImpactEffect
 from source.objects.map_objects.monster import Monster
 from source.objects.map_objects.party_member import PartyMember
+from source.objects.map_objects.player import Player
 from source.objects.effects.animation_effect import AnimationEffect
 
 
@@ -48,9 +49,10 @@ def test():
     px = 16
     py = 10
 
-    player = PartyMember((px, py), 'wizard')
+    player = Player((px, py), 'wizard')
+    friend = PartyMember((15, 9), 'paladin', 2)
     state.view.focus_object(player)
-    MoveControl(player)
+    #MoveControl(player)
 
     c = state.view.coord.get
 
@@ -61,6 +63,7 @@ def test():
     l.feature_map.add_feature((22, 8), y)
 
     l.actors.add_actor(player)
+    l.actors.add_actor(friend)
 
     l.fov_map.set_fov_map()
     l.fov_map.recompute_fov(player, state.view)
