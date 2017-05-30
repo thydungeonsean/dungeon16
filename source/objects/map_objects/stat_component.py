@@ -78,7 +78,6 @@ class StatComponent(object):
 
     @property
     def attack(self):
-        cls = StatComponent
         return self.base_attack + (self.attack_points * StatComponent.attack_v[self.attack_value])
 
     @property
@@ -177,3 +176,7 @@ class StatComponent(object):
 
 def get_monster_stats(actor, sprite):
     return StatComponent(actor)
+
+
+def get_invincible_stats(actor):
+    return StatComponent(actor, health=100)

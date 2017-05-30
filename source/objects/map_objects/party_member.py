@@ -13,10 +13,13 @@ class PartyMember(Actor):
         self.ai_tag = self.set_ai_tag()
 
         Actor.__init__(self, point, sprite)
-        self.stat_component = get_monster_stats(self, sprite)
+        self.stat_component = self.set_stats()
 
     def set_profile(self):
         return {'allegiance': 'friend', 'group': 'party', 'id': self.sprite, 'party_rank': self.party_rank}
+
+    def set_stats(self):
+        return get_monster_stats(self, self.sprite)
 
     def set_ai_tag(self):
         return 'party'

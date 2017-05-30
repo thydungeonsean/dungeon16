@@ -9,6 +9,7 @@ class MoveControl(ControlComponent):
 
         ControlComponent.__init__(self, 'move_control')
         self.owner = ref(owner)
+        self.ready = True
 
     def set_key_map(self):
         return {
@@ -20,17 +21,30 @@ class MoveControl(ControlComponent):
         }
 
     def up(self):
-        self.owner().ai.try_move('up')
+        if self.ready:
+            self.owner().ai.assign_move('up')
+            self.ready = False
 
     def down(self):
-        self.owner().ai.try_move('down')
+        if self.ready:
+            self.owner().ai.assign_move('down')
+            self.ready = False
 
     def right(self):
-        self.owner().ai.try_move('right')
+        if self.ready:
+            self.owner().ai.assign_move('right')
+            self.ready = False
 
     def left(self):
-        self.owner().ai.try_move('left')
+        if self.ready:
+            self.owner().ai.assign_move('left')
+            self.ready = False
 
     def wait(self):
-        print self.owner().party_rank
-        pass
+        if self.ready:
+            self.owner().ai.skip_turn()
+            self.ready = False
+
+    def start_turn(self):
+        self.ready = True
+

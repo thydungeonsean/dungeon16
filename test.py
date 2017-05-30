@@ -49,8 +49,8 @@ def test():
     px = 16
     py = 10
 
-    player = Player((px, py), 'wizard')
-    friend = PartyMember((15, 9), 'paladin', 2)
+    player = Player((px, py), 'rogue')
+    # friend = PartyMember((15, 9), 'paladin', 2)
     state.view.focus_object(player)
     #MoveControl(player)
 
@@ -62,8 +62,8 @@ def test():
     l.feature_map.add_feature((20, 7), x)
     l.feature_map.add_feature((22, 8), y)
 
-    l.actors.add_actor(player)
-    l.actors.add_actor(friend)
+    l.actor_list.add_actor(player)
+    # l.actors.add_actor(friend)
 
     l.fov_map.set_fov_map()
     l.fov_map.recompute_fov(player, state.view)
@@ -127,8 +127,8 @@ def add_actors(l, p):
         if c == p:
             pass
         else:
-            if randint(0, 6) == 0:
-                l.actors.add_actor(Monster(c, choice(('goblin', 'skeleton', 'cube'))))
+            if randint(0, 50) == 0:
+                l.actor_list.add_actor(Monster(c, choice(('goblin', 'skeleton', 'cube'))))
 
 
 if __name__ == '__main__':

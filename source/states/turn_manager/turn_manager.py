@@ -20,7 +20,7 @@ class TurnManager(object):
 
         if str(self.phase) != self.printout:
             self.printout = str(self.phase)
-            print self.printout
+            #print self.printout
 
         if end:
             self.step += 1

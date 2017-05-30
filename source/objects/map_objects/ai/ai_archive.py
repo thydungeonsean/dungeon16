@@ -1,5 +1,6 @@
 from ai_component import AIComponent
-from player_ai import PlayerAI
+from player_ai_component import PlayerAIComponent
+from party_ai_component import PartyAIComponent
 
 
 class AIArchive(object):
@@ -11,10 +12,9 @@ class AIArchive(object):
             return AIComponent(owner)
 
         elif ai_key == 'player':
-            return PlayerAI(owner)
+            return PlayerAIComponent(owner)
 
         elif ai_key == 'party':
-            return AIComponent(owner)
-            return  #PartyAI(owner)
+            return PartyAIComponent(owner)
 
         raise Exception('invalid ai type requested')

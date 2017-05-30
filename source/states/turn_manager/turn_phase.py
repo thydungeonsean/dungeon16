@@ -28,14 +28,15 @@ class TurnPhase(object):
         pass
 
     def get_next_actor(self):
-        if not self.available_actors:
-            next_actor = None
-        else:
+        while True:
+            if not self.available_actors:
+                return None
             next_actor = self.available_actors.pop()
-        return next_actor
+            if next_actor.ai.state != 'dead':
+                return next_actor
 
     def get_available_actors(self):
-        return list(filter(lambda actor: self.is_available(actor), self.level.actors.actors))
+        return list(filter(lambda actor: self.is_available(actor), self.level.actor_list.actors))
 
     def is_available(self, actor):
         raise NotImplementedError

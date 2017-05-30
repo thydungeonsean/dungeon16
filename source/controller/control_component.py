@@ -18,3 +18,5 @@ class ControlComponent(object):
     def set_key_map(self):
         return {}
 
+    def start_turn(self):
+        pass

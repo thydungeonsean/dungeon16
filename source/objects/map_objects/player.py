@@ -1,4 +1,5 @@
 from party_member import PartyMember
+from stat_component import get_invincible_stats
 
 
 class Player(PartyMember):
@@ -9,3 +10,6 @@ class Player(PartyMember):
 
     def set_ai_tag(self):
         return 'player'
+
+    def set_stats(self):
+        return get_invincible_stats(self)

@@ -9,7 +9,7 @@ class ActorDrawManager(ObjectDrawManager):
         self.objects = None
 
     def init(self):
-        self.objects = self.state.level.actors.actors
+        self.objects = self.state.level.actor_list.actors
 
     def draw(self, surface):
 

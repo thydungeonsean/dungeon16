@@ -62,14 +62,13 @@ class MobilityComponent(object):
             if feature.block_move:
                 return False, feature
 
-        actor = self.level.actors.actor_map.get(move)
-        if actor is not None:
-            return False, actor
+        actor_ref = self.level.actor_list.actor_map.get(move)
+        if actor_ref is not None:
+            return False, actor_ref()
 
         return True, None
 
     def move(self, point):
-        self.level.actors.move_actor(self.owner(), point)
         self.owner().move(point)
 
     def bump(self, target):

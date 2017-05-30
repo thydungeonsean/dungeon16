@@ -13,7 +13,7 @@ class Level(object):
         self.base_map = None
         self.map_image = None
 
-        self.actors = ActorList(self)
+        self.actor_list = ActorList(self)
         self.feature_map = FeatureMap(self)
         self.effects = EffectRunner(self)
 

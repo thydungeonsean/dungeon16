@@ -43,7 +43,10 @@ class DijkstraMap(object):
         self.d_map[x][y] = value
 
     def get_value(self, (x, y)):
-        return self.d_map[x][y]
+        try:
+            return self.d_map[x][y]
+        except IndexError:
+            return None
 
     def is_passable(self, (x, y)):
         return 0 <= x < self.w and 0 <= y < self.h and self.passable_func(self.level, (x, y))

@@ -22,7 +22,7 @@ def passable(level, point, valid_terrain):
 
 # functions - get_sources
 def get_party_source(level, *args):
-    actors = filter(lambda x: x.profile['group'] == 'party', level.actors.actors)
+    actors = filter(lambda x: x.profile['group'] == 'party', level.actor_list.actors)
     return [x.coord.get for x in actors]
 
 

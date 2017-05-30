@@ -29,7 +29,7 @@ class Actor(MapObject):
         self.level = level
         self.mobility_component.set_level(level)
         self.ai.set_level(level)
-        self.actor_list = level.actors
+        self.actor_list = level.actor_list
 
     def set_images(self):
         return SpriteArchive.get_actor_tileset(self.sprite).tiles
@@ -41,6 +41,8 @@ class Actor(MapObject):
         return {}
 
     def move(self, coord):
+        print self.profile['id'] + ' move from ' + str(self.coord.get) + ' to ' + str(coord)
+        self.actor_list.move_actor(self, coord)
         self.coord.set(coord)
         self.report_move()
 
@@ -66,6 +68,7 @@ class Actor(MapObject):
         self.level.effects.add_effect(Shake(self))
 
     def die(self):
+        self.ai.deinit()
         self.actor_list.remove_actor(self)
         self.report_death()
 
