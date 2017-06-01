@@ -41,7 +41,6 @@ class Actor(MapObject):
         return {}
 
     def move(self, coord):
-        print self.profile['id'] + ' move from ' + str(self.coord.get) + ' to ' + str(coord)
         self.actor_list.move_actor(self, coord)
         self.coord.set(coord)
         self.report_move()

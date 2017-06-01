@@ -15,10 +15,16 @@ class PlayerAIComponent(AIComponent):
 
     def assign_move(self, d):
 
+        # tries the move given by player input
+        # if it has an effect, adds the action and returns True to block
+        # further input for the turn
+
         action_packet = self.try_move(d)
         if action_packet is not None:
             action_key, action_args = action_packet
             self.action = ActionAssigner.get_action(action_key, *action_args)
+            return True
+        return False
 
     def skip_turn(self):
         self.action = ActionAssigner.get_action('wait')

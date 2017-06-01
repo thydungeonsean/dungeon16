@@ -22,23 +22,19 @@ class MoveControl(ControlComponent):
 
     def up(self):
         if self.ready:
-            self.owner().ai.assign_move('up')
-            self.ready = False
+            self.ready = not self.owner().ai.assign_move('up')
 
     def down(self):
         if self.ready:
-            self.owner().ai.assign_move('down')
-            self.ready = False
+            self.ready = not self.owner().ai.assign_move('down')
 
     def right(self):
         if self.ready:
-            self.owner().ai.assign_move('right')
-            self.ready = False
+            self.ready = not self.owner().ai.assign_move('right')
 
     def left(self):
         if self.ready:
-            self.owner().ai.assign_move('left')
-            self.ready = False
+            self.ready = not self.owner().ai.assign_move('left')
 
     def wait(self):
         if self.ready:

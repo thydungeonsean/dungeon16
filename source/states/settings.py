@@ -2,7 +2,7 @@
 
 class Settings(object):
 
-    SCALE = 1
+    SCALE = 2
     TILE_W = 16
     TILE_H = 16
 

@@ -72,8 +72,6 @@ def test():
 
     l.dijkstra_collection.access_map('party_walker')
 
-    # l.effects.add_effect(AnimationEffect(player))
-
     i = 0
 
     while True:
@@ -127,7 +125,7 @@ def add_actors(l, p):
         if c == p:
             pass
         else:
-            if randint(0, 50) == 0:
+            if randint(0, 10) == 0:
                 l.actor_list.add_actor(Monster(c, choice(('goblin', 'skeleton', 'cube'))))
 
 
