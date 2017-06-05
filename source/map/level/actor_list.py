@@ -7,6 +7,7 @@ class ActorList(object):
 
         self.level = level
 
+        self.player = None
         self.actors = []
         self.actor_coords = set()
         self.actor_map = {}
@@ -19,10 +20,12 @@ class ActorList(object):
         self.actor_coords.add(actor.coord.get)
         self.actor_map[actor.coord.get] = ref(actor)
 
+    def add_player(self, actor):
+        self.add_actor(actor)
+        self.player = ref(actor)
+
     def move_actor(self, actor, point):
 
-        # self.show_list()
-        print actor.profile['id'] + ' move'
         old = actor.coord.get
         self.actor_coords.remove(old)
         del self.actor_map[old]
@@ -31,7 +34,6 @@ class ActorList(object):
         self.actor_map[point] = ref(actor)
 
     def remove_actor(self, actor):
-        print actor.profile['id'] + ' die'
         point = actor.coord.get
         self.actor_coords.remove(point)
         del self.actor_map[point]

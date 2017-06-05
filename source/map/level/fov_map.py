@@ -61,9 +61,11 @@ class FOVMap(object):
 
         self.update_shroud_points(view)
 
+    ################################################
     # getting values from map
     def point_is_visible(self, (x, y)):
         return libtcod.map_is_in_fov(self.map, x, y)
+    ################################################
 
     def update_shroud_points(self, view):
 

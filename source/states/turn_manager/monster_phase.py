@@ -1,4 +1,5 @@
 from turn_phase import TurnPhase
+import time
 
 
 class MonsterPhase(TurnPhase):
@@ -18,4 +19,6 @@ class MonsterPhase(TurnPhase):
         return True
 
     def sort_available(self):  # nearest monsters to player act first
-        self.available_actors = sorted(self.available_actors, key=lambda m: m.ai.dist_to_player, reverse=True)
+
+        self.available_actors = sorted(self.available_actors, key=lambda m: m.ai.dist_to_player(), reverse=True)
+        #self.available_actors.sort(key=lambda m: m.ai.dist_to_player()) ?

@@ -62,7 +62,7 @@ def test():
     l.feature_map.add_feature((20, 7), x)
     l.feature_map.add_feature((22, 8), y)
 
-    l.actor_list.add_actor(player)
+    l.actor_list.add_player(player)
     # l.actors.add_actor(friend)
 
     l.fov_map.set_fov_map()

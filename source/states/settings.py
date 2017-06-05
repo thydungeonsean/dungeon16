@@ -9,6 +9,8 @@ class Settings(object):
     SC_TILE_W = TILE_W * SCALE
     SC_TILE_H = TILE_H * SCALE
 
+    MOVE_ANIMATION = True
+
     @classmethod
     def set_scate(cls, scale):
         cls.SCALE = scale

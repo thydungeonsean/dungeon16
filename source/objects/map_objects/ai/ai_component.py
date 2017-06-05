@@ -22,7 +22,10 @@ class AIComponent(object):
         self.state = 'dead'
 
     def dist_to_player(self):
-        return 1
+
+        owner_x, owner_y = self.owner().coord.get
+        player_x, player_y = self.level.actor_list.player().coord.get  # need to add player ref to actor_list
+        return abs(owner_x - player_x) + abs(owner_y - player_y)
 
     def clear_action(self):
         self.action = None

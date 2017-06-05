@@ -73,3 +73,5 @@ class Actor(MapObject):
 
     def report_death(self):
         Message('actor_die', *self.profile.items()).send()
+
+
